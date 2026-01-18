@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vintura — Wine Moments, Shared</title>
+    <meta name="description" content="Join the wine community that turns bottles into connections. Share moments, discover wines, and find your people.">
+    
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Vintura — Wine Moments, Shared">
+    <meta property="og:description" content="Join the wine community that turns bottles into connections. Share moments, discover wines, and find your people.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="og-image.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --wine-red: #722F37;
+            --wine-dark: #5a252c;
+            --gold: #C9A962;
+            --gold-light: #d4b978;
+            --off-white: #FAFAFA;
+            --white: #FFFFFF;
+            --dark-text: #1A1A1A;
+            --medium-text: #666666;
+            --light-text: #999999;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--off-white);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--wine-red) 0%, var(--wine-dark) 100%);
+            color: var(--white);
+            padding: 60px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(201,169,98,0.1) 0%, transparent 50%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 24px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+        
+        .tagline {
+            font-size: 24px;
+            color: var(--gold);
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+        
+        /* Waitlist Form */
+        .waitlist-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .waitlist-form input[type="email"] {
+            padding: 16px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            outline: none;
+        }
+        
+        .waitlist-form input[type="email"]:focus {
+            box-shadow: 0 0 0 3px rgba(201,169,98,0.5);
+        }
+        
+        .btn {
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: var(--gold);
+            color: var(--wine-red);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .form-note {
+            font-size: 14px;
+            opacity: 0.7;
+            margin-top: 8px;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 20px;
+            background-color: var(--white);
+        }
+        
+        .features-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 16px;
+            color: var(--wine-red);
+        }
+        
+        .features-subtitle {
+            text-align: center;
+            color: var(--medium-text);
+            margin-bottom: 60px;
+            font-size: 18px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background-color: var(--wine-red);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+        }
+        
+        .feature h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--dark-text);
+        }
+        
+        .feature p {
+            color: var(--medium-text);
+            font-size: 16px;
+        }
+        
+        /* Founding Member Section */
+        .founding {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--off-white) 0%, #f0ebe3 100%);
+        }
+        
+        .founding-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .founding-badge {
+            display: inline-block;
+            background-color: var(--gold);
+            color: var(--wine-red);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        
+        .founding h2 {
+            font-size: 36px;
+            color: var(--wine-red);
+            margin-bottom: 16px;
+        }
+        
+        .founding > .founding-container > p {
+            color: var(--medium-text);
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+        
+        .founding-card {
+            background-color: var(--white);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+            border: 2px solid var(--gold);
+        }
+        
+        .price {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--wine-red);
+            margin-bottom: 8px;
+        }
+        
+        .price span {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--medium-text);
+        }
+        
+        .price-note {
+            color: var(--light-text);
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+        
+        .benefits {
+            text-align: left;
+            margin-bottom: 32px;
+        }
+        
+        .benefit {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .benefit-check {
+            width: 24px;
+            height: 24px;
+            background-color: var(--wine-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        
+        .benefit p {
+            color: var(--dark-text);
+        }
+        
+        .btn-founding {
+            width: 100%;
+            background-color: var(--wine-red);
+            color: var(--white);
+            font-size: 18px;
+            padding: 18px 32px;
+        }
+        
+        .btn-founding:hover {
+            background-color: var(--wine-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(114,47,55,0.3);
+        }
+        
+        .founding-limit {
+            margin-top: 16px;
+            color: var(--light-text);
+            font-size: 14px;
+        }
+        
+        /* Trip Interest Section */
+        .trips {
+            padding: 80px 20px;
+            background-color: var(--white);
+        }
+        
+        .trips-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .trips h2 {
+            text-align: center;
+            font-size: 32px;
+            color: var(--wine-red);
+            margin-bottom: 16px;
+        }
+        
+        .trips-subtitle {
+            text-align: center;
+            color: var(--medium-text);
+            font-size: 18px;
+            margin-bottom: 48px;
+        }
+        
+        .trip-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+        
+        .trip-card {
+            background-color: var(--off-white);
+            border-radius: 12px;
+            padding: 32px 24px;
+            text-align: center;
+            border: 1px solid #E5E5E5;
+            transition: all 0.3s ease;
+        }
+        
+        .trip-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            border-color: var(--gold);
+        }
+        
+        .trip-emoji {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        
+        .trip-card h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: var(--dark-text);
+        }
+        
+        .trip-card .trip-date {
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .trip-card p {
+            color: var(--medium-text);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .btn-trip {
+            background-color: transparent;
+            border: 2px solid var(--wine-red);
+            color: var(--wine-red);
+            padding: 12px 24px;
+            font-size: 14px;
+        }
+        
+        .btn-trip:hover {
+            background-color: var(--wine-red);
+            color: var(--white);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--wine-red);
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .footer-tagline {
+            color: var(--gold);
+            margin-bottom: 32px;
+        }
+        
+        .footer-links {
+            margin-bottom: 32px;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            margin: 0 16px;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        .footer-social {
+            margin-bottom: 32px;
+        }
+        
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            margin: 0 8px;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 20px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .footer-social a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .copyright {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+        
+        /* Success Message (hidden by default) */
+        .success-message {
+            display: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            margin-top: 16px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .tagline {
+                font-size: 20px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .features h2,
+            .founding h2,
+            .trips h2 {
+                font-size: 28px;
+            }
+            
+            .founding-card {
+                padding: 24px;
+            }
+            
+            .price {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <!-- Wine Glass SVG Icon -->
+            <svg class="logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="50" cy="35" rx="30" ry="25" stroke="white" stroke-width="4" fill="none"/>
+                <path d="M28 40 Q28 55 50 60 Q72 55 72 40 Z" fill="#C9A962"/>
+                <rect x="46" y="60" width="8" height="25" fill="white"/>
+                <ellipse cx="50" cy="90" rx="20" ry="6" fill="white"/>
+            </svg>
+            
+            <h1>Vintura</h1>
+            <p class="tagline">Wine Moments, Shared</p>
+            <p>Join the wine community that turns bottles into connections. Share your moments, discover wines through people you trust, and find your people.</p>
+            
+            <!-- Waitlist Form -->
+            <form class="waitlist-form" id="waitlist-form">
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <button type="submit" class="btn btn-primary">Join the Waitlist</button>
+                <p class="form-note">Be the first to know when we launch. No spam, ever.</p>
+            </form>
+            <div class="success-message" id="success-message">
+                🎉 You're on the list! We'll be in touch soon.
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-container">
+            <h2>Wine is Better Shared</h2>
+            <p class="features-subtitle">Vintura is the social app for wine lovers who want more than ratings.</p>
+            
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">📸</div>
+                    <h3>Share Your Moments</h3>
+                    <p>Capture and share your wine experiences — the dinner party find, the vacation discovery, the Tuesday night treat.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Scan & Discover</h3>
+                    <p>Point your camera at any wine label to instantly identify it and see what the community thinks.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">👥</div>
+                    <h3>Find Your People</h3>
+                    <p>Follow wine lovers with similar tastes. Get recommendations from real people, not algorithms.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">📝</div>
+                    <h3>Build Your List</h3>
+                    <p>Save wines you want to try. Never forget a recommendation again.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">💬</div>
+                    <h3>Join the Conversation</h3>
+                    <p>Ask questions, share tips, and connect with a community that gets it.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">✈️</div>
+                    <h3>Travel Together</h3>
+                    <p>Coming soon: Curated wine trips with fellow Vintura members to the world's best regions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Founding Member Section -->
+    <section class="founding">
+        <div class="founding-container">
+            <span class="founding-badge">🍷 Limited Offer</span>
+            <h2>Become a Founding Member</h2>
+            <p>Get exclusive early access and help shape the future of Vintura.</p>
+            
+            <div class="founding-card">
+                <div class="price">$19 <span>/ year</span></div>
+                <p class="price-note">Lock in this price forever. Regular price will be $49/year.</p>
+                
+                <div class="benefits">
+                    <div class="benefit">
+                        <div class="benefit-check">✓</div>
+                        <p><strong>Early Access</strong> — Be among the first to use Vintura</p>
+                    </div>
+                    <div class="benefit">
+                        <div class="benefit-check">✓</div>
+                        <p><strong>Founding Member Badge</strong> — Exclusive profile badge forever</p>
+                    </div>
+                    <div class="benefit">
+                        <div class="benefit-check">✓</div>
+                        <p><strong>Shape the Product</strong> — Direct input on features we build</p>
+                    </div>
+                    <div class="benefit">
+                        <div class="benefit-check">✓</div>
+                        <p><strong>Trip Discounts</strong> — 15% off all future Vintura wine trips</p>
+                    </div>
+                    <div class="benefit">
+                        <div class="benefit-check">✓</div>
+                        <p><strong>Founding Members Community</strong> — Exclusive group access</p>
+                    </div>
+                </div>
+                
+                <a href="#founding-signup" class="btn btn-founding">Become a Founding Member</a>
+                <p class="founding-limit">Only 100 spots available</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Trip Interest Section -->
+    <section class="trips">
+        <div class="trips-container">
+            <h2>Wine Trips Are Coming</h2>
+            <p class="trips-subtitle">Travel with fellow wine lovers to the world's best regions. Let us know where you want to go.</p>
+            
+            <div class="trip-cards">
+                <div class="trip-card">
+                    <div class="trip-emoji">🇮🇹</div>
+                    <h3>Tuscany, Italy</h3>
+                    <p class="trip-date">Fall 2026</p>
+                    <p>Chianti hills, historic cellars, and farm-to-table dinners under the stars.</p>
+                    <button class="btn btn-trip" data-trip="tuscany">I'm Interested</button>
+                </div>
+                
+                <div class="trip-card">
+                    <div class="trip-emoji">🇪🇸</div>
+                    <h3>Rioja, Spain</h3>
+                    <p class="trip-date">Spring 2026</p>
+                    <p>Centuries-old bodegas, modern architecture, and world-class Tempranillo.</p>
+                    <button class="btn btn-trip" data-trip="rioja">I'm Interested</button>
+                </div>
+                
+                <div class="trip-card">
+                    <div class="trip-emoji">🇺🇸</div>
+                    <h3>Napa Valley, USA</h3>
+                    <p class="trip-date">Summer 2026</p>
+                    <p>Iconic wineries, hot air balloons, and California hospitality at its finest.</p>
+                    <button class="btn btn-trip" data-trip="napa">I'm Interested</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">Vintura</div>
+        <p class="footer-tagline">Wine moments, shared.</p>
+        
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="mailto:hello@vintura.com">Contact</a>
+        </div>
+        
+        <div class="footer-social">
+            <a href="#" title="Instagram">📷</a>
+            <a href="#" title="Twitter">🐦</a>
+            <a href="#" title="Facebook">👤</a>
+        </div>
+        
+        <p class="copyright">© 2026 Vintura. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        // Waitlist Form Submission
+        document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = this.querySelector('input[type="email"]').value;
+            
+            // In production, you'd send this to your backend or email service
+            // For now, we'll just show the success message
+            console.log('Waitlist signup:', email);
+            
+            // Hide form, show success
+            this.style.display = 'none';
+            document.getElementById('success-message').style.display = 'block';
+            
+            // Optional: Send to a service like Formspree, Mailchimp, etc.
+            // fetch('https://formspree.io/f/YOUR_FORM_ID', {
+            //     method: 'POST',
+            //     body: JSON.stringify({ email: email }),
+            //     headers: { 'Content-Type': 'application/json' }
+            // });
+        });
+        
+        // Trip Interest Buttons
+        document.querySelectorAll('.btn-trip').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const trip = this.getAttribute('data-trip');
+                
+                // Change button to show interest recorded
+                this.textContent = '✓ Added to List';
+                this.style.backgroundColor = '#722F37';
+                this.style.color = 'white';
+                this.style.borderColor = '#722F37';
+                this.disabled = true;
+                
+                console.log('Trip interest:', trip);
+                
+                // In production, you'd save this to your backend
+            });
+        });
+        
+        // Founding Member Button
+        document.querySelector('.btn-founding').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // In production, this would link to Stripe/Gumroad checkout
+            // For now, show an alert
+            alert('Thank you for your interest! Founding Member signups will open soon. Join the waitlist to be notified!');
+            
+            // Or redirect to a payment page:
+            // window.location.href = 'https://buy.stripe.com/YOUR_LINK';
+        });
+    </script>
+</body>
+</html>

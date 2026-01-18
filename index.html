@@ -536,7 +536,7 @@
                 <p class="form-note">Be the first to know when we launch. No spam, ever.</p>
             </form>
             <div class="success-message" id="success-message">
-                🎉 You're on the list! We'll be in touch soon.
+                You're on the list! We'll be in touch soon.
             </div>
         </div>
     </section>
@@ -681,43 +681,62 @@
     </footer>
     
     <script>
-        // Waitlist Form Submission
+        // Waitlist Form Submission - Connected to Formspree
         document.getElementById('waitlist-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const email = this.querySelector('input[type="email"]').value;
+            const form = this;
             
-            // In production, you'd send this to your backend or email service
-            // For now, we'll just show the success message
-            console.log('Waitlist signup:', email);
-            
-            // Hide form, show success
-            this.style.display = 'none';
-            document.getElementById('success-message').style.display = 'block';
-            
-            // Optional: Send to a service like Formspree, Mailchimp, etc.
-            // fetch('https://formspree.io/f/YOUR_FORM_ID', {
-            //     method: 'POST',
-            //     body: JSON.stringify({ email: email }),
-            //     headers: { 'Content-Type': 'application/json' }
-            // });
+            // Send to Formspree
+            fetch('https://formspree.io/f/mbddgebj', {
+                method: 'POST',
+                body: JSON.stringify({ email: email }),
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Hide form, show success
+                    form.style.display = 'none';
+                    document.getElementById('success-message').style.display = 'block';
+                } else {
+                    alert('Something went wrong. Please try again.');
+                }
+            })
+            .catch(error => {
+                alert('Something went wrong. Please try again.');
+            });
         });
         
-        // Trip Interest Buttons
+        // Trip Interest Buttons - Connected to Formspree
         document.querySelectorAll('.btn-trip').forEach(function(btn) {
             btn.addEventListener('click', function() {
                 const trip = this.getAttribute('data-trip');
+                const button = this;
                 
-                // Change button to show interest recorded
-                this.textContent = '✓ Added to List';
-                this.style.backgroundColor = '#722F37';
-                this.style.color = 'white';
-                this.style.borderColor = '#722F37';
-                this.disabled = true;
-                
-                console.log('Trip interest:', trip);
-                
-                // In production, you'd save this to your backend
+                // Send to Formspree
+                fetch('https://formspree.io/f/mbddgebj', {
+                    method: 'POST',
+                    body: JSON.stringify({ 
+                        trip_interest: trip,
+                        message: 'Trip interest: ' + trip 
+                    }),
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    // Change button to show interest recorded
+                    button.textContent = 'Added to List!';
+                    button.style.backgroundColor = '#722F37';
+                    button.style.color = 'white';
+                    button.style.borderColor = '#722F37';
+                    button.disabled = true;
+                });
             });
         });
         
@@ -725,11 +744,10 @@
         document.querySelector('.btn-founding').addEventListener('click', function(e) {
             e.preventDefault();
             
-            // In production, this would link to Stripe/Gumroad checkout
-            // For now, show an alert
+            // For now, show an alert. Replace with Stripe link when ready.
             alert('Thank you for your interest! Founding Member signups will open soon. Join the waitlist to be notified!');
             
-            // Or redirect to a payment page:
+            // When you have Stripe set up, replace the alert with:
             // window.location.href = 'https://buy.stripe.com/YOUR_LINK';
         });
     </script>

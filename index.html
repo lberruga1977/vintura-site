@@ -17,6 +17,11 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -26,28 +31,34 @@
         
         :root {
             --wine-red: #722F37;
-            --wine-dark: #5a252c;
+            --wine-dark: #4a1f24;
+            --wine-light: #8b3d47;
             --gold: #C9A962;
             --gold-light: #d4b978;
-            --off-white: #FAFAFA;
+            --gold-dark: #a68b4a;
+            --cream: #FAF8F5;
             --white: #FFFFFF;
             --dark-text: #1A1A1A;
-            --medium-text: #666666;
-            --light-text: #999999;
+            --medium-text: #555555;
+            --light-text: #888888;
+            
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: var(--font-body);
             line-height: 1.6;
             color: var(--dark-text);
-            background-color: var(--off-white);
+            background-color: var(--cream);
+            -webkit-font-smoothing: antialiased;
         }
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--wine-red) 0%, var(--wine-dark) 100%);
+            background: linear-gradient(160deg, var(--wine-red) 0%, var(--wine-dark) 100%);
             color: var(--white);
-            padding: 80px 20px 100px;
+            padding: 100px 24px 120px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -56,89 +67,111 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(201,169,98,0.1) 0%, transparent 50%);
-            animation: pulse 15s ease-in-out infinite;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 1;
         }
         
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201,169,98,0.15) 0%, transparent 60%);
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-30px, 30px) scale(1.1); }
         }
         
         .hero-content {
             position: relative;
             z-index: 1;
-            max-width: 700px;
+            max-width: 720px;
             margin: 0 auto;
         }
         
         .logo {
-            width: 90px;
-            height: 90px;
-            margin-bottom: 24px;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 32px;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
         }
         
         .hero h1 {
-            font-size: 52px;
-            font-weight: 700;
+            font-family: var(--font-display);
+            font-size: 72px;
+            font-weight: 600;
             margin-bottom: 8px;
-            letter-spacing: -1px;
+            letter-spacing: -2px;
+            line-height: 1;
         }
         
         .tagline {
-            font-size: 26px;
+            font-family: var(--font-display);
+            font-size: 28px;
             color: var(--gold);
-            margin-bottom: 24px;
-            font-weight: 500;
+            margin-bottom: 28px;
+            font-weight: 400;
+            font-style: italic;
+            letter-spacing: 1px;
         }
         
-        .hero p {
-            font-size: 20px;
+        .hero-description {
+            font-size: 19px;
             opacity: 0.9;
-            margin-bottom: 40px;
+            margin-bottom: 44px;
             line-height: 1.7;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .hero-cta {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            max-width: 400px;
+            gap: 14px;
+            max-width: 360px;
             margin: 0 auto;
         }
         
         .btn {
-            padding: 16px 32px;
-            font-size: 16px;
+            padding: 18px 36px;
+            font-size: 15px;
             font-weight: 600;
+            font-family: var(--font-body);
             border: none;
-            border-radius: 12px;
+            border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
             display: inline-block;
             text-align: center;
+            letter-spacing: 0.3px;
         }
         
         .btn-primary {
-            background-color: var(--gold);
-            color: var(--wine-red);
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--wine-dark);
+            box-shadow: 0 4px 16px rgba(201, 169, 98, 0.4);
         }
         
         .btn-primary:hover {
-            background-color: var(--gold-light);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 24px rgba(201, 169, 98, 0.5);
         }
         
         .btn-secondary {
             background-color: transparent;
             color: var(--white);
-            border: 2px solid rgba(255,255,255,0.5);
+            border: 2px solid rgba(255,255,255,0.4);
         }
         
         .btn-secondary:hover {
@@ -147,105 +180,149 @@
         }
         
         .hero-note {
-            font-size: 14px;
-            opacity: 0.7;
-            margin-top: 16px;
+            font-size: 13px;
+            opacity: 0.6;
+            margin-top: 20px;
+            letter-spacing: 0.5px;
         }
         
         /* Meet Vina Section */
         .vina-section {
-            padding: 100px 20px;
-            background: linear-gradient(180deg, #FFF 0%, var(--off-white) 100%);
+            padding: 120px 24px;
+            background: var(--white);
+            position: relative;
+        }
+        
+        .vina-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
         
         .vina-container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 80px;
             align-items: center;
         }
         
         .vina-content h2 {
-            font-size: 40px;
+            font-family: var(--font-display);
+            font-size: 56px;
             color: var(--wine-red);
-            margin-bottom: 8px;
+            margin-bottom: 4px;
+            font-weight: 600;
+            letter-spacing: -1px;
         }
         
         .vina-content .vina-subtitle {
-            font-size: 20px;
-            color: var(--gold);
-            margin-bottom: 24px;
-            font-weight: 500;
+            font-family: var(--font-display);
+            font-size: 22px;
+            color: var(--gold-dark);
+            margin-bottom: 28px;
+            font-weight: 400;
+            font-style: italic;
         }
         
         .vina-content p {
-            font-size: 18px;
+            font-size: 17px;
             color: var(--medium-text);
-            margin-bottom: 24px;
-            line-height: 1.7;
+            margin-bottom: 32px;
+            line-height: 1.8;
         }
         
         .vina-features {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 18px;
         }
         
         .vina-feature {
             display: flex;
-            align-items: flex-start;
-            gap: 12px;
+            align-items: center;
+            gap: 16px;
         }
         
         .vina-feature-icon {
-            width: 32px;
-            height: 32px;
-            background-color: var(--wine-red);
-            border-radius: 8px;
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--wine-red) 0%, var(--wine-dark) 100%);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
             flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(114, 47, 55, 0.2);
+        }
+        
+        .vina-feature-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--white);
         }
         
         .vina-feature-text {
-            font-size: 16px;
+            font-size: 15px;
             color: var(--dark-text);
+            font-weight: 500;
         }
         
         .vina-visual {
-            background: linear-gradient(135deg, var(--wine-red) 0%, var(--wine-dark) 100%);
-            border-radius: 24px;
-            padding: 40px;
+            background: linear-gradient(160deg, var(--wine-red) 0%, var(--wine-dark) 100%);
+            border-radius: 32px;
+            padding: 48px 36px;
             color: white;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 24px 64px rgba(114, 47, 55, 0.3);
         }
         
         .vina-visual::before {
             content: '';
             position: absolute;
-            top: -30%;
-            right: -30%;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(201,169,98,0.2) 0%, transparent 60%);
+            border-radius: 50%;
+        }
+        
+        .vina-visual::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: -50px;
             width: 200px;
             height: 200px;
-            background: radial-gradient(circle, rgba(201,169,98,0.2) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
             border-radius: 50%;
         }
         
         .vina-avatar {
-            width: 80px;
-            height: 80px;
-            background: var(--gold);
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 36px;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .vina-avatar svg {
+            width: 36px;
+            height: 36px;
+            fill: var(--wine-dark);
         }
         
         .vina-chat {
@@ -254,28 +331,42 @@
         }
         
         .chat-bubble {
-            background: rgba(255,255,255,0.15);
-            border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 12px;
-            font-size: 15px;
-            line-height: 1.5;
+            border-radius: 20px;
+            padding: 18px 22px;
+            margin-bottom: 14px;
+            font-size: 14px;
+            line-height: 1.6;
         }
         
         .chat-bubble.user {
-            background: rgba(255,255,255,0.1);
-            margin-left: 40px;
+            background: rgba(255,255,255,0.12);
+            margin-left: 48px;
             text-align: right;
+            border-bottom-right-radius: 6px;
         }
         
         .chat-bubble.vina {
+            background: rgba(255,255,255,0.08);
             border: 1px solid var(--gold);
+            border-bottom-left-radius: 6px;
+            margin-right: 24px;
+        }
+        
+        .chat-bubble.vina::before {
+            content: 'Vina';
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         /* Features Section */
         .features {
-            padding: 100px 20px;
-            background-color: var(--white);
+            padding: 120px 24px;
+            background: var(--cream);
         }
         
         .features-container {
@@ -285,13 +376,16 @@
         
         .section-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 72px;
         }
         
         .section-header h2 {
-            font-size: 36px;
+            font-family: var(--font-display);
+            font-size: 48px;
             color: var(--wine-red);
             margin-bottom: 12px;
+            font-weight: 600;
+            letter-spacing: -1px;
         }
         
         .section-header p {
@@ -302,40 +396,65 @@
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
+            gap: 28px;
         }
         
         .feature-card {
-            background: var(--off-white);
-            border-radius: 16px;
-            padding: 32px;
+            background: var(--white);
+            border-radius: 24px;
+            padding: 36px 28px;
             text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0,0,0,0.04);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--wine-red), var(--gold));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
         .feature-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-            border-color: var(--gold);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 48px rgba(0,0,0,0.08);
+        }
+        
+        .feature-card:hover::before {
+            opacity: 1;
         }
         
         .feature-icon {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, var(--wine-red) 0%, var(--wine-dark) 100%);
-            border-radius: 16px;
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(160deg, var(--wine-red) 0%, var(--wine-dark) 100%);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 28px;
+            margin: 0 auto 24px;
+            box-shadow: 0 8px 20px rgba(114, 47, 55, 0.2);
+        }
+        
+        .feature-icon svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--white);
         }
         
         .feature-card h3 {
-            font-size: 20px;
+            font-family: var(--font-display);
+            font-size: 24px;
             margin-bottom: 12px;
             color: var(--dark-text);
+            font-weight: 600;
         }
         
         .feature-card p {
@@ -346,8 +465,9 @@
         
         /* Premium Features Section */
         .premium-features {
-            padding: 100px 20px;
-            background: linear-gradient(135deg, var(--off-white) 0%, #f0ebe3 100%);
+            padding: 120px 24px;
+            background: linear-gradient(180deg, var(--white) 0%, var(--cream) 100%);
+            position: relative;
         }
         
         .premium-container {
@@ -356,55 +476,74 @@
         }
         
         .premium-badge {
-            display: inline-block;
-            background: var(--gold);
-            color: var(--wine-red);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--wine-dark);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 13px;
             font-weight: 600;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(201, 169, 98, 0.3);
+        }
+        
+        .premium-badge svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--wine-dark);
         }
         
         .premium-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 24px;
-            margin-top: 48px;
+            margin-top: 56px;
         }
         
         .premium-card {
             background: var(--white);
-            border-radius: 20px;
+            border-radius: 24px;
             padding: 32px;
             display: flex;
-            gap: 20px;
+            gap: 24px;
             align-items: flex-start;
-            border: 1px solid #E5E5E5;
+            border: 1px solid rgba(0,0,0,0.05);
             transition: all 0.3s ease;
         }
         
         .premium-card:hover {
             border-color: var(--gold);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+            transform: translateY(-2px);
         }
         
         .premium-card-icon {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, var(--wine-red) 0%, var(--wine-dark) 100%);
-            border-radius: 14px;
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(160deg, var(--wine-red) 0%, var(--wine-dark) 100%);
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
             flex-shrink: 0;
+            box-shadow: 0 8px 20px rgba(114, 47, 55, 0.2);
+        }
+        
+        .premium-card-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--white);
         }
         
         .premium-card-content h3 {
-            font-size: 20px;
+            font-family: var(--font-display);
+            font-size: 24px;
             color: var(--dark-text);
             margin-bottom: 8px;
+            font-weight: 600;
         }
         
         .premium-card-content p {
@@ -415,12 +554,12 @@
         
         /* Pricing Section */
         .pricing {
-            padding: 100px 20px;
+            padding: 120px 24px;
             background: var(--white);
         }
         
         .pricing-container {
-            max-width: 900px;
+            max-width: 960px;
             margin: 0 auto;
         }
         
@@ -428,104 +567,120 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 32px;
-            margin-top: 48px;
+            margin-top: 56px;
         }
         
         .pricing-card {
-            background: var(--off-white);
-            border-radius: 24px;
-            padding: 40px;
+            background: var(--cream);
+            border-radius: 32px;
+            padding: 48px 40px;
             border: 2px solid transparent;
             position: relative;
+            transition: all 0.3s ease;
         }
         
         .pricing-card.featured {
             background: var(--white);
             border-color: var(--gold);
-            box-shadow: 0 12px 48px rgba(114, 47, 55, 0.15);
+            box-shadow: 0 24px 64px rgba(114, 47, 55, 0.12);
         }
         
         .pricing-card.featured::before {
-            content: '🍷 Best Value';
+            content: 'Best Value';
             position: absolute;
             top: -14px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--gold);
-            color: var(--wine-red);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--wine-dark);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(201, 169, 98, 0.3);
         }
         
         .pricing-card h3 {
-            font-size: 24px;
+            font-family: var(--font-display);
+            font-size: 32px;
             color: var(--dark-text);
             margin-bottom: 8px;
+            font-weight: 600;
         }
         
         .pricing-card .price {
-            font-size: 48px;
+            font-family: var(--font-display);
+            font-size: 56px;
             font-weight: 700;
             color: var(--wine-red);
-            margin: 16px 0;
+            margin: 20px 0;
+            line-height: 1;
         }
         
         .pricing-card .price span {
             font-size: 18px;
             font-weight: 400;
             color: var(--medium-text);
+            font-family: var(--font-body);
         }
         
         .pricing-card .price-note {
             font-size: 14px;
             color: var(--light-text);
-            margin-bottom: 24px;
+            margin-bottom: 32px;
         }
         
         .pricing-features {
             list-style: none;
-            margin-bottom: 32px;
+            margin-bottom: 36px;
         }
         
         .pricing-features li {
             display: flex;
             align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 12px;
+            gap: 14px;
+            margin-bottom: 14px;
             font-size: 15px;
             color: var(--dark-text);
         }
         
-        .pricing-features li::before {
-            content: '✓';
-            width: 20px;
-            height: 20px;
+        .pricing-features li .check {
+            width: 22px;
+            height: 22px;
             background: var(--wine-red);
-            color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
             flex-shrink: 0;
+            margin-top: 1px;
+        }
+        
+        .pricing-features li .check svg {
+            width: 12px;
+            height: 12px;
+            fill: var(--white);
         }
         
         .pricing-features li.disabled {
             color: var(--light-text);
         }
         
-        .pricing-features li.disabled::before {
-            content: '—';
-            background: #E5E5E5;
-            color: var(--light-text);
+        .pricing-features li.disabled .check {
+            background: #E0E0E0;
+        }
+        
+        .pricing-features li.disabled .check svg {
+            fill: #999;
         }
         
         .btn-pricing {
             width: 100%;
-            padding: 16px;
+            padding: 18px;
             font-size: 16px;
+            border-radius: 16px;
         }
         
         .btn-pricing.btn-outline {
@@ -540,36 +695,66 @@
         }
         
         .btn-pricing.btn-filled {
-            background: var(--wine-red);
+            background: linear-gradient(135deg, var(--wine-red) 0%, var(--wine-dark) 100%);
             color: white;
+            border: none;
+            box-shadow: 0 8px 24px rgba(114, 47, 55, 0.3);
         }
         
         .btn-pricing.btn-filled:hover {
-            background: var(--wine-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(114, 47, 55, 0.4);
         }
         
         /* Founding Member Banner */
         .founding-banner {
-            background: linear-gradient(135deg, var(--wine-red) 0%, var(--wine-dark) 100%);
+            background: linear-gradient(160deg, var(--wine-red) 0%, var(--wine-dark) 100%);
             color: white;
-            padding: 60px 20px;
+            padding: 80px 24px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .founding-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .founding-banner::after {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(201,169,98,0.15) 0%, transparent 60%);
         }
         
         .founding-banner-content {
             max-width: 700px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
         
         .founding-banner h2 {
-            font-size: 32px;
-            margin-bottom: 12px;
+            font-family: var(--font-display);
+            font-size: 40px;
+            margin-bottom: 16px;
+            font-weight: 600;
         }
         
         .founding-banner p {
             font-size: 18px;
             opacity: 0.9;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
+            line-height: 1.7;
         }
         
         .founding-banner .highlight {
@@ -583,73 +768,97 @@
         
         .founding-note {
             font-size: 14px;
-            opacity: 0.7;
-            margin-top: 16px;
+            opacity: 0.6;
+            margin-top: 20px;
         }
         
         /* Trip Interest Section */
         .trips {
-            padding: 100px 20px;
-            background-color: var(--off-white);
+            padding: 120px 24px;
+            background: var(--cream);
         }
         
         .trips-container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
         }
         
         .trip-cards {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-top: 48px;
+            gap: 28px;
+            margin-top: 56px;
         }
         
         .trip-card {
             background-color: var(--white);
-            border-radius: 16px;
-            padding: 32px 24px;
+            border-radius: 24px;
+            padding: 36px 28px;
             text-align: center;
-            border: 1px solid #E5E5E5;
+            border: 1px solid rgba(0,0,0,0.04);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .trip-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--wine-red), var(--gold));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
         .trip-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-            border-color: var(--gold);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 48px rgba(0,0,0,0.08);
         }
         
-        .trip-emoji {
-            font-size: 48px;
-            margin-bottom: 16px;
+        .trip-card:hover::before {
+            opacity: 1;
+        }
+        
+        .trip-flag {
+            font-size: 56px;
+            margin-bottom: 20px;
+            display: block;
         }
         
         .trip-card h3 {
-            font-size: 20px;
+            font-family: var(--font-display);
+            font-size: 26px;
             margin-bottom: 8px;
             color: var(--dark-text);
+            font-weight: 600;
         }
         
         .trip-card .trip-date {
-            color: var(--gold);
-            font-weight: 600;
-            margin-bottom: 12px;
+            font-family: var(--font-display);
+            color: var(--gold-dark);
+            font-weight: 500;
+            margin-bottom: 16px;
+            font-size: 16px;
+            font-style: italic;
         }
         
         .trip-card p {
             color: var(--medium-text);
             font-size: 14px;
-            margin-bottom: 20px;
-            line-height: 1.5;
+            margin-bottom: 24px;
+            line-height: 1.6;
         }
         
         .btn-trip {
             background-color: transparent;
             border: 2px solid var(--wine-red);
             color: var(--wine-red);
-            padding: 12px 24px;
+            padding: 14px 28px;
             font-size: 14px;
+            border-radius: 50px;
         }
         
         .btn-trip:hover {
@@ -659,22 +868,24 @@
         
         /* Footer */
         footer {
-            background-color: var(--wine-red);
+            background: linear-gradient(160deg, var(--wine-dark) 0%, #2d1215 100%);
             color: var(--white);
-            padding: 60px 20px;
+            padding: 80px 24px 48px;
             text-align: center;
         }
         
         .footer-logo {
-            font-size: 28px;
-            font-weight: 700;
+            font-family: var(--font-display);
+            font-size: 36px;
+            font-weight: 600;
             margin-bottom: 8px;
         }
         
         .footer-tagline {
             color: var(--gold);
-            margin-bottom: 32px;
+            margin-bottom: 40px;
             font-size: 16px;
+            font-style: italic;
         }
         
         .footer-links {
@@ -684,9 +895,10 @@
         .footer-links a {
             color: var(--white);
             text-decoration: none;
-            margin: 0 16px;
-            opacity: 0.8;
+            margin: 0 20px;
+            opacity: 0.7;
             transition: opacity 0.3s ease;
+            font-size: 14px;
         }
         
         .footer-links a:hover {
@@ -694,54 +906,44 @@
         }
         
         .footer-social {
-            margin-bottom: 32px;
+            margin-bottom: 40px;
         }
         
         .footer-social a {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 44px;
-            height: 44px;
+            width: 48px;
+            height: 48px;
             background-color: rgba(255,255,255,0.1);
             border-radius: 50%;
             margin: 0 8px;
             color: var(--white);
             text-decoration: none;
-            font-size: 20px;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
         
         .footer-social a:hover {
-            background-color: rgba(255,255,255,0.2);
+            background-color: var(--gold);
+            transform: translateY(-2px);
+        }
+        
+        .footer-social a svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--white);
         }
         
         .copyright {
-            font-size: 14px;
-            opacity: 0.7;
-        }
-        
-        /* Success Message */
-        .success-message {
-            display: none;
-            background-color: #4CAF50;
-            color: white;
-            padding: 16px 24px;
-            border-radius: 12px;
-            margin-top: 16px;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            font-size: 13px;
+            opacity: 0.5;
         }
         
         /* Responsive */
         @media (max-width: 900px) {
             .vina-container {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 48px;
             }
             
             .features-grid {
@@ -754,29 +956,39 @@
             
             .pricing-grid {
                 grid-template-columns: 1fr;
+                max-width: 440px;
+                margin-left: auto;
+                margin-right: auto;
             }
             
             .trip-cards {
                 grid-template-columns: 1fr;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
             }
         }
         
         @media (max-width: 600px) {
+            .hero {
+                padding: 72px 20px 88px;
+            }
+            
             .hero h1 {
-                font-size: 36px;
+                font-size: 48px;
             }
             
             .tagline {
-                font-size: 20px;
+                font-size: 22px;
             }
             
-            .hero p {
+            .hero-description {
                 font-size: 17px;
             }
             
             .section-header h2,
             .vina-content h2 {
-                font-size: 28px;
+                font-size: 36px;
             }
             
             .features-grid {
@@ -784,11 +996,19 @@
             }
             
             .pricing-card {
-                padding: 28px;
+                padding: 36px 28px;
             }
             
             .pricing-card .price {
-                font-size: 40px;
+                font-size: 44px;
+            }
+            
+            .vina-visual {
+                padding: 36px 24px;
+            }
+            
+            .founding-banner h2 {
+                font-size: 32px;
             }
         }
     </style>
@@ -799,21 +1019,21 @@
         <div class="hero-content">
             <!-- Wine Glass SVG Icon -->
             <svg class="logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="50" cy="35" rx="30" ry="25" stroke="white" stroke-width="4" fill="none"/>
+                <ellipse cx="50" cy="35" rx="30" ry="25" stroke="white" stroke-width="3.5" fill="none"/>
                 <path d="M28 40 Q28 55 50 60 Q72 55 72 40 Z" fill="#C9A962"/>
-                <rect x="46" y="60" width="8" height="25" fill="white"/>
+                <rect x="46" y="60" width="8" height="25" fill="white" rx="2"/>
                 <ellipse cx="50" cy="90" rx="20" ry="6" fill="white"/>
             </svg>
             
             <h1>Vintura</h1>
             <p class="tagline">Wine Moments, Shared</p>
-            <p>Your personal AI sommelier and wine community. Discover wines, track your collection, and share moments with people who get it.</p>
+            <p class="hero-description">Your personal AI sommelier and wine community. Discover wines, track your collection, and share moments with people who get it.</p>
             
             <div class="hero-cta">
                 <a href="#pricing" class="btn btn-primary">Get Started Free</a>
                 <a href="#vina" class="btn btn-secondary">Meet Vina, Your AI Sommelier</a>
             </div>
-            <p class="hero-note">Free forever • No credit card required</p>
+            <p class="hero-note">Free forever · No credit card required</p>
         </div>
     </section>
     
@@ -827,29 +1047,39 @@
                 
                 <div class="vina-features">
                     <div class="vina-feature">
-                        <div class="vina-feature-icon">🎯</div>
+                        <div class="vina-feature-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        </div>
                         <span class="vina-feature-text">Personalized recommendations based on your Wine DNA</span>
                     </div>
                     <div class="vina-feature">
-                        <div class="vina-feature-icon">🍽️</div>
+                        <div class="vina-feature-icon">
+                            <svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>
+                        </div>
                         <span class="vina-feature-text">Perfect food pairing suggestions for any meal</span>
                     </div>
                     <div class="vina-feature">
-                        <div class="vina-feature-icon">📚</div>
+                        <div class="vina-feature-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+                        </div>
                         <span class="vina-feature-text">Learn about regions, grapes, and winemaking</span>
                     </div>
                     <div class="vina-feature">
-                        <div class="vina-feature-icon">💬</div>
+                        <div class="vina-feature-icon">
+                            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg>
+                        </div>
                         <span class="vina-feature-text">Natural conversation, no intimidation</span>
                     </div>
                 </div>
             </div>
             
             <div class="vina-visual">
-                <div class="vina-avatar">✨</div>
+                <div class="vina-avatar">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
+                </div>
                 <div class="vina-chat">
                     <div class="chat-bubble user">I'm making grilled salmon for dinner. What wine should I pair?</div>
-                    <div class="chat-bubble vina">Great choice! For grilled salmon, I'd suggest a Pinot Noir — it has enough body to stand up to the richness of the fish without overpowering it. Based on your preference for lighter reds, try a Willamette Valley Pinot. Want me to suggest some specific bottles in your price range?</div>
+                    <div class="chat-bubble vina">Great choice! For grilled salmon, I'd suggest a Pinot Noir — it has enough body to stand up to the richness of the fish without overpowering it. Based on your preference for lighter reds, try a Willamette Valley Pinot. Want me to suggest some specific bottles?</div>
                 </div>
             </div>
         </div>
@@ -865,37 +1095,49 @@
             
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">📸</div>
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    </div>
                     <h3>Share Wine Moments</h3>
                     <p>Capture and share your wine experiences with a community that appreciates them.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">📷</div>
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M9.5 6.5v3h-3v-3h3M11 5H5v6h6V5zm-1.5 9.5v3h-3v-3h3M11 13H5v6h6v-6zm6.5-6.5v3h-3v-3h3M19 5h-6v6h6V5zm-6 8h1.5v1.5H13V13zm1.5 1.5H16V16h-1.5v-1.5zM16 13h1.5v1.5H16V13zm-3 3h1.5v1.5H13V16zm1.5 1.5H16V19h-1.5v-1.5zM16 16h1.5v1.5H16V16zm1.5-1.5H19V16h-1.5v-1.5zm0 3H19V19h-1.5v-1.5zM19 13h-1.5v1.5H19V13z"/></svg>
+                    </div>
                     <h3>Scan Any Label</h3>
                     <p>Point your camera at any wine label to instantly identify it and learn more.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">👥</div>
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                    </div>
                     <h3>Find Your People</h3>
                     <p>Follow wine lovers with similar tastes. Get recommendations from real people.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">🔖</div>
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>
+                    </div>
                     <h3>Save Wines</h3>
                     <p>Build your wishlist of wines to try. Never forget a recommendation again.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">🧬</div>
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    </div>
                     <h3>Discover Your Wine DNA</h3>
                     <p>Take the taste quiz to understand your palate and get personalized insights.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">📖</div>
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+                    </div>
                     <h3>Wine Learning</h3>
                     <p>Interactive lessons to build your wine knowledge at your own pace.</p>
                 </div>
@@ -907,14 +1149,19 @@
     <section class="premium-features">
         <div class="premium-container">
             <div class="section-header">
-                <span class="premium-badge">✨ Premium</span>
+                <span class="premium-badge">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
+                    Premium
+                </span>
                 <h2>Unlock the Full Experience</h2>
                 <p>Go deeper with AI-powered tools designed for wine lovers.</p>
             </div>
             
             <div class="premium-grid">
                 <div class="premium-card">
-                    <div class="premium-card-icon">💬</div>
+                    <div class="premium-card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg>
+                    </div>
                     <div class="premium-card-content">
                         <h3>Unlimited Vina Access</h3>
                         <p>Ask Vina anything, anytime. Get unlimited personalized recommendations, food pairings, and wine education.</p>
@@ -922,7 +1169,9 @@
                 </div>
                 
                 <div class="premium-card">
-                    <div class="premium-card-icon">🍽️</div>
+                    <div class="premium-card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>
+                    </div>
                     <div class="premium-card-content">
                         <h3>AI Food Pairing</h3>
                         <p>Enter any dish and get expert wine pairing suggestions tailored to your taste preferences.</p>
@@ -930,7 +1179,9 @@
                 </div>
                 
                 <div class="premium-card">
-                    <div class="premium-card-icon">📝</div>
+                    <div class="premium-card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                    </div>
                     <div class="premium-card-content">
                         <h3>Tasting Notes Journal</h3>
                         <p>Record detailed tasting notes with guided prompts. Build your personal wine diary.</p>
@@ -938,7 +1189,9 @@
                 </div>
                 
                 <div class="premium-card">
-                    <div class="premium-card-icon">🍷</div>
+                    <div class="premium-card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M6 22h12l-6-6-6 6zm3-8l3-3 3 3h2l-4-4 4-4h-2l-3 3-3-3H8l4 4-4 4h1z"/><path d="M2 2v16h2V4h16V2H2z"/></svg>
+                    </div>
                     <div class="premium-card-content">
                         <h3>Cellar Tracker</h3>
                         <p>Manage your wine collection. Track bottles, drinking windows, and total value.</p>
@@ -963,16 +1216,16 @@
                     <p class="price-note">Free forever</p>
                     
                     <ul class="pricing-features">
-                        <li>Share wine moments</li>
-                        <li>Scan wine labels</li>
-                        <li>Save wines to your list</li>
-                        <li>Follow other wine lovers</li>
-                        <li>Basic Wine DNA profile</li>
-                        <li>3 Vina questions per month</li>
-                        <li class="disabled">Unlimited Vina access</li>
-                        <li class="disabled">Food pairing tool</li>
-                        <li class="disabled">Tasting notes journal</li>
-                        <li class="disabled">Cellar tracker</li>
+                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Share wine moments</li>
+                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Scan wine labels</li>
+                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Save wines to your list</li>
+                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Follow other wine lovers</li>
+                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Basic Wine DNA profile</li>
+                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>3 Vina questions per month</li>
+                        <li class="disabled"><span class="check"><svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg></span>Unlimited Vina access</li>
+                        <li class="disabled"><span class="check"><svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg></span>Food pairing tool</li>
+                        <li class="disabled"><span class="check"><svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg></span>Tasting notes journal</li>
+                        <li class="disabled"><span class="check"><svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg></span>Cellar tracker</li>
                     </ul>
                     
                     <button class="btn btn-pricing btn-outline" id="btn-free">Join Free</button>
@@ -984,16 +1237,16 @@
                     <p class="price-note">Less than $1/week</p>
                     
                     <ul class="pricing-features">
-                        <li>Everything in Free</li>
-                        <li>Unlimited Vina access</li>
-                        <li>AI food pairing tool</li>
-                        <li>Tasting notes journal</li>
-                        <li>Cellar tracker</li>
-                        <li>Enhanced Wine DNA insights</li>
-                        <li>Personalized recommendations</li>
-                        <li>Priority support</li>
-                        <li>15% off wine trips</li>
-                        <li>Early access to new features</li>
+                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Everything in Free</li>
+                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Unlimited Vina access</li>
+                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>AI food pairing tool</li>
+                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Tasting notes journal</li>
+                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Cellar tracker</li>
+                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Enhanced Wine DNA insights</li>
+                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Personalized recommendations</li>
+                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Priority support</li>
+                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>15% off wine trips</li>
+                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Early access to new features</li>
                     </ul>
                     
                     <button class="btn btn-pricing btn-filled" id="btn-premium">Start Premium</button>
@@ -1005,7 +1258,7 @@
     <!-- Founding Member Banner -->
     <section class="founding-banner">
         <div class="founding-banner-content">
-            <h2>🍷 Founding Member Special</h2>
+            <h2>Founding Member Special</h2>
             <p>Join as a Founding Member and lock in <span class="highlight">$19/year forever</span> — that's 60% off the regular price. Plus get an exclusive badge and direct input on features we build.</p>
             <a href="#" class="btn btn-primary" id="btn-founding">Become a Founding Member — $19/year</a>
             <p class="founding-note">Only 100 spots available</p>
@@ -1022,7 +1275,7 @@
             
             <div class="trip-cards">
                 <div class="trip-card">
-                    <div class="trip-emoji">🇮🇹</div>
+                    <span class="trip-flag">🇮🇹</span>
                     <h3>Tuscany, Italy</h3>
                     <p class="trip-date">Fall 2026</p>
                     <p>Chianti hills, historic cellars, and farm-to-table dinners under the stars.</p>
@@ -1030,7 +1283,7 @@
                 </div>
                 
                 <div class="trip-card">
-                    <div class="trip-emoji">🇪🇸</div>
+                    <span class="trip-flag">🇪🇸</span>
                     <h3>Rioja, Spain</h3>
                     <p class="trip-date">Spring 2026</p>
                     <p>Centuries-old bodegas, modern architecture, and world-class Tempranillo.</p>
@@ -1038,7 +1291,7 @@
                 </div>
                 
                 <div class="trip-card">
-                    <div class="trip-emoji">🇺🇸</div>
+                    <span class="trip-flag">🇺🇸</span>
                     <h3>Napa Valley, USA</h3>
                     <p class="trip-date">Summer 2026</p>
                     <p>Iconic wineries, hot air balloons, and California hospitality at its finest.</p>
@@ -1059,24 +1312,23 @@
         </div>
         
         <div class="footer-social">
-            <a href="https://instagram.com/vintura.wine" target="_blank" title="Instagram">📷</a>
+            <a href="https://instagram.com/vintura.wine" target="_blank" title="Instagram">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
         </div>
         
         <p class="copyright">© 2026 Vintura. All rights reserved.</p>
     </footer>
     
     <script>
-        // Free tier button - scroll to waitlist or show form
+        // Free tier button
         document.getElementById('btn-free').addEventListener('click', function() {
-            // For now, show an alert. In production, this would link to app store or signup
             alert('Vintura is launching soon! Join the waitlist to be notified when the app is available.');
         });
         
         // Premium button
         document.getElementById('btn-premium').addEventListener('click', function() {
-            // Redirect to Stripe checkout for regular premium
-            // For now, show the founding member offer
-            alert('Premium is $49/year, but you can get Founding Member pricing at just $19/year! Click "Become a Founding Member" below.');
+            alert('Premium is $49/year, but you can get Founding Member pricing at just $19/year!');
             document.querySelector('.founding-banner').scrollIntoView({ behavior: 'smooth' });
         });
         
@@ -1092,7 +1344,6 @@
                 const trip = this.getAttribute('data-trip');
                 const button = this;
                 
-                // Send to Formspree
                 fetch('https://formspree.io/f/mbddgebj', {
                     method: 'POST',
                     body: JSON.stringify({ 
@@ -1105,7 +1356,6 @@
                     }
                 })
                 .then(response => {
-                    // Change button to show interest recorded
                     button.textContent = '✓ Added to List';
                     button.style.backgroundColor = '#722F37';
                     button.style.color = 'white';

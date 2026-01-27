@@ -4,2157 +4,499 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vintura — Wine Moments, Shared</title>
-    <meta name="description" content="Your personal AI sommelier and wine community. Discover wines, track your cellar, and share moments with people who get it.">
+    <meta name="description" content="Join the wine community that turns bottles into connections. Share moments, discover wines, and find your people.">
     
-    <!-- Open Graph / Social -->
     <meta property="og:title" content="Vintura — Wine Moments, Shared">
-    <meta property="og:description" content="Your personal AI sommelier and wine community. Discover wines, track your cellar, and share moments with people who get it.">
+    <meta property="og:description" content="Join the wine community that turns bottles into connections.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="og-image.png">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        :root {
-            --wine-red: #722F37;
-            --wine-dark: #4a1f24;
-            --wine-light: #8b3d47;
-            --gold: #C9A962;
-            --gold-light: #d4b978;
-            --gold-dark: #a68b4a;
-            --cream: #FAF8F5;
-            --white: #FFFFFF;
-            --dark-text: #1A1A1A;
-            --medium-text: #555555;
-            --light-text: #888888;
-            
-            --font-display: 'Cormorant Garamond', Georgia, serif;
-            --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-        
-        body {
-            font-family: var(--font-body);
-            line-height: 1.6;
-            color: var(--dark-text);
-            background-color: var(--cream);
-            -webkit-font-smoothing: antialiased;
-        }
-        
-        /* Sticky Navigation */
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(74, 31, 36, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 12px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transform: translateY(-100%);
-            transition: transform 0.3s ease;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .nav.visible {
-            transform: translateY(0);
-        }
-        
-        .nav-logo {
-            font-family: var(--font-display);
-            font-size: 24px;
-            font-weight: 600;
-            color: var(--white);
-            text-decoration: none;
-        }
-        
-        .nav-cta {
-            padding: 10px 20px;
-            font-size: 13px;
-            background: var(--gold);
-            color: var(--wine-dark);
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-cta:hover {
-            background: var(--gold-light);
-            transform: scale(1.02);
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(160deg, var(--wine-red) 0%, var(--wine-dark) 100%);
-            color: var(--white);
-            padding: 100px 24px 120px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 1;
-        }
-        
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(201,169,98,0.15) 0%, transparent 60%);
-            animation: float 20s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(-30px, 30px) scale(1.1); }
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 720px;
-            margin: 0 auto;
-        }
-        
-        .logo {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 32px;
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
-        }
-        
-        .hero h1 {
-            font-family: var(--font-display);
-            font-size: 72px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            letter-spacing: -2px;
-            line-height: 1;
-        }
-        
-        .tagline {
-            font-family: var(--font-display);
-            font-size: 28px;
-            color: var(--gold);
-            margin-bottom: 28px;
-            font-weight: 400;
-            font-style: italic;
-            letter-spacing: 1px;
-        }
-        
-        .hero-description {
-            font-size: 19px;
-            opacity: 0.9;
-            margin-bottom: 44px;
-            line-height: 1.7;
-            max-width: 560px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .hero-cta {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            max-width: 360px;
-            margin: 0 auto;
-        }
-        
-        .btn {
-            padding: 18px 36px;
-            font-size: 15px;
-            font-weight: 600;
-            font-family: var(--font-body);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-            letter-spacing: 0.3px;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-            color: var(--wine-dark);
-            box-shadow: 0 4px 16px rgba(201, 169, 98, 0.4);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(201, 169, 98, 0.5);
-        }
-        
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--white);
-            border: 2px solid rgba(255,255,255,0.4);
-        }
-        
-        .btn-secondary:hover {
-            border-color: var(--white);
-            background-color: rgba(255,255,255,0.1);
-        }
-        
-        .hero-note {
-            font-size: 13px;
-            opacity: 0.6;
-            margin-top: 20px;
-            letter-spacing: 0.5px;
-        }
-        
-        /* Meet Vina Section */
-        .vina-section {
-            padding: 120px 24px;
-            background: var(--white);
-            position: relative;
-        }
-        
-        .vina-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-        }
-        
-        .vina-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-        
-        .vina-content h2 {
-            font-family: var(--font-display);
-            font-size: 56px;
-            color: var(--wine-red);
-            margin-bottom: 4px;
-            font-weight: 600;
-            letter-spacing: -1px;
-        }
-        
-        .vina-content .vina-subtitle {
-            font-family: var(--font-display);
-            font-size: 22px;
-            color: var(--gold-dark);
-            margin-bottom: 28px;
-            font-weight: 400;
-            font-style: italic;
-        }
-        
-        .vina-content p {
-            font-size: 17px;
-            color: var(--medium-text);
-            margin-bottom: 32px;
-            line-height: 1.8;
-        }
-        
-        .vina-features {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-        
-        .vina-feature {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-        
-        .vina-feature-icon {
-            width: 44px;
-            height: 44px;
-            background: linear-gradient(135deg, var(--wine-red) 0%, var(--wine-dark) 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(114, 47, 55, 0.2);
-        }
-        
-        .vina-feature-icon svg {
-            width: 22px;
-            height: 22px;
-            fill: var(--white);
-        }
-        
-        .vina-feature-text {
-            font-size: 15px;
-            color: var(--dark-text);
-            font-weight: 500;
-        }
-        
-        .vina-visual {
-            background: #1a1a1a;
-            border-radius: 24px;
-            padding: 0;
-            color: white;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .phone-mockup {
-            position: relative;
-        }
-        
-        .phone-header {
-            background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
-            padding: 16px 20px 12px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
-        
-        .vina-avatar {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(201,169,98,0.3);
-            flex-shrink: 0;
-        }
-        
-        .vina-avatar svg {
-            width: 24px;
-            height: 24px;
-            fill: var(--wine-dark);
-        }
-        
-        .vina-header-info {
-            flex: 1;
-        }
-        
-        .vina-header-name {
-            font-weight: 600;
-            font-size: 16px;
-            color: #fff;
-        }
-        
-        .vina-header-status {
-            font-size: 12px;
-            color: var(--gold);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        
-        .vina-header-status::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: #4ade80;
-            border-radius: 50%;
-        }
-        
-        .vina-chat {
-            padding: 20px;
-            min-height: 280px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-        
-        .chat-bubble {
-            max-width: 85%;
-            padding: 14px 18px;
-            font-size: 14px;
-            line-height: 1.5;
-            animation: fadeInUp 0.4s ease;
-        }
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .chat-bubble.user {
-            background: var(--wine-red);
-            color: white;
-            border-radius: 20px 20px 6px 20px;
-            align-self: flex-end;
-        }
-        
-        .chat-bubble.vina {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 20px 20px 20px 6px;
-            align-self: flex-start;
-            color: rgba(255,255,255,0.9);
-        }
-        
-        .chat-input {
-            padding: 16px 20px;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(255,255,255,0.03);
-        }
-        
-        .chat-input-field {
-            flex: 1;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 24px;
-            padding: 12px 18px;
-            color: rgba(255,255,255,0.5);
-            font-size: 14px;
-        }
-        
-        .chat-send-btn {
-            width: 44px;
-            height: 44px;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        
-        .chat-send-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: var(--wine-dark);
-        }
-        
-        /* Features Section */
-        .features {
-            padding: 120px 24px;
-            background: var(--cream);
-        }
-        
-        .features-container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 72px;
-        }
-        
-        .section-header h2 {
-            font-family: var(--font-display);
-            font-size: 48px;
-            color: var(--wine-red);
-            margin-bottom: 12px;
-            font-weight: 600;
-            letter-spacing: -1px;
-        }
-        
-        .section-header p {
-            font-size: 18px;
-            color: var(--medium-text);
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
-        }
-        
-        .feature-card {
-            background: var(--white);
-            border-radius: 24px;
-            padding: 36px 28px;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(0,0,0,0.04);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--wine-red), var(--gold));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 48px rgba(0,0,0,0.08);
-        }
-        
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-        
-        .feature-icon {
-            width: 72px;
-            height: 72px;
-            background: linear-gradient(160deg, var(--wine-red) 0%, var(--wine-dark) 100%);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 24px;
-            box-shadow: 0 8px 20px rgba(114, 47, 55, 0.2);
-        }
-        
-        .feature-icon svg {
-            width: 32px;
-            height: 32px;
-            fill: var(--white);
-        }
-        
-        .feature-card h3 {
-            font-family: var(--font-display);
-            font-size: 24px;
-            margin-bottom: 12px;
-            color: var(--dark-text);
-            font-weight: 600;
-        }
-        
-        .feature-card p {
-            color: var(--medium-text);
-            font-size: 15px;
-            line-height: 1.6;
-        }
-        
-        /* App Preview Section */
-        .app-preview {
-            padding: 120px 24px;
-            background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
-            overflow: hidden;
-        }
-        
-        .app-preview-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .app-preview-content {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 80px;
-            align-items: center;
-        }
-        
-        .app-preview-text h2 {
-            font-family: var(--font-display);
-            font-size: 48px;
-            color: var(--wine-red);
-            margin-bottom: 20px;
-            font-weight: 600;
-            letter-spacing: -1px;
-        }
-        
-        .app-preview-text p {
-            font-size: 17px;
-            color: var(--medium-text);
-            margin-bottom: 32px;
-            line-height: 1.8;
-        }
-        
-        .app-features-list {
-            list-style: none;
-            margin-bottom: 36px;
-        }
-        
-        .app-features-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            margin-bottom: 18px;
-            font-size: 15px;
-            color: var(--dark-text);
-        }
-        
-        .app-features-list li svg {
-            width: 24px;
-            height: 24px;
-            fill: var(--wine-red);
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-        
-        .app-store-badges {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        
-        .app-store-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--dark-text);
-            color: var(--white);
-            padding: 12px 20px;
-            border-radius: 12px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .app-store-badge:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-        }
-        
-        .app-store-badge svg {
-            width: 24px;
-            height: 24px;
-            fill: var(--white);
-        }
-        
-        .app-store-badge-text {
-            text-align: left;
-        }
-        
-        .app-store-badge-text span {
-            display: block;
-            font-size: 10px;
-            opacity: 0.7;
-            line-height: 1;
-        }
-        
-        .app-store-badge-text strong {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            line-height: 1.2;
-        }
-        
-        .coming-soon-note {
-            margin-top: 16px;
-            font-size: 13px;
-            color: var(--light-text);
-        }
-        
-        /* Phone Mockups */
-        .phone-showcase {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            position: relative;
-        }
-        
-        .phone-frame {
-            width: 260px;
-            height: 520px;
-            background: #1a1a1a;
-            border-radius: 40px;
-            padding: 12px;
-            box-shadow: 0 32px 64px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1);
-            position: relative;
-            transform: perspective(1000px) rotateY(-5deg);
-            transition: transform 0.5s ease;
-        }
-        
-        .phone-frame:hover {
-            transform: perspective(1000px) rotateY(0deg) translateY(-8px);
-        }
-        
-        .phone-frame:nth-child(2) {
-            transform: perspective(1000px) rotateY(5deg) translateY(40px);
-            z-index: 1;
-        }
-        
-        .phone-frame:nth-child(2):hover {
-            transform: perspective(1000px) rotateY(0deg) translateY(32px);
-        }
-        
-        .phone-notch {
-            position: absolute;
-            top: 12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 28px;
-            background: #1a1a1a;
-            border-radius: 0 0 20px 20px;
-            z-index: 10;
-        }
-        
-        .phone-screen {
-            width: 100%;
-            height: 100%;
-            border-radius: 32px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        /* Placeholder screens - replace with real screenshots */
-        .screen-home {
-            background: linear-gradient(180deg, var(--wine-red) 0%, var(--wine-dark) 100%);
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .screen-feed {
-            background: var(--cream);
-            display: flex;
-            flex-direction: column;
-        }
-        
-        /* Mock screen content */
-        .mock-header {
-            padding: 48px 16px 16px;
-            text-align: center;
-        }
-        
-        .mock-header.dark {
-            color: white;
-        }
-        
-        .mock-header.light {
-            color: var(--dark-text);
-            background: var(--white);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-        
-        .mock-header h4 {
-            font-family: var(--font-display);
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-        
-        .mock-header p {
-            font-size: 11px;
-            opacity: 0.7;
-        }
-        
-        .mock-content {
-            flex: 1;
-            padding: 16px;
-        }
-        
-        .mock-card {
-            background: rgba(255,255,255,0.1);
-            border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 12px;
-        }
-        
-        .mock-card.light {
-            background: var(--white);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        }
-        
-        .mock-wine-card {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-        
-        .mock-wine-bottle {
-            width: 36px;
-            height: 80px;
-            background: linear-gradient(180deg, var(--wine-dark) 0%, #2d1215 100%);
-            border-radius: 4px 4px 8px 8px;
-            position: relative;
-        }
-        
-        .mock-wine-bottle::before {
-            content: '';
-            position: absolute;
-            top: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 12px;
-            height: 12px;
-            background: var(--gold);
-            border-radius: 2px;
-        }
-        
-        .mock-wine-info h5 {
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 2px;
-            color: var(--dark-text);
-        }
-        
-        .mock-wine-info p {
-            font-size: 11px;
-            color: var(--medium-text);
-        }
-        
-        .mock-rating {
-            display: flex;
-            gap: 2px;
-            margin-top: 6px;
-        }
-        
-        .mock-star {
-            width: 12px;
-            height: 12px;
-            background: var(--gold);
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-        }
-        
-        .mock-nav {
-            display: flex;
-            justify-content: space-around;
-            padding: 12px 16px 24px;
-            background: var(--white);
-            border-top: 1px solid rgba(0,0,0,0.05);
-        }
-        
-        .mock-nav-item {
-            width: 24px;
-            height: 24px;
-            background: var(--light-text);
-            border-radius: 6px;
-            opacity: 0.3;
-        }
-        
-        .mock-nav-item.active {
-            background: var(--wine-red);
-            opacity: 1;
-        }
-        
-        /* Social Proof Section */
-        .social-proof {
-            padding: 80px 24px;
-            background: var(--white);
-            border-top: 1px solid rgba(0,0,0,0.05);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-        
-        .social-proof-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 48px;
-            text-align: center;
-        }
-        
-        .stat-item {
-            padding: 20px;
-        }
-        
-        .stat-number {
-            font-family: var(--font-display);
-            font-size: 48px;
-            font-weight: 700;
-            color: var(--wine-red);
-            line-height: 1;
-            margin-bottom: 8px;
-        }
-        
-        .stat-label {
-            font-size: 14px;
-            color: var(--medium-text);
-            line-height: 1.4;
-        }
-        
-        /* Premium Features Section */
-        .premium-features {
-            padding: 120px 24px;
-            background: linear-gradient(180deg, var(--white) 0%, var(--cream) 100%);
-            position: relative;
-        }
-        
-        .premium-container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        
-        .premium-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-            color: var(--wine-dark);
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 12px rgba(201, 169, 98, 0.3);
-        }
-        
-        .premium-badge svg {
-            width: 16px;
-            height: 16px;
-            fill: var(--wine-dark);
-        }
-        
-        .premium-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            margin-top: 56px;
-        }
-        
-        .premium-card {
-            background: var(--white);
-            border-radius: 24px;
-            padding: 32px;
-            display: flex;
-            gap: 24px;
-            align-items: flex-start;
-            border: 1px solid rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .premium-card:hover {
-            border-color: var(--gold);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.06);
-            transform: translateY(-2px);
-        }
-        
-        .premium-card-icon {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(160deg, var(--wine-red) 0%, var(--wine-dark) 100%);
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            box-shadow: 0 8px 20px rgba(114, 47, 55, 0.2);
-        }
-        
-        .premium-card-icon svg {
-            width: 28px;
-            height: 28px;
-            fill: var(--white);
-        }
-        
-        .premium-card-content h3 {
-            font-family: var(--font-display);
-            font-size: 24px;
-            color: var(--dark-text);
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        
-        .premium-card-content p {
-            font-size: 15px;
-            color: var(--medium-text);
-            line-height: 1.6;
-        }
-        
-        /* Pricing Section */
-        .pricing {
-            padding: 120px 24px;
-            background: var(--white);
-        }
-        
-        .pricing-container {
-            max-width: 960px;
-            margin: 0 auto;
-        }
-        
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
-            margin-top: 56px;
-        }
-        
-        .pricing-card {
-            background: var(--cream);
-            border-radius: 32px;
-            padding: 48px 40px;
-            border: 2px solid transparent;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .pricing-card.featured {
-            background: var(--white);
-            border-color: var(--gold);
-            box-shadow: 0 24px 64px rgba(114, 47, 55, 0.12);
-        }
-        
-        .pricing-card.featured::before {
-            content: 'Best Value';
-            position: absolute;
-            top: -14px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-            color: var(--wine-dark);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            box-shadow: 0 4px 12px rgba(201, 169, 98, 0.3);
-        }
-        
-        .pricing-card h3 {
-            font-family: var(--font-display);
-            font-size: 32px;
-            color: var(--dark-text);
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        
-        .pricing-card .price {
-            font-family: var(--font-display);
-            font-size: 56px;
-            font-weight: 700;
-            color: var(--wine-red);
-            margin: 20px 0;
-            line-height: 1;
-        }
-        
-        .pricing-card .price span {
-            font-size: 18px;
-            font-weight: 400;
-            color: var(--medium-text);
-            font-family: var(--font-body);
-        }
-        
-        .pricing-card .price-note {
-            font-size: 14px;
-            color: var(--light-text);
-            margin-bottom: 32px;
-        }
-        
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 36px;
-        }
-        
-        .pricing-features li {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            margin-bottom: 14px;
-            font-size: 15px;
-            color: var(--dark-text);
-        }
-        
-        .pricing-features li .check {
-            width: 22px;
-            height: 22px;
-            background: var(--wine-red);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-        
-        .pricing-features li .check svg {
-            width: 12px;
-            height: 12px;
-            fill: var(--white);
-        }
-        
-        .pricing-features li.disabled {
-            color: var(--light-text);
-        }
-        
-        .pricing-features li.disabled .check {
-            background: #E0E0E0;
-        }
-        
-        .pricing-features li.disabled .check svg {
-            fill: #999;
-        }
-        
-        .btn-pricing {
-            width: 100%;
-            padding: 18px;
-            font-size: 16px;
-            border-radius: 16px;
-        }
-        
-        .btn-pricing.btn-outline {
-            background: transparent;
-            border: 2px solid var(--wine-red);
-            color: var(--wine-red);
-        }
-        
-        .btn-pricing.btn-outline:hover {
-            background: var(--wine-red);
-            color: white;
-        }
-        
-        .btn-pricing.btn-filled {
-            background: linear-gradient(135deg, var(--wine-red) 0%, var(--wine-dark) 100%);
-            color: white;
-            border: none;
-            box-shadow: 0 8px 24px rgba(114, 47, 55, 0.3);
-        }
-        
-        .btn-pricing.btn-filled:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(114, 47, 55, 0.4);
-        }
-        
-        /* Founding Member Banner */
-        .founding-banner {
-            background: linear-gradient(160deg, var(--wine-red) 0%, var(--wine-dark) 100%);
-            color: white;
-            padding: 80px 24px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .founding-banner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-        
-        .founding-banner::after {
-            content: '';
-            position: absolute;
-            top: -100px;
-            right: -100px;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(201,169,98,0.15) 0%, transparent 60%);
-        }
-        
-        .founding-banner-content {
-            max-width: 700px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .founding-banner h2 {
-            font-family: var(--font-display);
-            font-size: 40px;
-            margin-bottom: 16px;
-            font-weight: 600;
-        }
-        
-        .founding-banner p {
-            font-size: 18px;
-            opacity: 0.9;
-            margin-bottom: 28px;
-            line-height: 1.7;
-        }
-        
-        .founding-banner .highlight {
-            color: var(--gold);
-            font-weight: 600;
-        }
-        
-        .founding-banner .btn {
-            margin-top: 8px;
-        }
-        
-        .founding-note {
-            font-size: 14px;
-            opacity: 0.6;
-            margin-top: 20px;
-        }
-        
-        /* Trip Interest Section - Luxury Travel Design */
-        .trips {
-            padding: 120px 24px;
-            background: var(--wine-dark);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .trips::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-        
-        .trips-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .trips .section-header h2 {
-            color: var(--white);
-        }
-        
-        .trips .section-header p {
-            color: rgba(255,255,255,0.7);
-        }
-        
-        .trips-intro {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto 20px;
-        }
-        
-        .trips-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(201,169,98,0.15);
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 500;
-            margin-bottom: 24px;
-            letter-spacing: 0.5px;
-        }
-        
-        .trip-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-top: 56px;
-        }
-        
-        .trip-card {
-            background: var(--white);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
-        
-        .trip-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 32px 64px rgba(0,0,0,0.3);
-        }
-        
-        .trip-card-image {
-            height: 200px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .trip-card-image::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 80px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.4));
-        }
-        
-        .trip-card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-        
-        .trip-card:hover .trip-card-image img {
-            transform: scale(1.08);
-        }
-        
-        .trip-flag {
-            position: absolute;
-            top: 16px;
-            left: 16px;
-            font-size: 32px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-            z-index: 1;
-        }
-        
-        .trip-card-date {
-            position: absolute;
-            bottom: 12px;
-            left: 16px;
-            background: var(--gold);
-            color: var(--wine-dark);
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 600;
-            z-index: 1;
-            letter-spacing: 0.3px;
-        }
-        
-        .trip-card-content {
-            padding: 28px 24px 24px;
-        }
-        
-        .trip-card h3 {
-            font-family: var(--font-display);
-            font-size: 26px;
-            margin-bottom: 12px;
-            color: var(--dark-text);
-            font-weight: 600;
-        }
-        
-        .trip-highlights {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-        
-        .trip-highlight {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--cream);
-            padding: 6px 12px;
-            border-radius: 50px;
-            font-size: 12px;
-            color: var(--medium-text);
-        }
-        
-        .trip-highlight svg {
-            width: 14px;
-            height: 14px;
-            fill: var(--wine-red);
-        }
-        
-        .trip-card p {
-            color: var(--medium-text);
-            font-size: 14px;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-        
-        .btn-trip {
-            width: 100%;
-            background-color: transparent;
-            border: 2px solid var(--wine-red);
-            color: var(--wine-red);
-            padding: 14px 28px;
-            font-size: 14px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        
-        .btn-trip svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-            transition: transform 0.3s ease;
-        }
-        
-        .btn-trip:hover {
-            background-color: var(--wine-red);
-            color: var(--white);
-        }
-        
-        .btn-trip:hover svg {
-            transform: translateX(4px);
-        }
-        
-        .trips-footer {
-            text-align: center;
-            margin-top: 48px;
-            padding-top: 32px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .trips-footer p {
-            color: rgba(255,255,255,0.6);
-            font-size: 15px;
-        }
-        
-        .trips-footer strong {
-            color: var(--gold);
-        }
-        
-        /* Footer */
-        footer {
-            background: linear-gradient(160deg, var(--wine-dark) 0%, #2d1215 100%);
-            color: var(--white);
-            padding: 80px 24px 48px;
-            text-align: center;
-        }
-        
-        .footer-logo {
-            font-family: var(--font-display);
-            font-size: 36px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        
-        .footer-tagline {
-            color: var(--gold);
-            margin-bottom: 40px;
-            font-size: 16px;
-            font-style: italic;
-        }
-        
-        .footer-links {
-            margin-bottom: 32px;
-        }
-        
-        .footer-links a {
-            color: var(--white);
-            text-decoration: none;
-            margin: 0 20px;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-            font-size: 14px;
-        }
-        
-        .footer-links a:hover {
-            opacity: 1;
-        }
-        
-        .footer-social {
-            margin-bottom: 40px;
-        }
-        
-        .footer-social a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 48px;
-            height: 48px;
-            background-color: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            margin: 0 8px;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-social a:hover {
-            background-color: var(--gold);
-            transform: translateY(-2px);
-        }
-        
-        .footer-social a svg {
-            width: 20px;
-            height: 20px;
-            fill: var(--white);
-        }
-        
-        .copyright {
-            font-size: 13px;
-            opacity: 0.5;
-        }
-        
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .vina-container {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-            
-            .vina-visual {
-                max-width: 480px;
-                margin: 0 auto;
-            }
-            
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .app-preview-content {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-            
-            .app-preview-text {
-                text-align: center;
-            }
-            
-            .app-store-badges {
-                justify-content: center;
-            }
-            
-            .phone-showcase {
-                justify-content: center;
-            }
-            
-            .phone-frame {
-                width: 220px;
-                height: 440px;
-            }
-            
-            .social-proof-container {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 32px;
-            }
-            
-            .premium-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .pricing-grid {
-                grid-template-columns: 1fr;
-                max-width: 480px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            .trip-cards {
-                grid-template-columns: 1fr;
-                max-width: 440px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav {
-                padding: 10px 16px;
-            }
-            
-            .nav-logo {
-                font-size: 20px;
-            }
-            
-            .hero {
-                padding: 64px 20px 80px;
-            }
-            
-            .hero h1 {
-                font-size: 44px;
-            }
-            
-            .tagline {
-                font-size: 22px;
-            }
-            
-            .hero-description {
-                font-size: 16px;
-            }
-            
-            .hero-cta {
-                max-width: 100%;
-            }
-            
-            .btn {
-                padding: 16px 28px;
-                font-size: 14px;
-            }
-            
-            .section-header h2,
-            .vina-content h2,
-            .app-preview-text h2 {
-                font-size: 32px;
-            }
-            
-            .section-header p {
-                font-size: 16px;
-            }
-            
-            .vina-section,
-            .features,
-            .app-preview,
-            .premium-features,
-            .pricing,
-            .trips {
-                padding: 80px 20px;
-            }
-            
-            .vina-content p {
-                font-size: 15px;
-            }
-            
-            .vina-feature-text {
-                font-size: 14px;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .feature-card {
-                padding: 28px 24px;
-            }
-            
-            .feature-card h3 {
-                font-size: 20px;
-            }
-            
-            .phone-showcase {
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
-            }
-            
-            .phone-frame {
-                width: 240px;
-                height: 480px;
-                transform: none !important;
-            }
-            
-            .phone-frame:nth-child(2) {
-                transform: none !important;
-            }
-            
-            .phone-frame:hover {
-                transform: translateY(-8px) !important;
-            }
-            
-            .app-features-list li {
-                font-size: 14px;
-            }
-            
-            .app-store-badges {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .social-proof {
-                padding: 60px 20px;
-            }
-            
-            .social-proof-container {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 24px;
-            }
-            
-            .stat-number {
-                font-size: 36px;
-            }
-            
-            .stat-label {
-                font-size: 13px;
-            }
-            
-            .premium-card {
-                padding: 24px;
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .premium-card-icon {
-                margin: 0 auto;
-            }
-            
-            .premium-card-content h3 {
-                font-size: 20px;
-            }
-            
-            .pricing-card {
-                padding: 32px 24px;
-            }
-            
-            .pricing-card h3 {
-                font-size: 26px;
-            }
-            
-            .pricing-card .price {
-                font-size: 40px;
-            }
-            
-            .pricing-features li {
-                font-size: 14px;
-            }
-            
-            .founding-banner {
-                padding: 64px 20px;
-            }
-            
-            .founding-banner h2 {
-                font-size: 28px;
-            }
-            
-            .founding-banner p {
-                font-size: 16px;
-            }
-            
-            .trip-card-content {
-                padding: 24px 20px 20px;
-            }
-            
-            .trip-card h3 {
-                font-size: 22px;
-            }
-            
-            .trips-footer {
-                margin-top: 32px;
-            }
-            
-            .footer-links a {
-                display: block;
-                margin: 12px 0;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero {
-                padding: 48px 16px 64px;
-            }
-            
-            .hero h1 {
-                font-size: 36px;
-                letter-spacing: -1px;
-            }
-            
-            .tagline {
-                font-size: 18px;
-            }
-            
-            .hero-description {
-                font-size: 15px;
-                margin-bottom: 32px;
-            }
-            
-            .logo {
-                width: 72px;
-                height: 72px;
-            }
-            
-            .vina-section,
-            .features,
-            .premium-features,
-            .pricing,
-            .trips {
-                padding: 60px 16px;
-            }
-            
-            .section-header {
-                margin-bottom: 48px;
-            }
-            
-            .section-header h2 {
-                font-size: 28px;
-            }
-            
-            .vina-content h2 {
-                font-size: 28px;
-            }
-            
-            .vina-content .vina-subtitle {
-                font-size: 18px;
-            }
-            
-            .vina-visual {
-                border-radius: 20px;
-            }
-            
-            .phone-header {
-                padding: 12px 16px 10px;
-            }
-            
-            .vina-avatar {
-                width: 40px;
-                height: 40px;
-            }
-            
-            .vina-avatar svg {
-                width: 20px;
-                height: 20px;
-            }
-            
-            .vina-header-name {
-                font-size: 14px;
-            }
-            
-            .vina-header-status {
-                font-size: 11px;
-            }
-            
-            .vina-chat {
-                padding: 16px;
-                min-height: 240px;
-            }
-            
-            .chat-bubble {
-                padding: 12px 16px;
-                font-size: 13px;
-            }
-            
-            .chat-input {
-                padding: 12px 16px;
-            }
-            
-            .chat-input-field {
-                padding: 10px 14px;
-                font-size: 13px;
-            }
-            
-            .chat-send-btn {
-                width: 40px;
-                height: 40px;
-            }
-            
-            .feature-icon {
-                width: 60px;
-                height: 60px;
-            }
-            
-            .feature-icon svg {
-                width: 28px;
-                height: 28px;
-            }
-            
-            .premium-badge {
-                font-size: 12px;
-                padding: 8px 16px;
-            }
-            
-            .pricing-card.featured::before {
-                font-size: 11px;
-                padding: 6px 14px;
-            }
-            
-            .trip-card-image {
-                height: 180px;
-            }
-            
-            .trip-highlights {
-                gap: 6px;
-            }
-            
-            .trip-highlight {
-                font-size: 11px;
-                padding: 5px 10px;
-            }
-            
-            .btn-trip {
-                padding: 12px 20px;
-                font-size: 13px;
-            }
-            
-            .founding-banner {
-                padding: 48px 16px;
-            }
-            
-            .founding-banner h2 {
-                font-size: 24px;
-            }
-            
-            footer {
-                padding: 48px 16px 32px;
-            }
-            
-            .footer-logo {
-                font-size: 28px;
-            }
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --cream:#F0EBE3;--cream-dark:#E8E2D8;--cream-light:#F7F5F1;
+            --wine:#722F37;--wine-dark:#5A252C;--wine-light:#8B3A44;
+            --gold:#C9A962;--gold-light:#D4B978;--gold-dark:#B8954A;
+            --charcoal:#2C2C2C;--warm-gray:#6B6560;--light-gray:#D8D4CF;--white:#FFF;
+            --font-display:'Playfair Display',Georgia,serif;
+            --font-body:'Source Sans Pro',-apple-system,sans-serif;
+            --radius-sm:8px;--radius-md:12px;--radius-lg:20px;--radius-xl:32px;
+            --shadow-sm:0 2px 8px rgba(0,0,0,0.06);
+            --shadow-md:0 8px 24px rgba(0,0,0,0.08);
+            --shadow-lg:0 16px 48px rgba(0,0,0,0.12);
+            --shadow-xl:0 24px 64px rgba(0,0,0,0.16);
+        }
+        html{scroll-behavior:smooth}
+        body{font-family:var(--font-body);line-height:1.6;color:var(--charcoal);background:var(--cream);overflow-x:hidden}
+        
+        /* NAV */
+        .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;transition:all .4s ease}
+        .nav.scrolled{background:rgba(240,235,227,.95);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(0,0,0,.06);padding:14px 40px}
+        .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+        .nav-logo-mark{width:40px;height:40px;background:var(--wine);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--white);font-family:var(--font-display);font-size:22px;font-weight:500}
+        .nav-logo-text{font-family:var(--font-display);font-size:26px;font-weight:500;color:var(--wine);letter-spacing:-.5px}
+        .nav-links{display:flex;gap:36px;align-items:center}
+        .nav-links a{font-size:15px;color:var(--charcoal);text-decoration:none;font-weight:500;transition:color .3s}
+        .nav-links a:hover{color:var(--wine)}
+        .nav-cta{background:var(--wine)!important;color:var(--white)!important;padding:12px 24px!important;border-radius:var(--radius-sm)!important;box-shadow:0 4px 12px rgba(114,47,55,.2)}
+        .nav-cta:hover{background:var(--wine-dark)!important;transform:translateY(-2px)}
+        .nav-mobile{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+        .nav-mobile span{width:24px;height:2px;background:var(--charcoal);transition:.3s}
+        
+        /* HERO */
+        .hero{min-height:100vh;padding:140px 40px 100px;display:flex;align-items:center;position:relative;overflow:hidden}
+        .hero-bg{position:absolute;pointer-events:none}
+        .hero-bg-1{top:10%;right:5%;width:400px;height:400px;background:radial-gradient(circle,rgba(201,169,98,.12) 0%,transparent 70%);animation:float 25s ease-in-out infinite}
+        .hero-bg-2{bottom:10%;left:0;width:500px;height:500px;background:radial-gradient(circle,rgba(114,47,55,.06) 0%,transparent 70%);animation:float 20s ease-in-out infinite reverse}
+        @keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(20px,-20px) scale(1.05)}}
+        .hero-container{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:1}
+        .hero-content{max-width:560px}
+        .hero-badge{display:inline-flex;align-items:center;gap:10px;background:var(--white);padding:10px 18px;border-radius:100px;font-size:14px;font-weight:600;color:var(--wine);margin-bottom:28px;box-shadow:var(--shadow-sm);border:1px solid rgba(114,47,55,.1)}
+        .hero-badge-dot{width:8px;height:8px;background:#22C55E;border-radius:50%;animation:pulse 2s ease-in-out infinite}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+        .hero h1{font-family:var(--font-display);font-size:64px;font-weight:400;line-height:1.1;color:var(--charcoal);margin-bottom:24px;letter-spacing:-2px}
+        .hero h1 .italic{font-style:italic;color:var(--gold-dark)}
+        .hero-desc{font-size:19px;color:var(--warm-gray);margin-bottom:36px;line-height:1.7}
+        .hero-form{display:flex;gap:12px;margin-bottom:16px}
+        .hero-form input{flex:1;padding:18px 24px;font-size:16px;font-family:var(--font-body);border:2px solid var(--light-gray);border-radius:var(--radius-sm);background:var(--white);outline:none;transition:.3s}
+        .hero-form input:focus{border-color:var(--wine);box-shadow:0 0 0 4px rgba(114,47,55,.1)}
+        .hero-form button{padding:18px 32px;font-size:16px;font-weight:600;font-family:var(--font-body);background:var(--wine);color:var(--white);border:none;border-radius:var(--radius-sm);cursor:pointer;transition:.3s;white-space:nowrap;box-shadow:0 4px 12px rgba(114,47,55,.25)}
+        .hero-form button:hover{background:var(--wine-dark);transform:translateY(-2px)}
+        .hero-note{font-size:14px;color:var(--warm-gray);display:flex;align-items:center;gap:8px}
+        .hero-note svg{width:16px;height:16px;stroke:#22C55E}
+        .success-msg{display:none;background:var(--wine);color:var(--white);padding:20px 28px;border-radius:var(--radius-sm);font-weight:600;animation:slideUp .5s ease}
+        @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        .hero-proof{display:flex;align-items:center;gap:16px;margin-top:40px;padding-top:28px;border-top:1px solid var(--light-gray)}
+        .avatar-stack{display:flex}
+        .avatar-stack .av{width:40px;height:40px;border-radius:50%;border:3px solid var(--cream);margin-left:-12px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--wine)}
+        .avatar-stack .av:first-child{margin-left:0}
+        .av-1{background:linear-gradient(135deg,#E8B4B8,#D4A5A5)}.av-2{background:linear-gradient(135deg,#B8C9A8,#8BA07A)}.av-3{background:linear-gradient(135deg,#A8C9D4,#7AAFBA)}.av-4{background:linear-gradient(135deg,#D4C4A8,#BAA87A)}
+        .hero-proof p{font-size:14px;color:var(--warm-gray)}
+        .hero-proof strong{color:var(--charcoal)}
+        
+        /* PHONE MOCKUPS */
+        .hero-visual{position:relative;display:flex;justify-content:center;align-items:center;perspective:1000px}
+        .phone{position:relative;width:280px;height:580px;background:linear-gradient(145deg,#1a1a1a,#2d2d2d);border-radius:44px;padding:10px;box-shadow:0 50px 100px rgba(0,0,0,.25),inset 0 0 0 1px rgba(255,255,255,.1);transform:rotateY(-5deg) rotateX(2deg);transition:.5s}
+        .phone:hover{transform:rotateY(0) rotateX(0)}
+        .phone.secondary{position:absolute;left:-90px;top:70px;width:250px;height:520px;transform:rotateY(-15deg) rotateX(5deg) translateZ(-50px);z-index:-1}
+        .phone-screen{width:100%;height:100%;background:var(--cream);border-radius:36px;overflow:hidden;position:relative}
+        .phone-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:90px;height:26px;background:#1a1a1a;border-radius:0 0 16px 16px;z-index:10}
+        .app-header{padding:44px 16px 12px;display:flex;justify-content:space-between;align-items:center}
+        .app-logo{font-family:var(--font-display);font-size:20px;font-weight:500;color:var(--wine)}
+        .app-avatar{width:32px;height:32px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--wine)}
+        .app-content{padding:0 14px 14px;overflow:hidden}
+        .feed-post{background:var(--white);border-radius:14px;overflow:hidden;margin-bottom:12px;box-shadow:var(--shadow-sm)}
+        .post-header{padding:12px;display:flex;align-items:center;gap:10px}
+        .post-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#E8B4B8,#D4A5A5);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--wine)}
+        .post-user strong{font-size:13px;display:block;color:var(--charcoal)}
+        .post-user span{font-size:11px;color:var(--warm-gray)}
+        .post-img{width:100%;height:160px;background:linear-gradient(135deg,#4A3728,#2D1F18,#1A1310);display:flex;align-items:flex-end;padding:12px}
+        .wine-tag{background:rgba(255,255,255,.95);padding:8px 12px;border-radius:8px}
+        .wine-tag strong{display:block;color:var(--wine);font-size:12px}
+        .wine-tag span{font-size:10px;color:var(--warm-gray)}
+        .post-body{padding:12px}
+        .post-body .stars{display:flex;gap:2px;margin-bottom:6px}
+        .star{color:var(--gold);font-size:12px}
+        .post-body p{font-size:12px;color:var(--charcoal);line-height:1.5}
+        .post-actions{display:flex;gap:14px;padding-top:10px;border-top:1px solid var(--cream);margin-top:8px}
+        .post-action{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--warm-gray)}
+        .post-action svg{width:14px;height:14px;stroke:var(--warm-gray);stroke-width:1.5;fill:none}
+        .post-action.liked svg{fill:var(--wine);stroke:var(--wine)}
+        
+        /* VINA CHAT SCREEN */
+        .vina-screen .app-content{display:flex;flex-direction:column;background:var(--cream-light)}
+        .chat-box{flex:1;display:flex;flex-direction:column;gap:10px;padding-top:8px}
+        .chat-msg{max-width:85%;padding:12px 14px;border-radius:16px;font-size:12px;line-height:1.5}
+        .chat-msg.ai{background:var(--white);border-bottom-left-radius:4px;box-shadow:var(--shadow-sm)}
+        .chat-msg.user{background:var(--wine);color:var(--white);border-bottom-right-radius:4px;align-self:flex-end}
+        .vina-hdr{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+        .vina-av{width:24px;height:24px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px}
+        .vina-hdr span{font-weight:600;color:var(--wine);font-size:11px}
+        .chat-rec{display:flex;gap:8px;margin-top:10px;padding:10px;background:var(--cream);border-radius:10px}
+        .chat-rec-img{width:30px;height:50px;background:linear-gradient(180deg,#5A252C,#3D1A1F);border-radius:4px;flex-shrink:0}
+        .chat-rec-info strong{font-size:11px;color:var(--charcoal);display:block}
+        .chat-rec-info span{font-size:9px;color:var(--warm-gray)}
+        .chat-match{display:flex;align-items:center;gap:4px;font-size:9px;font-weight:600;color:var(--gold-dark);margin-top:4px}
+        
+        /* SECTION COMMON */
+        .section-header{text-align:center;margin-bottom:72px}
+        .section-label{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--wine);margin-bottom:16px}
+        .section-label::before,.section-label::after{content:'';width:20px;height:1px;background:var(--gold)}
+        .section-header h2{font-family:var(--font-display);font-size:48px;font-weight:400;color:var(--charcoal);margin-bottom:16px;letter-spacing:-1px}
+        .section-header h2 .hl{color:var(--wine)}
+        .section-header p{font-size:19px;color:var(--warm-gray);max-width:580px;margin:0 auto}
+        
+        /* FEATURES */
+        .features{padding:120px 40px;background:var(--cream)}
+        .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1200px;margin:0 auto}
+        .f-card{padding:36px 32px;background:var(--white);border-radius:var(--radius-lg);transition:.4s;position:relative;overflow:hidden;border:1px solid transparent}
+        .f-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--wine),var(--gold));transform:scaleX(0);transform-origin:left;transition:.4s}
+        .f-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:var(--cream-dark)}
+        .f-card:hover::before{transform:scaleX(1)}
+        .f-icon{width:60px;height:60px;background:var(--cream);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:.4s}
+        .f-card:hover .f-icon{background:var(--wine)}
+        .f-icon svg{width:26px;height:26px;stroke:var(--wine);stroke-width:1.5;fill:none;transition:.4s}
+        .f-card:hover .f-icon svg{stroke:var(--white)}
+        .f-card h3{font-family:var(--font-display);font-size:22px;font-weight:500;color:var(--charcoal);margin-bottom:10px}
+        .f-card p{font-size:15px;color:var(--warm-gray);line-height:1.7}
+        
+        /* VINA SECTION */
+        .vina-section{padding:120px 40px;background:var(--white)}
+        .vina-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+        .vina-content{max-width:500px}
+        .vina-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));padding:10px 18px;border-radius:100px;font-size:13px;font-weight:600;color:var(--wine);margin-bottom:24px;box-shadow:0 4px 12px rgba(201,169,98,.3)}
+        .vina-content h2{font-family:var(--font-display);font-size:44px;font-weight:400;color:var(--charcoal);margin-bottom:20px;line-height:1.15;letter-spacing:-1px}
+        .vina-content h2 .italic{font-style:italic;color:var(--gold-dark)}
+        .vina-content>p{font-size:17px;color:var(--warm-gray);margin-bottom:40px;line-height:1.7}
+        .vina-features{display:flex;flex-direction:column;gap:24px}
+        .vina-feat{display:flex;gap:16px;align-items:flex-start}
+        .vina-feat-icon{width:48px;height:48px;background:var(--cream);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .vina-feat-icon svg{width:22px;height:22px;stroke:var(--wine);stroke-width:1.5;fill:none}
+        .vina-feat h4{font-size:16px;font-weight:600;color:var(--charcoal);margin-bottom:4px}
+        .vina-feat p{font-size:14px;color:var(--warm-gray);line-height:1.6}
+        .vina-visual{position:relative}
+        .vina-chat{background:var(--cream);border-radius:var(--radius-xl);padding:32px;box-shadow:var(--shadow-xl);border:1px solid var(--cream-dark)}
+        .vina-chat-hdr{display:flex;align-items:center;gap:14px;padding-bottom:24px;border-bottom:1px solid var(--light-gray);margin-bottom:24px}
+        .vina-chat-av{width:56px;height:56px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 4px 12px rgba(201,169,98,.3)}
+        .vina-chat-info h4{font-family:var(--font-display);font-size:20px;color:var(--wine);margin-bottom:2px}
+        .vina-chat-info p{font-size:13px;color:var(--warm-gray);display:flex;align-items:center;gap:6px}
+        .status-dot{width:8px;height:8px;background:#22C55E;border-radius:50%}
+        .vina-msgs{display:flex;flex-direction:column;gap:16px}
+        .v-msg{padding:16px 20px;border-radius:18px;font-size:15px;line-height:1.6;max-width:92%}
+        .v-msg.ai{background:var(--white);border-bottom-left-radius:6px;box-shadow:var(--shadow-sm)}
+        .v-msg.user{background:var(--wine);color:var(--white);border-bottom-right-radius:6px;align-self:flex-end}
+        .wine-rec{display:flex;gap:14px;margin-top:16px;padding:16px;background:var(--cream);border-radius:var(--radius-md);border:1px solid var(--light-gray)}
+        .wine-bottle{width:44px;height:90px;background:linear-gradient(180deg,#4A2C32,#2D1A1F);border-radius:6px 6px 4px 4px;position:relative;flex-shrink:0}
+        .wine-bottle::before{content:'';position:absolute;top:5px;left:50%;transform:translateX(-50%);width:14px;height:5px;background:var(--gold);border-radius:2px}
+        .wine-bottle::after{content:'';position:absolute;top:26px;left:50%;transform:translateX(-50%);width:28px;height:36px;background:var(--cream);border-radius:2px}
+        .wine-rec-info h5{font-size:15px;font-weight:600;color:var(--charcoal);margin-bottom:2px}
+        .wine-rec-info .meta{font-size:13px;color:var(--warm-gray);margin-bottom:8px}
+        .wine-match-badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--gold-dark);background:rgba(201,169,98,.15);padding:6px 12px;border-radius:100px}
+        .wine-match-badge svg{width:14px;height:14px;stroke:var(--gold-dark);stroke-width:2.5}
+        
+        /* HOW IT WORKS */
+        .how{padding:120px 40px;background:var(--cream)}
+        .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;max-width:1100px;margin:0 auto;position:relative}
+        .steps::before{content:'';position:absolute;top:48px;left:12%;right:12%;height:2px;background:linear-gradient(90deg,var(--wine),var(--gold));opacity:.2}
+        .step{text-align:center;position:relative}
+        .step-num{width:96px;height:96px;background:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-family:var(--font-display);font-size:36px;font-weight:500;color:var(--wine);box-shadow:var(--shadow-md);position:relative;z-index:1;border:3px solid var(--cream)}
+        .step h3{font-family:var(--font-display);font-size:20px;font-weight:500;color:var(--charcoal);margin-bottom:10px}
+        .step p{font-size:14px;color:var(--warm-gray);line-height:1.6}
+        
+        /* PRICING */
+        .pricing{padding:120px 40px;background:var(--white)}
+        .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1000px;margin:0 auto}
+        .p-card{background:var(--cream);border-radius:var(--radius-lg);padding:44px 36px;position:relative;transition:.4s;border:2px solid transparent}
+        .p-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+        .p-card.featured{background:var(--wine);color:var(--white);transform:scale(1.05);box-shadow:var(--shadow-xl);border-color:var(--gold);z-index:1}
+        .p-card.featured:hover{transform:scale(1.05) translateY(-8px)}
+        .p-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--wine);padding:8px 18px;border-radius:100px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+        .p-header{text-align:center;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.15);margin-bottom:28px}
+        .p-card:not(.featured) .p-header{border-bottom-color:var(--light-gray)}
+        .p-header h3{font-family:var(--font-display);font-size:22px;font-weight:500;margin-bottom:12px}
+        .p-header .price{font-family:var(--font-display);font-size:52px;font-weight:500;line-height:1;margin-bottom:8px}
+        .p-header .price span{font-size:16px;font-weight:400;opacity:.7}
+        .p-header .price-note{font-size:13px;opacity:.7}
+        .p-features{margin-bottom:28px}
+        .p-feat{display:flex;align-items:flex-start;gap:12px;padding:12px 0}
+        .p-feat svg{width:20px;height:20px;stroke:var(--gold);stroke-width:2.5;flex-shrink:0;margin-top:2px}
+        .p-card:not(.featured) .p-feat svg{stroke:var(--wine)}
+        .p-feat span{font-size:14px;line-height:1.5}
+        .p-btn{display:block;width:100%;padding:16px;font-size:15px;font-weight:600;font-family:var(--font-body);text-align:center;text-decoration:none;border-radius:var(--radius-sm);transition:.3s;cursor:pointer;border:none}
+        .p-card.featured .p-btn{background:var(--gold);color:var(--wine)}
+        .p-card.featured .p-btn:hover{background:var(--gold-light);transform:translateY(-2px)}
+        .p-card:not(.featured) .p-btn{background:var(--wine);color:var(--white)}
+        .p-card:not(.featured) .p-btn:hover{background:var(--wine-dark);transform:translateY(-2px)}
+        
+        /* TRIPS */
+        .trips{padding:120px 40px;background:var(--cream)}
+        .trips-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1200px;margin:0 auto}
+        .trip-card{border-radius:var(--radius-lg);overflow:hidden;background:var(--white);transition:.4s;box-shadow:var(--shadow-sm)}
+        .trip-card:hover{transform:translateY(-12px);box-shadow:var(--shadow-xl)}
+        .trip-img{height:260px;position:relative;overflow:hidden}
+        .trip-img img{width:100%;height:100%;object-fit:cover;transition:.6s}
+        .trip-card:hover .trip-img img{transform:scale(1.08)}
+        .trip-overlay{position:absolute;bottom:0;left:0;right:0;padding:28px 24px 20px;background:linear-gradient(transparent,rgba(0,0,0,.8))}
+        .trip-flag{font-size:32px;margin-bottom:6px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.3))}
+        .trip-overlay h3{font-family:var(--font-display);font-size:28px;font-weight:500;color:var(--white);text-shadow:0 2px 8px rgba(0,0,0,.3)}
+        .trip-body{padding:24px}
+        .trip-date{display:inline-block;font-size:12px;font-weight:700;color:var(--gold-dark);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+        .trip-body p{font-size:14px;color:var(--warm-gray);margin-bottom:20px;line-height:1.7}
+        .trip-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-size:14px;font-weight:600;color:var(--wine);background:transparent;border:2px solid var(--wine);border-radius:var(--radius-sm);cursor:pointer;transition:.3s;font-family:var(--font-body)}
+        .trip-btn:hover{background:var(--wine);color:var(--white)}
+        .trip-btn.added{background:var(--wine);color:var(--white);pointer-events:none}
+        
+        /* TESTIMONIALS */
+        .testimonials{padding:120px 40px;background:var(--white)}
+        .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1100px;margin:0 auto}
+        .test-card{background:var(--cream);border-radius:var(--radius-lg);padding:32px;position:relative}
+        .test-card::before{content:'"';font-family:var(--font-display);font-size:72px;color:var(--gold);opacity:.3;position:absolute;top:12px;left:20px;line-height:1}
+        .test-content{position:relative;z-index:1}
+        .test-content p{font-size:15px;color:var(--charcoal);line-height:1.7;margin-bottom:20px;font-style:italic}
+        .test-author{display:flex;align-items:center;gap:12px}
+        .test-av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--wine);font-size:14px}
+        .test-author strong{display:block;font-size:14px;color:var(--charcoal)}
+        .test-author span{font-size:12px;color:var(--warm-gray)}
+        
+        /* CTA */
+        .cta{padding:100px 40px;background:linear-gradient(135deg,var(--wine),var(--wine-dark));text-align:center;position:relative;overflow:hidden}
+        .cta::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(201,169,98,.1) 0%,transparent 60%)}
+        .cta-content{position:relative;z-index:1;max-width:650px;margin:0 auto}
+        .cta h2{font-family:var(--font-display);font-size:44px;font-weight:400;color:var(--white);margin-bottom:16px;letter-spacing:-1px}
+        .cta p{font-size:18px;color:rgba(255,255,255,.8);margin-bottom:36px;line-height:1.6}
+        .cta-form{display:flex;gap:12px;max-width:460px;margin:0 auto}
+        .cta-form input{flex:1;padding:18px 24px;font-size:16px;font-family:var(--font-body);border:none;border-radius:var(--radius-sm);background:var(--white);outline:none}
+        .cta-form button{padding:18px 32px;font-size:16px;font-weight:600;font-family:var(--font-body);background:var(--gold);color:var(--wine);border:none;border-radius:var(--radius-sm);cursor:pointer;transition:.3s;white-space:nowrap}
+        .cta-form button:hover{background:var(--gold-light);transform:translateY(-2px)}
+        
+        /* FOOTER */
+        footer{background:var(--charcoal);color:var(--white);padding:72px 40px 36px}
+        .footer-top{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.1)}
+        .footer-logo{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+        .footer-logo-mark{width:40px;height:40px;background:var(--wine);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--white);font-family:var(--font-display);font-size:20px;font-weight:500}
+        .footer-logo-text{font-family:var(--font-display);font-size:28px;font-weight:500;color:var(--white)}
+        .footer-tagline{font-family:var(--font-display);font-style:italic;font-size:16px;color:var(--gold);margin-bottom:16px}
+        .footer-brand p{font-size:14px;color:rgba(255,255,255,.5);max-width:280px;line-height:1.7}
+        .footer-social{display:flex;gap:10px;margin-top:24px}
+        .footer-social a{width:40px;height:40px;background:rgba(255,255,255,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.3s}
+        .footer-social a:hover{background:var(--wine);transform:translateY(-4px)}
+        .footer-social a svg{width:18px;height:18px;stroke:var(--white);stroke-width:1.5;fill:none}
+        .footer-col h4{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:20px;color:var(--gold)}
+        .footer-col a{display:block;font-size:14px;color:rgba(255,255,255,.5);text-decoration:none;margin-bottom:12px;transition:.3s}
+        .footer-col a:hover{color:var(--white);transform:translateX(4px)}
+        .footer-bottom{max-width:1200px;margin:0 auto;padding-top:28px;display:flex;justify-content:space-between;align-items:center}
+        .footer-bottom p{font-size:13px;color:rgba(255,255,255,.4)}
+        .footer-legal{display:flex;gap:20px}
+        .footer-legal a{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none;transition:.3s}
+        .footer-legal a:hover{color:var(--white)}
+        
+        /* RESPONSIVE */
+        @media(max-width:1024px){
+            .hero-container{grid-template-columns:1fr;gap:48px;text-align:center}
+            .hero-content{max-width:100%}
+            .hero h1{font-size:48px}
+            .hero-visual{order:-1}
+            .phone{transform:none}
+            .phone.secondary{display:none}
+            .hero-proof{justify-content:center}
+            .features-grid,.test-grid{grid-template-columns:repeat(2,1fr)}
+            .vina-grid{grid-template-columns:1fr;gap:48px}
+            .vina-content{max-width:100%;text-align:center}
+            .vina-features{align-items:center}
+            .vina-feat{text-align:left;max-width:360px}
+            .pricing-grid{grid-template-columns:1fr;max-width:380px}
+            .p-card.featured{transform:none;order:-1}
+            .p-card.featured:hover{transform:translateY(-8px)}
+            .trips-grid{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto}
+            .steps{grid-template-columns:repeat(2,1fr)}
+            .steps::before{display:none}
+            .footer-top{grid-template-columns:1fr 1fr;gap:36px}
+        }
+        @media(max-width:768px){
+            .nav{padding:14px 20px}
+            .nav-links{display:none}
+            .nav-mobile{display:flex}
+            .hero{padding:100px 20px 60px}
+            .hero h1{font-size:36px;letter-spacing:-1px}
+            .hero-desc{font-size:16px}
+            .hero-form{flex-direction:column}
+            .section-header h2{font-size:32px}
+            .vina-content h2{font-size:32px}
+            .features-grid,.test-grid{grid-template-columns:1fr}
+            .f-card{padding:28px 24px}
+            .steps{grid-template-columns:1fr;gap:32px}
+            .cta h2{font-size:32px}
+            .cta-form{flex-direction:column}
+            .footer-top{grid-template-columns:1fr;gap:28px}
+            .footer-bottom{flex-direction:column;gap:16px;text-align:center}
         }
     </style>
 </head>
 <body>
-    <!-- Sticky Navigation -->
+    <!-- NAV -->
     <nav class="nav" id="nav">
-        <a href="#" class="nav-logo">Vintura</a>
-        <a href="#pricing" class="nav-cta">Get Started Free</a>
+        <a href="#" class="nav-logo">
+            <span class="nav-logo-mark">V</span>
+            <span class="nav-logo-text">Vintura</span>
+        </a>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#vina">Meet Vina</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#trips">Wine Trips</a>
+            <a href="#waitlist" class="nav-cta">Join Waitlist</a>
+        </div>
+        <button class="nav-mobile" aria-label="Menu"><span></span><span></span><span></span></button>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <!-- Wine Glass SVG Icon -->
-            <svg class="logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="50" cy="35" rx="30" ry="25" stroke="white" stroke-width="3.5" fill="none"/>
-                <path d="M28 40 Q28 55 50 60 Q72 55 72 40 Z" fill="#C9A962"/>
-                <rect x="46" y="60" width="8" height="25" fill="white" rx="2"/>
-                <ellipse cx="50" cy="90" rx="20" ry="6" fill="white"/>
-            </svg>
-            
-            <h1>Vintura</h1>
-            <p class="tagline">Wine Moments, Shared</p>
-            <p class="hero-description">Your personal AI sommelier and wine community. Discover wines, track your collection, and share moments with people who get it.</p>
-            
-            <div class="hero-cta">
-                <a href="#pricing" class="btn btn-primary">Get Started Free</a>
-                <a href="#vina" class="btn btn-secondary">Meet Vina, Your AI Sommelier</a>
+    <!-- HERO -->
+    <section class="hero" id="waitlist">
+        <div class="hero-bg hero-bg-1"></div>
+        <div class="hero-bg hero-bg-2"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge"><span class="hero-badge-dot"></span>Coming Soon — Join the waitlist</div>
+                <h1>Wine moments,<br><span class="italic">shared.</span></h1>
+                <p class="hero-desc">The social app for wine lovers who want more than ratings. Share your discoveries, get personalized recommendations from Vina AI, and connect with people who share your taste.</p>
+                <form class="hero-form" id="waitlist-form">
+                    <input type="email" name="email" placeholder="Enter your email address" required>
+                    <button type="submit">Join Waitlist</button>
+                </form>
+                <p class="hero-note">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Free to join. No spam, ever.
+                </p>
+                <div class="success-msg" id="success-msg">🎉 You're on the list! We'll be in touch soon.</div>
+                <div class="hero-proof">
+                    <div class="avatar-stack">
+                        <div class="av av-1">S</div>
+                        <div class="av av-2">M</div>
+                        <div class="av av-3">J</div>
+                        <div class="av av-4">A</div>
+                    </div>
+                    <p><strong>1,200+</strong> wine lovers on the waitlist</p>
+                </div>
             </div>
-            <p class="hero-note">Free forever · No credit card required</p>
+            <div class="hero-visual">
+                <div class="phone secondary">
+                    <div class="phone-screen">
+                        <div class="phone-notch"></div>
+                        <div class="app-header"><span class="app-logo">Vina</span></div>
+                        <div class="app-content vina-screen">
+                            <div class="chat-box">
+                                <div class="vina-hdr"><div class="vina-av">🍷</div><span>Vina</span></div>
+                                <div class="chat-msg ai">What are you in the mood for tonight?</div>
+                                <div class="chat-msg user">Something bold for steak</div>
+                                <div class="chat-msg ai">
+                                    I'd suggest a Napa Cabernet!
+                                    <div class="chat-rec">
+                                        <div class="chat-rec-img"></div>
+                                        <div class="chat-rec-info">
+                                            <strong>Stag's Leap</strong>
+                                            <span>Artemis 2019</span>
+                                            <div class="chat-match">✓ 94% match</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="phone">
+                    <div class="phone-screen">
+                        <div class="phone-notch"></div>
+                        <div class="app-header">
+                            <span class="app-logo">Vintura</span>
+                            <div class="app-avatar">L</div>
+                        </div>
+                        <div class="app-content">
+                            <div class="feed-post">
+                                <div class="post-header">
+                                    <div class="post-av">S</div>
+                                    <div class="post-user"><strong>Sarah M.</strong><span>Tuscany, Italy</span></div>
+                                </div>
+                                <div class="post-img">
+                                    <div class="wine-tag"><strong>Brunello di Montalcino</strong><span>Biondi-Santi 2018</span></div>
+                                </div>
+                                <div class="post-body">
+                                    <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+                                    <p>Finally tried this legendary producer! 🍷</p>
+                                    <div class="post-actions">
+                                        <span class="post-action liked"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>48</span>
+                                        <span class="post-action"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>12</span>
+                                        <span class="post-action"><svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-    
-    <!-- Meet Vina Section -->
+
+    <!-- FEATURES -->
+    <section class="features" id="features">
+        <div class="section-header">
+            <span class="section-label">Why Vintura</span>
+            <h2>Wine is <span class="hl">better shared</span></h2>
+            <p>More than a wine app — it's a community of people who believe the best recommendations come from real experiences.</p>
+        </div>
+        <div class="features-grid">
+            <div class="f-card">
+                <div class="f-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+                <h3>Share Your Moments</h3>
+                <p>Capture and share your wine experiences — the dinner party find, the vacation discovery, the Tuesday night treat.</p>
+            </div>
+            <div class="f-card">
+                <div class="f-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+                <h3>Scan & Discover</h3>
+                <p>Point your camera at any wine label to instantly identify it and see community reviews.</p>
+            </div>
+            <div class="f-card">
+                <div class="f-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                <h3>Find Your People</h3>
+                <p>Follow wine lovers with similar tastes. Get recommendations from real people, not algorithms.</p>
+            </div>
+            <div class="f-card">
+                <div class="f-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></div>
+                <h3>Build Your List</h3>
+                <p>Save wines you want to try. Track what you've loved. Never forget a recommendation.</p>
+            </div>
+            <div class="f-card">
+                <div class="f-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 3v18"/></svg></div>
+                <h3>Manage Your Cellar</h3>
+                <p>Organize your collection with smart tracking. Know what to drink now and what to save.</p>
+            </div>
+            <div class="f-card">
+                <div class="f-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                <h3>Discover Your Taste</h3>
+                <p>Build your Wine DNA — a personalized profile that helps you find wines you'll love.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- VINA AI -->
     <section class="vina-section" id="vina">
-        <div class="vina-container">
+        <div class="vina-grid">
             <div class="vina-content">
-                <h2>Meet Vina</h2>
-                <p class="vina-subtitle">Your Personal AI Sommelier</p>
-                <p>Vina learns your taste preferences and becomes your expert guide to the world of wine. Ask anything, get personalized recommendations, and build your wine knowledge — all in a natural conversation.</p>
-                
+                <div class="vina-badge">✨ AI-Powered Sommelier</div>
+                <h2>Meet <span class="italic">Vina</span>, your personal wine guide</h2>
+                <p>Vina learns your taste preferences and gives personalized recommendations for any occasion. Like having a sommelier in your pocket — without the attitude.</p>
                 <div class="vina-features">
-                    <div class="vina-feature">
-                        <div class="vina-feature-icon">
-                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                        </div>
-                        <span class="vina-feature-text">Personalized recommendations based on your Wine DNA</span>
+                    <div class="vina-feat">
+                        <div class="vina-feat-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                        <div><h4>Natural Conversation</h4><p>Ask anything about wine in plain English. Vina explains without jargon.</p></div>
                     </div>
-                    <div class="vina-feature">
-                        <div class="vina-feature-icon">
-                            <svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>
-                        </div>
-                        <span class="vina-feature-text">Perfect food pairing suggestions for any meal</span>
+                    <div class="vina-feat">
+                        <div class="vina-feat-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+                        <div><h4>Learns Your Taste</h4><p>The more you use Vintura, the better Vina gets at predicting what you'll love.</p></div>
                     </div>
-                    <div class="vina-feature">
-                        <div class="vina-feature-icon">
-                            <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
-                        </div>
-                        <span class="vina-feature-text">Learn about regions, grapes, and winemaking</span>
-                    </div>
-                    <div class="vina-feature">
-                        <div class="vina-feature-icon">
-                            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg>
-                        </div>
-                        <span class="vina-feature-text">Natural conversation, no intimidation</span>
+                    <div class="vina-feat">
+                        <div class="vina-feat-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+                        <div><h4>Perfect Pairings</h4><p>Planning dinner? Tell Vina what you're cooking and get the perfect wine match.</p></div>
                     </div>
                 </div>
             </div>
-            
             <div class="vina-visual">
-                <div class="phone-mockup">
-                    <div class="phone-header">
-                        <div class="vina-avatar">
-                            <svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
-                        </div>
-                        <div class="vina-header-info">
-                            <div class="vina-header-name">Vina</div>
-                            <div class="vina-header-status">Online · Your AI Sommelier</div>
-                        </div>
+                <div class="vina-chat">
+                    <div class="vina-chat-hdr">
+                        <div class="vina-chat-av">🍷</div>
+                        <div class="vina-chat-info"><h4>Vina</h4><p><span class="status-dot"></span>Your AI Sommelier</p></div>
                     </div>
-                    <div class="vina-chat">
-                        <div class="chat-bubble user">I'm making grilled salmon tonight. What wine pairs well?</div>
-                        <div class="chat-bubble vina">Great choice! For grilled salmon, I'd suggest a <strong>Pinot Noir</strong> — it has enough body to complement the richness without overpowering. Based on your taste profile, try a <strong>Willamette Valley Pinot</strong>. Want specific bottle recommendations?</div>
-                    </div>
-                    <div class="chat-input">
-                        <div class="chat-input-field">Ask Vina anything about wine...</div>
-                        <div class="chat-send-btn">
-                            <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Core Features Section -->
-    <section class="features">
-        <div class="features-container">
-            <div class="section-header">
-                <h2>Everything You Need to Enjoy Wine</h2>
-                <p>From discovery to tracking, Vintura has you covered.</p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
-                    </div>
-                    <h3>Share Wine Moments</h3>
-                    <p>Capture and share your wine experiences with a community that appreciates them.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24"><path d="M9.5 6.5v3h-3v-3h3M11 5H5v6h6V5zm-1.5 9.5v3h-3v-3h3M11 13H5v6h6v-6zm6.5-6.5v3h-3v-3h3M19 5h-6v6h6V5zm-6 8h1.5v1.5H13V13zm1.5 1.5H16V16h-1.5v-1.5zM16 13h1.5v1.5H16V13zm-3 3h1.5v1.5H13V16zm1.5 1.5H16V19h-1.5v-1.5zM16 16h1.5v1.5H16V16zm1.5-1.5H19V16h-1.5v-1.5zm0 3H19V19h-1.5v-1.5zM19 13h-1.5v1.5H19V13z"/></svg>
-                    </div>
-                    <h3>Scan Any Label</h3>
-                    <p>Point your camera at any wine label to instantly identify it and learn more.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-                    </div>
-                    <h3>Find Your People</h3>
-                    <p>Follow wine lovers with similar tastes. Get recommendations from real people.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>
-                    </div>
-                    <h3>Save Wines</h3>
-                    <p>Build your wishlist of wines to try. Never forget a recommendation again.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                    </div>
-                    <h3>Discover Your Wine DNA</h3>
-                    <p>Take the taste quiz to understand your palate and get personalized insights.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
-                    </div>
-                    <h3>Wine Learning</h3>
-                    <p>Interactive lessons to build your wine knowledge at your own pace.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- App Preview Section -->
-    <section class="app-preview">
-        <div class="app-preview-container">
-            <div class="app-preview-content">
-                <div class="app-preview-text">
-                    <h2>Your Wine Journey, In Your Pocket</h2>
-                    <p>Vintura brings everything together in one beautiful app. Scan labels, track your cellar, chat with Vina, and connect with fellow wine lovers — all from your phone.</p>
-                    
-                    <ul class="app-features-list">
-                        <li>
-                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                            <span>Instant wine label scanning with AI recognition</span>
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                            <span>Personalized recommendations that learn your taste</span>
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                            <span>Track your cellar inventory and drinking windows</span>
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                            <span>Connect with wine lovers who share your taste</span>
-                        </li>
-                    </ul>
-                    
-                    <div class="app-store-badges">
-                        <a href="#" class="app-store-badge" id="app-store-link">
-                            <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                            <div class="app-store-badge-text">
-                                <span>Download on the</span>
-                                <strong>App Store</strong>
-                            </div>
-                        </a>
-                        <a href="#" class="app-store-badge" id="play-store-link">
-                            <svg viewBox="0 0 24 24"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
-                            <div class="app-store-badge-text">
-                                <span>Get it on</span>
-                                <strong>Google Play</strong>
-                            </div>
-                        </a>
-                    </div>
-                    <p class="coming-soon-note">Coming Spring 2026 · Join the waitlist for early access</p>
-                </div>
-                
-                <div class="phone-showcase">
-                    <!-- Phone 1: Home/Explore Screen -->
-                    <div class="phone-frame">
-                        <div class="phone-notch"></div>
-                        <div class="phone-screen screen-feed">
-                            <div class="mock-header light">
-                                <h4>Explore</h4>
-                                <p>Discover wines you'll love</p>
-                            </div>
-                            <div class="mock-content">
-                                <div class="mock-card light">
-                                    <div class="mock-wine-card">
-                                        <div class="mock-wine-bottle"></div>
-                                        <div class="mock-wine-info">
-                                            <h5>Château Margaux 2018</h5>
-                                            <p>Margaux, Bordeaux</p>
-                                            <div class="mock-rating">
-                                                <div class="mock-star"></div>
-                                                <div class="mock-star"></div>
-                                                <div class="mock-star"></div>
-                                                <div class="mock-star"></div>
-                                                <div class="mock-star"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mock-card light">
-                                    <div class="mock-wine-card">
-                                        <div class="mock-wine-bottle" style="background: linear-gradient(180deg, #8B4513 0%, #5D3A1A 100%);"></div>
-                                        <div class="mock-wine-info">
-                                            <h5>Opus One 2019</h5>
-                                            <p>Napa Valley, California</p>
-                                            <div class="mock-rating">
-                                                <div class="mock-star"></div>
-                                                <div class="mock-star"></div>
-                                                <div class="mock-star"></div>
-                                                <div class="mock-star"></div>
-                                                <div class="mock-star"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mock-nav">
-                                <div class="mock-nav-item"></div>
-                                <div class="mock-nav-item active"></div>
-                                <div class="mock-nav-item"></div>
-                                <div class="mock-nav-item"></div>
-                                <div class="mock-nav-item"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Phone 2: Wine DNA Screen -->
-                    <div class="phone-frame">
-                        <div class="phone-notch"></div>
-                        <div class="phone-screen screen-home">
-                            <div class="mock-header dark">
-                                <h4>Your Wine DNA</h4>
-                                <p>Based on 47 tastings</p>
-                            </div>
-                            <div class="mock-content" style="padding: 24px 16px;">
-                                <div style="text-align: center; margin-bottom: 24px;">
-                                    <div style="width: 120px; height: 120px; margin: 0 auto; border-radius: 50%; background: conic-gradient(var(--gold) 0% 35%, rgba(255,255,255,0.2) 35% 55%, var(--wine-light) 55% 80%, rgba(255,255,255,0.1) 80% 100%); display: flex; align-items: center; justify-content: center;">
-                                        <div style="width: 90px; height: 90px; background: var(--wine-dark); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                                            <span style="font-size: 24px; font-weight: 700; color: white;">Bold</span>
-                                            <span style="font-size: 10px; color: rgba(255,255,255,0.6);">Explorer</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mock-card" style="background: rgba(255,255,255,0.08);">
-                                    <div style="font-size: 11px; color: rgba(255,255,255,0.6); margin-bottom: 8px;">TOP REGIONS</div>
-                                    <div style="font-size: 13px; color: white;">Bordeaux · Napa · Tuscany</div>
-                                </div>
-                                <div class="mock-card" style="background: rgba(255,255,255,0.08);">
-                                    <div style="font-size: 11px; color: rgba(255,255,255,0.6); margin-bottom: 8px;">FAVORITE GRAPES</div>
-                                    <div style="font-size: 13px; color: white;">Cabernet · Merlot · Sangiovese</div>
+                    <div class="vina-msgs">
+                        <div class="v-msg user">I'm cooking lamb tonight. What wine would pair well under $40?</div>
+                        <div class="v-msg ai">
+                            <p>Lamb loves a good red with earthiness! Based on your taste profile, I'd suggest a Côtes du Rhône — it has herbal notes that complement lamb beautifully.</p>
+                            <div class="wine-rec">
+                                <div class="wine-bottle"></div>
+                                <div class="wine-rec-info">
+                                    <h5>Domaine de la Janasse</h5>
+                                    <p class="meta">Côtes du Rhône 2021 · $28</p>
+                                    <span class="wine-match-badge"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg>94% match for you</span>
                                 </div>
                             </div>
                         </div>
@@ -2163,356 +505,207 @@
             </div>
         </div>
     </section>
-    
-    <!-- Social Proof -->
-    <section class="social-proof">
-        <div class="social-proof-container">
-            <div class="stat-item">
-                <div class="stat-number">50K+</div>
-                <div class="stat-label">Wines in<br>database</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">100+</div>
-                <div class="stat-label">Founding members<br>waiting</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">24/7</div>
-                <div class="stat-label">AI sommelier<br>assistance</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">3</div>
-                <div class="stat-label">Wine trips<br>planned for 2026</div>
-            </div>
+
+    <!-- HOW IT WORKS -->
+    <section class="how">
+        <div class="section-header">
+            <span class="section-label">How It Works</span>
+            <h2>Your wine journey, <span class="hl">simplified</span></h2>
+            <p>Get started in minutes and discover wines you'll love.</p>
+        </div>
+        <div class="steps">
+            <div class="step"><div class="step-num">1</div><h3>Join the Community</h3><p>Create your profile and tell us about your wine preferences.</p></div>
+            <div class="step"><div class="step-num">2</div><h3>Share & Discover</h3><p>Post your wine moments and see what others are loving.</p></div>
+            <div class="step"><div class="step-num">3</div><h3>Ask Vina</h3><p>Get personalized recommendations for any occasion.</p></div>
+            <div class="step"><div class="step-num">4</div><h3>Enjoy & Repeat</h3><p>Track favorites and never forget a great bottle again.</p></div>
         </div>
     </section>
-    
-    <!-- Premium Features Section -->
-    <section class="premium-features">
-        <div class="premium-container">
-            <div class="section-header">
-                <span class="premium-badge">
-                    <svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
-                    Premium
-                </span>
-                <h2>Unlock the Full Experience</h2>
-                <p>Go deeper with AI-powered tools designed for wine lovers.</p>
-            </div>
-            
-            <div class="premium-grid">
-                <div class="premium-card">
-                    <div class="premium-card-icon">
-                        <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></svg>
-                    </div>
-                    <div class="premium-card-content">
-                        <h3>Unlimited Vina Access</h3>
-                        <p>Ask Vina anything, anytime. Get unlimited personalized recommendations, food pairings, and wine education.</p>
-                    </div>
-                </div>
-                
-                <div class="premium-card">
-                    <div class="premium-card-icon">
-                        <svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>
-                    </div>
-                    <div class="premium-card-content">
-                        <h3>AI Food Pairing</h3>
-                        <p>Enter any dish and get expert wine pairing suggestions tailored to your taste preferences.</p>
-                    </div>
-                </div>
-                
-                <div class="premium-card">
-                    <div class="premium-card-icon">
-                        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-                    </div>
-                    <div class="premium-card-content">
-                        <h3>Tasting Notes Journal</h3>
-                        <p>Record detailed tasting notes with guided prompts. Build your personal wine diary.</p>
-                    </div>
-                </div>
-                
-                <div class="premium-card">
-                    <div class="premium-card-icon">
-                        <svg viewBox="0 0 24 24"><path d="M6 22h12l-6-6-6 6zm3-8l3-3 3 3h2l-4-4 4-4h-2l-3 3-3-3H8l4 4-4 4h1z"/><path d="M2 2v16h2V4h16V2H2z"/></svg>
-                    </div>
-                    <div class="premium-card-content">
-                        <h3>Cellar Tracker</h3>
-                        <p>Manage your wine collection. Track bottles, drinking windows, and total value.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Pricing Section -->
+
+    <!-- PRICING -->
     <section class="pricing" id="pricing">
-        <div class="pricing-container">
-            <div class="section-header">
-                <h2>Simple, Honest Pricing</h2>
-                <p>Start free, upgrade when you're ready.</p>
-            </div>
-            
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3>Free</h3>
-                    <div class="price">$0</div>
-                    <p class="price-note">Free forever</p>
-                    
-                    <ul class="pricing-features">
-                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Share wine moments</li>
-                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Scan wine labels</li>
-                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Save wines to your list</li>
-                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Follow other wine lovers</li>
-                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Basic Wine DNA profile</li>
-                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>3 Vina questions per month</li>
-                        <li class="disabled"><span class="check"><svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg></span>Unlimited Vina access</li>
-                        <li class="disabled"><span class="check"><svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg></span>Food pairing tool</li>
-                        <li class="disabled"><span class="check"><svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg></span>Tasting notes journal</li>
-                        <li class="disabled"><span class="check"><svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg></span>Cellar tracker</li>
-                    </ul>
-                    
-                    <button class="btn btn-pricing btn-outline" id="btn-free">Join Free</button>
+        <div class="section-header">
+            <span class="section-label">Membership</span>
+            <h2>Choose your <span class="hl">plan</span></h2>
+            <p>Start free and upgrade when you're ready for more.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="p-card">
+                <div class="p-header"><h3>Free</h3><div class="price">$0</div><p class="price-note">Forever free</p></div>
+                <div class="p-features">
+                    <div class="p-feat"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Share & discover wines</span></div>
+                    <div class="p-feat"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Follow wine lovers</span></div>
+                    <div class="p-feat"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Save wines to your list</span></div>
+                    <div class="p-feat"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>3 Vina questions/month</span></div>
                 </div>
-                
-                <div class="pricing-card featured">
-                    <h3>Premium</h3>
-                    <div class="price">$49 <span>/ year</span></div>
-                    <p class="price-note">Less than $1/week</p>
-                    
-                    <ul class="pricing-features">
-                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Everything in Free</li>
-                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Unlimited Vina access</li>
-                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>AI food pairing tool</li>
-                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Tasting notes journal</li>
-                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Cellar tracker</li>
-                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Enhanced Wine DNA insights</li>
-                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Personalized recommendations</li>
-                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Priority support</li>
-                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>15% off wine trips</li>
-                        <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Early access to new features</li>
-                    </ul>
-                    
-                    <button class="btn btn-pricing btn-filled" id="btn-premium">Start Premium</button>
+                <button class="p-btn" onclick="document.getElementById('waitlist-form').scrollIntoView({behavior:'smooth'})">Join Waitlist</button>
+            </div>
+            <div class="p-card featured">
+                <div class="p-badge">🍷 Limited Offer</div>
+                <div class="p-header"><h3>Founding Member</h3><div class="price">$19 <span>/year</span></div><p class="price-note">Lock in forever (normally $49)</p></div>
+                <div class="p-features">
+                    <div class="p-feat"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Everything in Free</span></div>
+                    <div class="p-feat"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Unlimited</strong> Vina AI access</span></div>
+                    <div class="p-feat"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Wine DNA taste profile</span></div>
+                    <div class="p-feat"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Cellar management</span></div>
+                    <div class="p-feat"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>15% off wine trips</span></div>
+                    <div class="p-feat"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Founding Member badge</span></div>
+                </div>
+                <a href="https://buy.stripe.com/cNi3cv4Gm34P7tGg8L7kc00" class="p-btn">Become a Founder</a>
+            </div>
+            <div class="p-card">
+                <div class="p-header"><h3>Premium</h3><div class="price">$49 <span>/year</span></div><p class="price-note">Coming at launch</p></div>
+                <div class="p-features">
+                    <div class="p-feat"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Everything in Free</span></div>
+                    <div class="p-feat"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Unlimited</strong> Vina AI access</span></div>
+                    <div class="p-feat"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Wine DNA taste profile</span></div>
+                    <div class="p-feat"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Cellar management</span></div>
+                </div>
+                <button class="p-btn" onclick="document.getElementById('waitlist-form').scrollIntoView({behavior:'smooth'})">Join Waitlist</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRIPS -->
+    <section class="trips" id="trips">
+        <div class="section-header">
+            <span class="section-label">Coming 2026</span>
+            <h2>Wine trips with <span class="hl">your people</span></h2>
+            <p>Curated experiences in the world's best wine regions with fellow Vintura members.</p>
+        </div>
+        <div class="trips-grid">
+            <div class="trip-card">
+                <div class="trip-img">
+                    <img src="https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=800&q=80" alt="Tuscany vineyards">
+                    <div class="trip-overlay"><div class="trip-flag">🇮🇹</div><h3>Tuscany</h3></div>
+                </div>
+                <div class="trip-body">
+                    <span class="trip-date">Fall 2026</span>
+                    <p>Chianti hills, historic cellars, and farm-to-table dinners under the Tuscan stars.</p>
+                    <button class="trip-btn" data-trip="tuscany">I'm Interested</button>
+                </div>
+            </div>
+            <div class="trip-card">
+                <div class="trip-img">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Rioja wine region">
+                    <div class="trip-overlay"><div class="trip-flag">🇪🇸</div><h3>Rioja</h3></div>
+                </div>
+                <div class="trip-body">
+                    <span class="trip-date">Spring 2026</span>
+                    <p>Centuries-old bodegas, stunning architecture, and world-class Tempranillo tastings.</p>
+                    <button class="trip-btn" data-trip="rioja">I'm Interested</button>
+                </div>
+            </div>
+            <div class="trip-card">
+                <div class="trip-img">
+                    <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&q=80" alt="Napa Valley">
+                    <div class="trip-overlay"><div class="trip-flag">🇺🇸</div><h3>Napa Valley</h3></div>
+                </div>
+                <div class="trip-body">
+                    <span class="trip-date">Summer 2026</span>
+                    <p>Iconic wineries, hot air balloon rides, and California wine country hospitality.</p>
+                    <button class="trip-btn" data-trip="napa">I'm Interested</button>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Founding Member Banner -->
-    <section class="founding-banner">
-        <div class="founding-banner-content">
-            <h2>Founding Member Special</h2>
-            <p>Join as a Founding Member and lock in <span class="highlight">$19/year forever</span> — that's 60% off the regular price. Plus get an exclusive badge and direct input on features we build.</p>
-            <a href="#" class="btn btn-primary" id="btn-founding">Become a Founding Member — $19/year</a>
-            <p class="founding-note">Only 100 spots available</p>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+        <div class="section-header">
+            <span class="section-label">Early Feedback</span>
+            <h2>What people are <span class="hl">saying</span></h2>
+            <p>Feedback from our beta testers and early community members.</p>
         </div>
-    </section>
-    
-    <!-- Trip Interest Section -->
-    <section class="trips">
-        <div class="trips-container">
-            <div class="section-header">
-                <span class="trips-badge">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
-                    Coming 2026
-                </span>
-                <h2>Wine Trips with Vintura</h2>
-                <p>Curated journeys to the world's finest wine regions, with fellow enthusiasts.</p>
-            </div>
-            
-            <div class="trip-cards">
-                <div class="trip-card">
-                    <div class="trip-card-image">
-                        <span class="trip-flag">🇮🇹</span>
-                        <span class="trip-card-date">Fall 2026</span>
-                        <img src="https://images.unsplash.com/photo-1523528283115-9bf9b1699245?w=600&q=80" alt="Tuscan vineyard landscape" loading="lazy">
-                    </div>
-                    <div class="trip-card-content">
-                        <h3>Tuscany, Italy</h3>
-                        <div class="trip-highlights">
-                            <span class="trip-highlight">
-                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
-                                7 Days
-                            </span>
-                            <span class="trip-highlight">
-                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
-                                6 Wineries
-                            </span>
-                            <span class="trip-highlight">
-                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
-                                Small Group
-                            </span>
-                        </div>
-                        <p>Chianti hills, historic cellars, farm-to-table dinners, and exclusive tastings at legendary estates.</p>
-                        <button class="btn btn-trip" data-trip="tuscany">
-                            Register Interest
-                            <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="trip-card">
-                    <div class="trip-card-image">
-                        <span class="trip-flag">🇪🇸</span>
-                        <span class="trip-card-date">Spring 2026</span>
-                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Spanish wine cellar" loading="lazy">
-                    </div>
-                    <div class="trip-card-content">
-                        <h3>Rioja, Spain</h3>
-                        <div class="trip-highlights">
-                            <span class="trip-highlight">
-                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
-                                6 Days
-                            </span>
-                            <span class="trip-highlight">
-                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
-                                5 Bodegas
-                            </span>
-                            <span class="trip-highlight">
-                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
-                                Small Group
-                            </span>
-                        </div>
-                        <p>Centuries-old bodegas, stunning architecture, world-class Tempranillo, and authentic Spanish cuisine.</p>
-                        <button class="btn btn-trip" data-trip="rioja">
-                            Register Interest
-                            <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="trip-card">
-                    <div class="trip-card-image">
-                        <span class="trip-flag">🇺🇸</span>
-                        <span class="trip-card-date">Summer 2026</span>
-                        <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=600&q=80" alt="Napa Valley vineyard" loading="lazy">
-                    </div>
-                    <div class="trip-card-content">
-                        <h3>Napa Valley, USA</h3>
-                        <div class="trip-highlights">
-                            <span class="trip-highlight">
-                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
-                                5 Days
-                            </span>
-                            <span class="trip-highlight">
-                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
-                                7 Wineries
-                            </span>
-                            <span class="trip-highlight">
-                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
-                                Small Group
-                            </span>
-                        </div>
-                        <p>Iconic estates, hot air balloon rides, Michelin-star dining, and California hospitality at its finest.</p>
-                        <button class="btn btn-trip" data-trip="napa">
-                            Register Interest
-                            <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
-                        </button>
-                    </div>
+        <div class="test-grid">
+            <div class="test-card">
+                <div class="test-content">
+                    <p>"Finally, a wine app that isn't just about scores. I love seeing what my friends are actually drinking and enjoying."</p>
+                    <div class="test-author"><div class="test-av">SM</div><div><strong>Sarah M.</strong><span>Beta Tester</span></div></div>
                 </div>
             </div>
-            
-            <div class="trips-footer">
-                <p><strong>Premium members</strong> receive 15% off all Vintura wine trips.</p>
+            <div class="test-card">
+                <div class="test-content">
+                    <p>"Vina recommended a wine for my anniversary dinner that was perfect. It's like having a sommelier friend on call."</p>
+                    <div class="test-author"><div class="test-av">JR</div><div><strong>James R.</strong><span>Beta Tester</span></div></div>
+                </div>
+            </div>
+            <div class="test-card">
+                <div class="test-content">
+                    <p>"The Wine DNA feature helped me understand why I love certain wines. Now I can find new favorites much easier."</p>
+                    <div class="test-author"><div class="test-av">AL</div><div><strong>Amanda L.</strong><span>Founding Member</span></div></div>
+                </div>
             </div>
         </div>
     </section>
-    
-    <!-- Footer -->
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Ready to discover wine differently?</h2>
+            <p>Join thousands of wine lovers who are tired of generic recommendations. Get personalized suggestions and connect with people who share your taste.</p>
+            <form class="cta-form" id="cta-form">
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <button type="submit">Join Waitlist</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
     <footer>
-        <div class="footer-logo">Vintura</div>
-        <p class="footer-tagline">Wine moments, shared.</p>
-        
-        <div class="footer-links">
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="/cdn-cgi/l/email-protection#c6aea3aaaaa986b0afa8b2b3b4a7e8b1afa8a3">Contact</a>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="footer-logo"><span class="footer-logo-mark">V</span><span class="footer-logo-text">Vintura</span></div>
+                <p class="footer-tagline">Wine moments, shared.</p>
+                <p>The social app for wine lovers who believe the best bottles are shared with people you trust.</p>
+                <div class="footer-social">
+                    <a href="https://instagram.com/vintura.wine" target="_blank" title="Instagram"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                </div>
+            </div>
+            <div class="footer-col"><h4>Product</h4><a href="#features">Features</a><a href="#vina">Meet Vina</a><a href="#pricing">Pricing</a><a href="#trips">Wine Trips</a></div>
+            <div class="footer-col"><h4>Company</h4><a href="mailto:hello@vintura.wine">Contact</a><a href="#">About</a><a href="#">Blog</a></div>
+            <div class="footer-col"><h4>Legal</h4><a href="privacy.html">Privacy Policy</a><a href="#">Terms of Service</a></div>
         </div>
-        
-        <div class="footer-social">
-            <a href="https://instagram.com/vintura.wine" target="_blank" title="Instagram">
-                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            </a>
+        <div class="footer-bottom">
+            <p>© 2026 Vintura. All rights reserved.</p>
+            <div class="footer-legal"><a href="privacy.html">Privacy</a><a href="#">Terms</a></div>
         </div>
-        
-        <p class="copyright">© 2026 Vintura. All rights reserved.</p>
     </footer>
-    
+
     <script>
-        // Sticky Navigation
-        const nav = document.getElementById('nav');
-        const heroSection = document.querySelector('.hero');
+        // Nav scroll
+        const nav=document.getElementById('nav');
+        window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)});
         
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > heroSection.offsetHeight - 100) {
-                nav.classList.add('visible');
-            } else {
-                nav.classList.remove('visible');
-            }
-        });
+        // Form handler
+        function handleForm(form,cb){
+            form.addEventListener('submit',function(e){
+                e.preventDefault();
+                const email=this.querySelector('input[type="email"]').value;
+                fetch('https://formspree.io/f/mbddgebj',{method:'POST',body:JSON.stringify({email}),headers:{'Content-Type':'application/json','Accept':'application/json'}})
+                .then(r=>{if(r.ok&&cb)cb(this);else alert('Something went wrong.')})
+                .catch(()=>alert('Something went wrong.'));
+            });
+        }
+        handleForm(document.getElementById('waitlist-form'),f=>{f.style.display='none';document.getElementById('success-msg').style.display='block'});
+        handleForm(document.getElementById('cta-form'),f=>{const i=f.querySelector('input'),b=f.querySelector('button');i.value='';i.placeholder='✓ You\'re on the list!';i.disabled=true;b.textContent='Added!';b.disabled=true;b.style.background='#22C55E'});
         
-        // Free tier button
-        document.getElementById('btn-free').addEventListener('click', function() {
-            alert('Vintura is launching soon! Join the waitlist to be notified when the app is available.');
-        });
-        
-        // Premium button
-        document.getElementById('btn-premium').addEventListener('click', function() {
-            alert('Premium is $49/year, but you can get Founding Member pricing at just $19/year!');
-            document.querySelector('.founding-banner').scrollIntoView({ behavior: 'smooth' });
-        });
-        
-        // Founding Member Button - Connected to Stripe
-        document.getElementById('btn-founding').addEventListener('click', function(e) {
-            e.preventDefault();
-            window.location.href = 'https://buy.stripe.com/cNi3cv4Gm34P7tGg8L7kc00';
-        });
-        
-        // App Store Links
-        document.getElementById('app-store-link').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Vintura for iOS is coming Spring 2026! Sign up as a Founding Member to get early access.');
-        });
-        
-        document.getElementById('play-store-link').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Vintura for Android is coming Spring 2026! Sign up as a Founding Member to get early access.');
-        });
-        
-        // Trip Interest Buttons - Connected to Formspree
-        document.querySelectorAll('.btn-trip').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                const trip = this.getAttribute('data-trip');
-                const button = this;
-                
-                fetch('https://formspree.io/f/mbddgebj', {
-                    method: 'POST',
-                    body: JSON.stringify({ 
-                        trip_interest: trip,
-                        message: 'Trip interest: ' + trip 
-                    }),
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    }
-                })
-                .then(response => {
-                    button.innerHTML = '✓ Added to Waitlist';
-                    button.style.backgroundColor = '#4ade80';
-                    button.style.color = '#1a1a1a';
-                    button.style.borderColor = '#4ade80';
-                    button.disabled = true;
-                });
+        // Trip buttons
+        document.querySelectorAll('.trip-btn').forEach(btn=>{
+            btn.addEventListener('click',function(){
+                const trip=this.getAttribute('data-trip');
+                fetch('https://formspree.io/f/mbddgebj',{method:'POST',body:JSON.stringify({trip_interest:trip}),headers:{'Content-Type':'application/json','Accept':'application/json'}})
+                .then(()=>{this.textContent='✓ Added to List';this.classList.add('added')});
             });
         });
         
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a=>{
+            a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})});
         });
+        
+        // Intersection observer for animations
+        const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+        document.querySelectorAll('.f-card,.p-card,.trip-card,.test-card,.step').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(30px)';el.style.transition='opacity .6s ease, transform .6s ease';observer.observe(el)});
     </script>
 </body>
 </html>

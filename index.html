@@ -274,93 +274,143 @@
         }
         
         .vina-visual {
-            background: linear-gradient(160deg, var(--wine-red) 0%, var(--wine-dark) 100%);
-            border-radius: 32px;
-            padding: 48px 36px;
+            background: #1a1a1a;
+            border-radius: 24px;
+            padding: 0;
             color: white;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 24px 64px rgba(114, 47, 55, 0.3);
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255,255,255,0.1);
         }
         
-        .vina-visual::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            right: -100px;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(201,169,98,0.2) 0%, transparent 60%);
-            border-radius: 50%;
+        .phone-mockup {
+            position: relative;
         }
         
-        .vina-visual::after {
-            content: '';
-            position: absolute;
-            bottom: -50px;
-            left: -50px;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
-            border-radius: 50%;
+        .phone-header {
+            background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+            padding: 16px 20px 12px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }
         
         .vina-avatar {
-            width: 72px;
-            height: 72px;
+            width: 48px;
+            height: 48px;
             background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 28px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-            position: relative;
-            z-index: 1;
+            box-shadow: 0 4px 12px rgba(201,169,98,0.3);
+            flex-shrink: 0;
         }
         
         .vina-avatar svg {
-            width: 36px;
-            height: 36px;
+            width: 24px;
+            height: 24px;
             fill: var(--wine-dark);
         }
         
+        .vina-header-info {
+            flex: 1;
+        }
+        
+        .vina-header-name {
+            font-weight: 600;
+            font-size: 16px;
+            color: #fff;
+        }
+        
+        .vina-header-status {
+            font-size: 12px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .vina-header-status::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #4ade80;
+            border-radius: 50%;
+        }
+        
         .vina-chat {
-            position: relative;
-            z-index: 1;
+            padding: 20px;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
         
         .chat-bubble {
-            border-radius: 20px;
-            padding: 18px 22px;
-            margin-bottom: 14px;
+            max-width: 85%;
+            padding: 14px 18px;
             font-size: 14px;
-            line-height: 1.6;
+            line-height: 1.5;
+            animation: fadeInUp 0.4s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .chat-bubble.user {
-            background: rgba(255,255,255,0.12);
-            margin-left: 48px;
-            text-align: right;
-            border-bottom-right-radius: 6px;
+            background: var(--wine-red);
+            color: white;
+            border-radius: 20px 20px 6px 20px;
+            align-self: flex-end;
         }
         
         .chat-bubble.vina {
             background: rgba(255,255,255,0.08);
-            border: 1px solid var(--gold);
-            border-bottom-left-radius: 6px;
-            margin-right: 24px;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 20px 20px 20px 6px;
+            align-self: flex-start;
+            color: rgba(255,255,255,0.9);
         }
         
-        .chat-bubble.vina::before {
-            content: 'Vina';
-            display: block;
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--gold);
-            margin-bottom: 6px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .chat-input {
+            padding: 16px 20px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255,255,255,0.03);
+        }
+        
+        .chat-input-field {
+            flex: 1;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 12px 18px;
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
+        }
+        
+        .chat-send-btn {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .chat-send-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--wine-dark);
         }
         
         /* Features Section */
@@ -772,98 +822,217 @@
             margin-top: 20px;
         }
         
-        /* Trip Interest Section */
+        /* Trip Interest Section - Luxury Travel Design */
         .trips {
             padding: 120px 24px;
-            background: var(--cream);
-        }
-        
-        .trips-container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        
-        .trip-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
-            margin-top: 56px;
-        }
-        
-        .trip-card {
-            background-color: var(--white);
-            border-radius: 24px;
-            padding: 36px 28px;
-            text-align: center;
-            border: 1px solid rgba(0,0,0,0.04);
-            transition: all 0.3s ease;
+            background: var(--wine-dark);
             position: relative;
             overflow: hidden;
         }
         
-        .trip-card::before {
+        .trips::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--wine-red), var(--gold));
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .trips-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .trips .section-header h2 {
+            color: var(--white);
+        }
+        
+        .trips .section-header p {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .trips-intro {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+        
+        .trips-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(201,169,98,0.15);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+        }
+        
+        .trip-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 56px;
+        }
+        
+        .trip-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
         }
         
         .trip-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 48px rgba(0,0,0,0.08);
+            transform: translateY(-8px);
+            box-shadow: 0 32px 64px rgba(0,0,0,0.3);
         }
         
-        .trip-card:hover::before {
-            opacity: 1;
+        .trip-card-image {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .trip-card-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.4));
+        }
+        
+        .trip-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .trip-card:hover .trip-card-image img {
+            transform: scale(1.08);
         }
         
         .trip-flag {
-            font-size: 56px;
-            margin-bottom: 20px;
-            display: block;
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            font-size: 32px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+            z-index: 1;
+        }
+        
+        .trip-card-date {
+            position: absolute;
+            bottom: 12px;
+            left: 16px;
+            background: var(--gold);
+            color: var(--wine-dark);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 1;
+            letter-spacing: 0.3px;
+        }
+        
+        .trip-card-content {
+            padding: 28px 24px 24px;
         }
         
         .trip-card h3 {
             font-family: var(--font-display);
             font-size: 26px;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             color: var(--dark-text);
             font-weight: 600;
         }
         
-        .trip-card .trip-date {
-            font-family: var(--font-display);
-            color: var(--gold-dark);
-            font-weight: 500;
+        .trip-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
             margin-bottom: 16px;
-            font-size: 16px;
-            font-style: italic;
+        }
+        
+        .trip-highlight {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--cream);
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            color: var(--medium-text);
+        }
+        
+        .trip-highlight svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--wine-red);
         }
         
         .trip-card p {
             color: var(--medium-text);
             font-size: 14px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             line-height: 1.6;
         }
         
         .btn-trip {
+            width: 100%;
             background-color: transparent;
             border: 2px solid var(--wine-red);
             color: var(--wine-red);
             padding: 14px 28px;
             font-size: 14px;
-            border-radius: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-trip svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+            transition: transform 0.3s ease;
         }
         
         .btn-trip:hover {
             background-color: var(--wine-red);
             color: var(--white);
+        }
+        
+        .btn-trip:hover svg {
+            transform: translateX(4px);
+        }
+        
+        .trips-footer {
+            text-align: center;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .trips-footer p {
+            color: rgba(255,255,255,0.6);
+            font-size: 15px;
+        }
+        
+        .trips-footer strong {
+            color: var(--gold);
         }
         
         /* Footer */
@@ -940,10 +1109,15 @@
         }
         
         /* Responsive */
-        @media (max-width: 900px) {
+        @media (max-width: 1024px) {
             .vina-container {
                 grid-template-columns: 1fr;
                 gap: 48px;
+            }
+            
+            .vina-visual {
+                max-width: 480px;
+                margin: 0 auto;
             }
             
             .features-grid {
@@ -956,26 +1130,26 @@
             
             .pricing-grid {
                 grid-template-columns: 1fr;
-                max-width: 440px;
+                max-width: 480px;
                 margin-left: auto;
                 margin-right: auto;
             }
             
             .trip-cards {
                 grid-template-columns: 1fr;
-                max-width: 400px;
+                max-width: 440px;
                 margin-left: auto;
                 margin-right: auto;
             }
         }
         
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .hero {
-                padding: 72px 20px 88px;
+                padding: 64px 20px 80px;
             }
             
             .hero h1 {
-                font-size: 48px;
+                font-size: 44px;
             }
             
             .tagline {
@@ -983,32 +1157,266 @@
             }
             
             .hero-description {
-                font-size: 17px;
+                font-size: 16px;
+            }
+            
+            .hero-cta {
+                max-width: 100%;
+            }
+            
+            .btn {
+                padding: 16px 28px;
+                font-size: 14px;
             }
             
             .section-header h2,
             .vina-content h2 {
-                font-size: 36px;
+                font-size: 32px;
+            }
+            
+            .section-header p {
+                font-size: 16px;
+            }
+            
+            .vina-section,
+            .features,
+            .premium-features,
+            .pricing,
+            .trips {
+                padding: 80px 20px;
+            }
+            
+            .vina-content p {
+                font-size: 15px;
+            }
+            
+            .vina-feature-text {
+                font-size: 14px;
             }
             
             .features-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .feature-card {
+                padding: 28px 24px;
+            }
+            
+            .feature-card h3 {
+                font-size: 20px;
+            }
+            
+            .premium-card {
+                padding: 24px;
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .premium-card-icon {
+                margin: 0 auto;
+            }
+            
+            .premium-card-content h3 {
+                font-size: 20px;
             }
             
             .pricing-card {
-                padding: 36px 28px;
+                padding: 32px 24px;
+            }
+            
+            .pricing-card h3 {
+                font-size: 26px;
             }
             
             .pricing-card .price {
-                font-size: 44px;
+                font-size: 40px;
             }
             
-            .vina-visual {
-                padding: 36px 24px;
+            .pricing-features li {
+                font-size: 14px;
+            }
+            
+            .founding-banner {
+                padding: 64px 20px;
             }
             
             .founding-banner h2 {
-                font-size: 32px;
+                font-size: 28px;
+            }
+            
+            .founding-banner p {
+                font-size: 16px;
+            }
+            
+            .trip-card-content {
+                padding: 24px 20px 20px;
+            }
+            
+            .trip-card h3 {
+                font-size: 22px;
+            }
+            
+            .trips-footer {
+                margin-top: 32px;
+            }
+            
+            .footer-links a {
+                display: block;
+                margin: 12px 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 48px 16px 64px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+                letter-spacing: -1px;
+            }
+            
+            .tagline {
+                font-size: 18px;
+            }
+            
+            .hero-description {
+                font-size: 15px;
+                margin-bottom: 32px;
+            }
+            
+            .logo {
+                width: 72px;
+                height: 72px;
+            }
+            
+            .vina-section,
+            .features,
+            .premium-features,
+            .pricing,
+            .trips {
+                padding: 60px 16px;
+            }
+            
+            .section-header {
+                margin-bottom: 48px;
+            }
+            
+            .section-header h2 {
+                font-size: 28px;
+            }
+            
+            .vina-content h2 {
+                font-size: 28px;
+            }
+            
+            .vina-content .vina-subtitle {
+                font-size: 18px;
+            }
+            
+            .vina-visual {
+                border-radius: 20px;
+            }
+            
+            .phone-header {
+                padding: 12px 16px 10px;
+            }
+            
+            .vina-avatar {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .vina-avatar svg {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .vina-header-name {
+                font-size: 14px;
+            }
+            
+            .vina-header-status {
+                font-size: 11px;
+            }
+            
+            .vina-chat {
+                padding: 16px;
+                min-height: 240px;
+            }
+            
+            .chat-bubble {
+                padding: 12px 16px;
+                font-size: 13px;
+            }
+            
+            .chat-input {
+                padding: 12px 16px;
+            }
+            
+            .chat-input-field {
+                padding: 10px 14px;
+                font-size: 13px;
+            }
+            
+            .chat-send-btn {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .feature-icon svg {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .premium-badge {
+                font-size: 12px;
+                padding: 8px 16px;
+            }
+            
+            .pricing-card.featured::before {
+                font-size: 11px;
+                padding: 6px 14px;
+            }
+            
+            .trip-card-image {
+                height: 180px;
+            }
+            
+            .trip-highlights {
+                gap: 6px;
+            }
+            
+            .trip-highlight {
+                font-size: 11px;
+                padding: 5px 10px;
+            }
+            
+            .btn-trip {
+                padding: 12px 20px;
+                font-size: 13px;
+            }
+            
+            .founding-banner {
+                padding: 48px 16px;
+            }
+            
+            .founding-banner h2 {
+                font-size: 24px;
+            }
+            
+            footer {
+                padding: 48px 16px 32px;
+            }
+            
+            .footer-logo {
+                font-size: 28px;
             }
         }
     </style>
@@ -1074,12 +1482,26 @@
             </div>
             
             <div class="vina-visual">
-                <div class="vina-avatar">
-                    <svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
-                </div>
-                <div class="vina-chat">
-                    <div class="chat-bubble user">I'm making grilled salmon for dinner. What wine should I pair?</div>
-                    <div class="chat-bubble vina">Great choice! For grilled salmon, I'd suggest a Pinot Noir — it has enough body to stand up to the richness of the fish without overpowering it. Based on your preference for lighter reds, try a Willamette Valley Pinot. Want me to suggest some specific bottles?</div>
+                <div class="phone-mockup">
+                    <div class="phone-header">
+                        <div class="vina-avatar">
+                            <svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
+                        </div>
+                        <div class="vina-header-info">
+                            <div class="vina-header-name">Vina</div>
+                            <div class="vina-header-status">Online · Your AI Sommelier</div>
+                        </div>
+                    </div>
+                    <div class="vina-chat">
+                        <div class="chat-bubble user">I'm making grilled salmon tonight. What wine pairs well?</div>
+                        <div class="chat-bubble vina">Great choice! For grilled salmon, I'd suggest a <strong>Pinot Noir</strong> — it has enough body to complement the richness without overpowering. Based on your taste profile, try a <strong>Willamette Valley Pinot</strong>. Want specific bottle recommendations?</div>
+                    </div>
+                    <div class="chat-input">
+                        <div class="chat-input-field">Ask Vina anything about wine...</div>
+                        <div class="chat-send-btn">
+                            <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1269,34 +1691,108 @@
     <section class="trips">
         <div class="trips-container">
             <div class="section-header">
-                <h2>Wine Trips Are Coming</h2>
-                <p>Travel with fellow wine lovers to the world's best regions.</p>
+                <span class="trips-badge">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+                    Coming 2026
+                </span>
+                <h2>Wine Trips with Vintura</h2>
+                <p>Curated journeys to the world's finest wine regions, with fellow enthusiasts.</p>
             </div>
             
             <div class="trip-cards">
                 <div class="trip-card">
-                    <span class="trip-flag">🇮🇹</span>
-                    <h3>Tuscany, Italy</h3>
-                    <p class="trip-date">Fall 2026</p>
-                    <p>Chianti hills, historic cellars, and farm-to-table dinners under the stars.</p>
-                    <button class="btn btn-trip" data-trip="tuscany">I'm Interested</button>
+                    <div class="trip-card-image">
+                        <span class="trip-flag">🇮🇹</span>
+                        <span class="trip-card-date">Fall 2026</span>
+                        <img src="https://images.unsplash.com/photo-1523528283115-9bf9b1699245?w=600&q=80" alt="Tuscan vineyard landscape" loading="lazy">
+                    </div>
+                    <div class="trip-card-content">
+                        <h3>Tuscany, Italy</h3>
+                        <div class="trip-highlights">
+                            <span class="trip-highlight">
+                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                                7 Days
+                            </span>
+                            <span class="trip-highlight">
+                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                                6 Wineries
+                            </span>
+                            <span class="trip-highlight">
+                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                                Small Group
+                            </span>
+                        </div>
+                        <p>Chianti hills, historic cellars, farm-to-table dinners, and exclusive tastings at legendary estates.</p>
+                        <button class="btn btn-trip" data-trip="tuscany">
+                            Register Interest
+                            <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+                        </button>
+                    </div>
                 </div>
                 
                 <div class="trip-card">
-                    <span class="trip-flag">🇪🇸</span>
-                    <h3>Rioja, Spain</h3>
-                    <p class="trip-date">Spring 2026</p>
-                    <p>Centuries-old bodegas, modern architecture, and world-class Tempranillo.</p>
-                    <button class="btn btn-trip" data-trip="rioja">I'm Interested</button>
+                    <div class="trip-card-image">
+                        <span class="trip-flag">🇪🇸</span>
+                        <span class="trip-card-date">Spring 2026</span>
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Spanish wine cellar" loading="lazy">
+                    </div>
+                    <div class="trip-card-content">
+                        <h3>Rioja, Spain</h3>
+                        <div class="trip-highlights">
+                            <span class="trip-highlight">
+                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                                6 Days
+                            </span>
+                            <span class="trip-highlight">
+                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                                5 Bodegas
+                            </span>
+                            <span class="trip-highlight">
+                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                                Small Group
+                            </span>
+                        </div>
+                        <p>Centuries-old bodegas, stunning architecture, world-class Tempranillo, and authentic Spanish cuisine.</p>
+                        <button class="btn btn-trip" data-trip="rioja">
+                            Register Interest
+                            <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+                        </button>
+                    </div>
                 </div>
                 
                 <div class="trip-card">
-                    <span class="trip-flag">🇺🇸</span>
-                    <h3>Napa Valley, USA</h3>
-                    <p class="trip-date">Summer 2026</p>
-                    <p>Iconic wineries, hot air balloons, and California hospitality at its finest.</p>
-                    <button class="btn btn-trip" data-trip="napa">I'm Interested</button>
+                    <div class="trip-card-image">
+                        <span class="trip-flag">🇺🇸</span>
+                        <span class="trip-card-date">Summer 2026</span>
+                        <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=600&q=80" alt="Napa Valley vineyard" loading="lazy">
+                    </div>
+                    <div class="trip-card-content">
+                        <h3>Napa Valley, USA</h3>
+                        <div class="trip-highlights">
+                            <span class="trip-highlight">
+                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                                5 Days
+                            </span>
+                            <span class="trip-highlight">
+                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                                7 Wineries
+                            </span>
+                            <span class="trip-highlight">
+                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                                Small Group
+                            </span>
+                        </div>
+                        <p>Iconic estates, hot air balloon rides, Michelin-star dining, and California hospitality at its finest.</p>
+                        <button class="btn btn-trip" data-trip="napa">
+                            Register Interest
+                            <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+                        </button>
+                    </div>
                 </div>
+            </div>
+            
+            <div class="trips-footer">
+                <p><strong>Premium members</strong> receive 15% off all Vintura wine trips.</p>
             </div>
         </div>
     </section>
@@ -1308,7 +1804,7 @@
         
         <div class="footer-links">
             <a href="privacy.html">Privacy Policy</a>
-            <a href="mailto:hello@vintura.wine">Contact</a>
+            <a href="/cdn-cgi/l/email-protection#c6aea3aaaaa986b0afa8b2b3b4a7e8b1afa8a3">Contact</a>
         </div>
         
         <div class="footer-social">
@@ -1320,7 +1816,7 @@
         <p class="copyright">© 2026 Vintura. All rights reserved.</p>
     </footer>
     
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Free tier button
         document.getElementById('btn-free').addEventListener('click', function() {
             alert('Vintura is launching soon! Join the waitlist to be notified when the app is available.');
@@ -1356,10 +1852,10 @@
                     }
                 })
                 .then(response => {
-                    button.textContent = '✓ Added to List';
-                    button.style.backgroundColor = '#722F37';
-                    button.style.color = 'white';
-                    button.style.borderColor = '#722F37';
+                    button.innerHTML = '✓ Added to Waitlist';
+                    button.style.backgroundColor = '#4ade80';
+                    button.style.color = '#1a1a1a';
+                    button.style.borderColor = '#4ade80';
                     button.disabled = true;
                 });
             });
@@ -1370,11 +1866,4 @@
             anchor.addEventListener('click', function(e) {
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                    e.preventDefau

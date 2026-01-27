@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vintura – Wine Moments, Shared</title>
-    <meta name="description" content="Join the wine community that turns bottles into connections. Share moments, discover wines, and find your people.">
+    <title>Vintura — Wine Moments, Shared</title>
+    <meta name="description" content="Your personal AI sommelier and wine community. Discover wines, track your cellar, and share moments with people who get it.">
     
     <!-- Open Graph / Social -->
-    <meta property="og:title" content="Vintura – Wine Moments, Shared">
-    <meta property="og:description" content="Join the wine community that turns bottles into connections. Share moments, discover wines, and find your people.">
+    <meta property="og:title" content="Vintura — Wine Moments, Shared">
+    <meta property="og:description" content="Your personal AI sommelier and wine community. Discover wines, track your cellar, and share moments with people who get it.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="og-image.png">
     
@@ -47,7 +47,7 @@
         .hero {
             background: linear-gradient(135deg, var(--wine-red) 0%, var(--wine-dark) 100%);
             color: var(--white);
-            padding: 60px 20px 80px;
+            padding: 80px 20px 100px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -72,39 +72,38 @@
         .hero-content {
             position: relative;
             z-index: 1;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
         }
         
         .logo {
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             margin-bottom: 24px;
         }
         
         .hero h1 {
-            font-size: 48px;
+            font-size: 52px;
             font-weight: 700;
             margin-bottom: 8px;
             letter-spacing: -1px;
         }
         
         .tagline {
-            font-size: 24px;
+            font-size: 26px;
             color: var(--gold);
             margin-bottom: 24px;
             font-weight: 500;
         }
         
         .hero p {
-            font-size: 18px;
+            font-size: 20px;
             opacity: 0.9;
             margin-bottom: 40px;
             line-height: 1.7;
         }
         
-        /* Waitlist Form */
-        .waitlist-form {
+        .hero-cta {
             display: flex;
             flex-direction: column;
             gap: 12px;
@@ -112,27 +111,17 @@
             margin: 0 auto;
         }
         
-        .waitlist-form input[type="email"] {
-            padding: 16px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 8px;
-            width: 100%;
-            outline: none;
-        }
-        
-        .waitlist-form input[type="email"]:focus {
-            box-shadow: 0 0 0 3px rgba(201,169,98,0.5);
-        }
-        
         .btn {
             padding: 16px 32px;
             font-size: 16px;
             font-weight: 600;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
         }
         
         .btn-primary {
@@ -146,52 +135,195 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
         
-        .form-note {
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--white);
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .hero-note {
             font-size: 14px;
             opacity: 0.7;
-            margin-top: 8px;
+            margin-top: 16px;
+        }
+        
+        /* Meet Vina Section */
+        .vina-section {
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #FFF 0%, var(--off-white) 100%);
+        }
+        
+        .vina-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .vina-content h2 {
+            font-size: 40px;
+            color: var(--wine-red);
+            margin-bottom: 8px;
+        }
+        
+        .vina-content .vina-subtitle {
+            font-size: 20px;
+            color: var(--gold);
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+        
+        .vina-content p {
+            font-size: 18px;
+            color: var(--medium-text);
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+        
+        .vina-features {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .vina-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .vina-feature-icon {
+            width: 32px;
+            height: 32px;
+            background-color: var(--wine-red);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        
+        .vina-feature-text {
+            font-size: 16px;
+            color: var(--dark-text);
+        }
+        
+        .vina-visual {
+            background: linear-gradient(135deg, var(--wine-red) 0%, var(--wine-dark) 100%);
+            border-radius: 24px;
+            padding: 40px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .vina-visual::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -30%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(201,169,98,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .vina-avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            margin-bottom: 24px;
+        }
+        
+        .vina-chat {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .chat-bubble {
+            background: rgba(255,255,255,0.15);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        
+        .chat-bubble.user {
+            background: rgba(255,255,255,0.1);
+            margin-left: 40px;
+            text-align: right;
+        }
+        
+        .chat-bubble.vina {
+            border: 1px solid var(--gold);
         }
         
         /* Features Section */
         .features {
-            padding: 80px 20px;
+            padding: 100px 20px;
             background-color: var(--white);
         }
         
         .features-container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
         }
         
-        .features h2 {
+        .section-header {
             text-align: center;
-            font-size: 32px;
-            margin-bottom: 16px;
-            color: var(--wine-red);
+            margin-bottom: 60px;
         }
         
-        .features-subtitle {
-            text-align: center;
-            color: var(--medium-text);
-            margin-bottom: 60px;
+        .section-header h2 {
+            font-size: 36px;
+            color: var(--wine-red);
+            margin-bottom: 12px;
+        }
+        
+        .section-header p {
             font-size: 18px;
+            color: var(--medium-text);
         }
         
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
         }
         
-        .feature {
+        .feature-card {
+            background: var(--off-white);
+            border-radius: 16px;
+            padding: 32px;
             text-align: center;
-            padding: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+            border-color: var(--gold);
         }
         
         .feature-icon {
             width: 64px;
             height: 64px;
-            background-color: var(--wine-red);
+            background: linear-gradient(135deg, var(--wine-red) 0%, var(--wine-dark) 100%);
             border-radius: 16px;
             display: flex;
             align-items: center;
@@ -200,162 +332,282 @@
             font-size: 28px;
         }
         
-        .feature h3 {
+        .feature-card h3 {
             font-size: 20px;
             margin-bottom: 12px;
             color: var(--dark-text);
         }
         
-        .feature p {
+        .feature-card p {
             color: var(--medium-text);
-            font-size: 16px;
+            font-size: 15px;
+            line-height: 1.6;
         }
         
-        /* Founding Member Section */
-        .founding {
-            padding: 80px 20px;
+        /* Premium Features Section */
+        .premium-features {
+            padding: 100px 20px;
             background: linear-gradient(135deg, var(--off-white) 0%, #f0ebe3 100%);
         }
         
-        .founding-container {
-            max-width: 800px;
+        .premium-container {
+            max-width: 1100px;
             margin: 0 auto;
-            text-align: center;
         }
         
-        .founding-badge {
+        .premium-badge {
             display: inline-block;
-            background-color: var(--gold);
+            background: var(--gold);
             color: var(--wine-red);
             padding: 8px 16px;
             border-radius: 20px;
             font-size: 14px;
             font-weight: 600;
-            margin-bottom: 24px;
-        }
-        
-        .founding h2 {
-            font-size: 36px;
-            color: var(--wine-red);
             margin-bottom: 16px;
         }
         
-        .founding > .founding-container > p {
-            color: var(--medium-text);
-            font-size: 18px;
-            margin-bottom: 40px;
+        .premium-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 48px;
         }
         
-        .founding-card {
-            background-color: var(--white);
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
-            border: 2px solid var(--gold);
+        .premium-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 32px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            border: 1px solid #E5E5E5;
+            transition: all 0.3s ease;
         }
         
-        .price {
-            font-size: 48px;
-            font-weight: 700;
-            color: var(--wine-red);
+        .premium-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+        
+        .premium-card-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--wine-red) 0%, var(--wine-dark) 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        
+        .premium-card-content h3 {
+            font-size: 20px;
+            color: var(--dark-text);
             margin-bottom: 8px;
         }
         
-        .price span {
+        .premium-card-content p {
+            font-size: 15px;
+            color: var(--medium-text);
+            line-height: 1.6;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            padding: 100px 20px;
+            background: var(--white);
+        }
+        
+        .pricing-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+        
+        .pricing-card {
+            background: var(--off-white);
+            border-radius: 24px;
+            padding: 40px;
+            border: 2px solid transparent;
+            position: relative;
+        }
+        
+        .pricing-card.featured {
+            background: var(--white);
+            border-color: var(--gold);
+            box-shadow: 0 12px 48px rgba(114, 47, 55, 0.15);
+        }
+        
+        .pricing-card.featured::before {
+            content: '🍷 Best Value';
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold);
+            color: var(--wine-red);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .pricing-card h3 {
+            font-size: 24px;
+            color: var(--dark-text);
+            margin-bottom: 8px;
+        }
+        
+        .pricing-card .price {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--wine-red);
+            margin: 16px 0;
+        }
+        
+        .pricing-card .price span {
             font-size: 18px;
             font-weight: 400;
             color: var(--medium-text);
         }
         
-        .price-note {
-            color: var(--light-text);
+        .pricing-card .price-note {
             font-size: 14px;
+            color: var(--light-text);
+            margin-bottom: 24px;
+        }
+        
+        .pricing-features {
+            list-style: none;
             margin-bottom: 32px;
         }
         
-        .benefits {
-            text-align: left;
-            margin-bottom: 32px;
-        }
-        
-        .benefit {
+        .pricing-features li {
             display: flex;
             align-items: flex-start;
             gap: 12px;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: var(--dark-text);
         }
         
-        .benefit-check {
-            width: 24px;
-            height: 24px;
-            background-color: var(--wine-red);
+        .pricing-features li::before {
+            content: '✓';
+            width: 20px;
+            height: 20px;
+            background: var(--wine-red);
+            color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 14px;
+            font-size: 12px;
             flex-shrink: 0;
         }
         
-        .benefit p {
-            color: var(--dark-text);
-        }
-        
-        .btn-founding {
-            width: 100%;
-            background-color: var(--wine-red);
-            color: var(--white);
-            font-size: 18px;
-            padding: 18px 32px;
-        }
-        
-        .btn-founding:hover {
-            background-color: var(--wine-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(114,47,55,0.3);
-        }
-        
-        .founding-limit {
-            margin-top: 16px;
+        .pricing-features li.disabled {
             color: var(--light-text);
+        }
+        
+        .pricing-features li.disabled::before {
+            content: '—';
+            background: #E5E5E5;
+            color: var(--light-text);
+        }
+        
+        .btn-pricing {
+            width: 100%;
+            padding: 16px;
+            font-size: 16px;
+        }
+        
+        .btn-pricing.btn-outline {
+            background: transparent;
+            border: 2px solid var(--wine-red);
+            color: var(--wine-red);
+        }
+        
+        .btn-pricing.btn-outline:hover {
+            background: var(--wine-red);
+            color: white;
+        }
+        
+        .btn-pricing.btn-filled {
+            background: var(--wine-red);
+            color: white;
+        }
+        
+        .btn-pricing.btn-filled:hover {
+            background: var(--wine-dark);
+        }
+        
+        /* Founding Member Banner */
+        .founding-banner {
+            background: linear-gradient(135deg, var(--wine-red) 0%, var(--wine-dark) 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .founding-banner-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .founding-banner h2 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+        
+        .founding-banner p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+        
+        .founding-banner .highlight {
+            color: var(--gold);
+            font-weight: 600;
+        }
+        
+        .founding-banner .btn {
+            margin-top: 8px;
+        }
+        
+        .founding-note {
             font-size: 14px;
+            opacity: 0.7;
+            margin-top: 16px;
         }
         
         /* Trip Interest Section */
         .trips {
-            padding: 80px 20px;
-            background-color: var(--white);
+            padding: 100px 20px;
+            background-color: var(--off-white);
         }
         
         .trips-container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-        }
-        
-        .trips h2 {
-            text-align: center;
-            font-size: 32px;
-            color: var(--wine-red);
-            margin-bottom: 16px;
-        }
-        
-        .trips-subtitle {
-            text-align: center;
-            color: var(--medium-text);
-            font-size: 18px;
-            margin-bottom: 48px;
         }
         
         .trip-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 24px;
+            margin-top: 48px;
         }
         
         .trip-card {
-            background-color: var(--off-white);
-            border-radius: 12px;
+            background-color: var(--white);
+            border-radius: 16px;
             padding: 32px 24px;
             text-align: center;
             border: 1px solid #E5E5E5;
@@ -389,6 +641,7 @@
             color: var(--medium-text);
             font-size: 14px;
             margin-bottom: 20px;
+            line-height: 1.5;
         }
         
         .btn-trip {
@@ -413,7 +666,7 @@
         }
         
         .footer-logo {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
             margin-bottom: 8px;
         }
@@ -421,6 +674,7 @@
         .footer-tagline {
             color: var(--gold);
             margin-bottom: 32px;
+            font-size: 16px;
         }
         
         .footer-links {
@@ -467,13 +721,13 @@
             opacity: 0.7;
         }
         
-        /* Success Message (hidden by default) */
+        /* Success Message */
         .success-message {
             display: none;
             background-color: #4CAF50;
             color: white;
             padding: 16px 24px;
-            border-radius: 8px;
+            border-radius: 12px;
             margin-top: 16px;
             animation: fadeIn 0.5s ease;
         }
@@ -484,7 +738,30 @@
         }
         
         /* Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
+            .vina-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .premium-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .trip-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 600px) {
             .hero h1 {
                 font-size: 36px;
             }
@@ -494,26 +771,24 @@
             }
             
             .hero p {
-                font-size: 16px;
+                font-size: 17px;
             }
             
-            .features h2,
-            .founding h2,
-            .trips h2 {
+            .section-header h2,
+            .vina-content h2 {
                 font-size: 28px;
             }
             
-            .founding-card {
-                padding: 24px;
+            .features-grid {
+                grid-template-columns: 1fr;
             }
             
-            .price {
-                font-size: 36px;
+            .pricing-card {
+                padding: 28px;
             }
             
-            .btn-founding {
-                font-size: 16px;
-                padding: 16px 20px;
+            .pricing-card .price {
+                font-size: 40px;
             }
         }
     </style>
@@ -532,111 +807,218 @@
             
             <h1>Vintura</h1>
             <p class="tagline">Wine Moments, Shared</p>
-            <p>Join the wine community that turns bottles into connections. Share your moments, discover wines through people you trust, and find your people.</p>
+            <p>Your personal AI sommelier and wine community. Discover wines, track your collection, and share moments with people who get it.</p>
             
-            <!-- Waitlist Form -->
-            <form class="waitlist-form" id="waitlist-form">
-                <input type="email" name="email" placeholder="Enter your email" required>
-                <button type="submit" class="btn btn-primary">Join the Waitlist</button>
-                <p class="form-note">Be the first to know when we launch. No spam, ever.</p>
-            </form>
-            <div class="success-message" id="success-message">
-                You're on the list! We'll be in touch soon.
+            <div class="hero-cta">
+                <a href="#pricing" class="btn btn-primary">Get Started Free</a>
+                <a href="#vina" class="btn btn-secondary">Meet Vina, Your AI Sommelier</a>
+            </div>
+            <p class="hero-note">Free forever • No credit card required</p>
+        </div>
+    </section>
+    
+    <!-- Meet Vina Section -->
+    <section class="vina-section" id="vina">
+        <div class="vina-container">
+            <div class="vina-content">
+                <h2>Meet Vina</h2>
+                <p class="vina-subtitle">Your Personal AI Sommelier</p>
+                <p>Vina learns your taste preferences and becomes your expert guide to the world of wine. Ask anything, get personalized recommendations, and build your wine knowledge — all in a natural conversation.</p>
+                
+                <div class="vina-features">
+                    <div class="vina-feature">
+                        <div class="vina-feature-icon">🎯</div>
+                        <span class="vina-feature-text">Personalized recommendations based on your Wine DNA</span>
+                    </div>
+                    <div class="vina-feature">
+                        <div class="vina-feature-icon">🍽️</div>
+                        <span class="vina-feature-text">Perfect food pairing suggestions for any meal</span>
+                    </div>
+                    <div class="vina-feature">
+                        <div class="vina-feature-icon">📚</div>
+                        <span class="vina-feature-text">Learn about regions, grapes, and winemaking</span>
+                    </div>
+                    <div class="vina-feature">
+                        <div class="vina-feature-icon">💬</div>
+                        <span class="vina-feature-text">Natural conversation, no intimidation</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="vina-visual">
+                <div class="vina-avatar">✨</div>
+                <div class="vina-chat">
+                    <div class="chat-bubble user">I'm making grilled salmon for dinner. What wine should I pair?</div>
+                    <div class="chat-bubble vina">Great choice! For grilled salmon, I'd suggest a Pinot Noir — it has enough body to stand up to the richness of the fish without overpowering it. Based on your preference for lighter reds, try a Willamette Valley Pinot. Want me to suggest some specific bottles in your price range?</div>
+                </div>
             </div>
         </div>
     </section>
     
-    <!-- Features Section -->
+    <!-- Core Features Section -->
     <section class="features">
         <div class="features-container">
-            <h2>Wine is Better Shared</h2>
-            <p class="features-subtitle">Vintura is the social app for wine lovers who want more than ratings.</p>
+            <div class="section-header">
+                <h2>Everything You Need to Enjoy Wine</h2>
+                <p>From discovery to tracking, Vintura has you covered.</p>
+            </div>
             
             <div class="features-grid">
-                <div class="feature">
+                <div class="feature-card">
                     <div class="feature-icon">📸</div>
-                    <h3>Share Your Moments</h3>
-                    <p>Capture and share your wine experiences – the dinner party find, the vacation discovery, the Tuesday night treat.</p>
+                    <h3>Share Wine Moments</h3>
+                    <p>Capture and share your wine experiences with a community that appreciates them.</p>
                 </div>
                 
-                <div class="feature">
-                    <div class="feature-icon">🔍</div>
-                    <h3>Scan & Discover</h3>
-                    <p>Point your camera at any wine label to instantly identify it and see what the community thinks.</p>
+                <div class="feature-card">
+                    <div class="feature-icon">📷</div>
+                    <h3>Scan Any Label</h3>
+                    <p>Point your camera at any wine label to instantly identify it and learn more.</p>
                 </div>
                 
-                <div class="feature">
+                <div class="feature-card">
                     <div class="feature-icon">👥</div>
                     <h3>Find Your People</h3>
-                    <p>Follow wine lovers with similar tastes. Get recommendations from real people, not algorithms.</p>
+                    <p>Follow wine lovers with similar tastes. Get recommendations from real people.</p>
                 </div>
                 
-                <div class="feature">
-                    <div class="feature-icon">📝</div>
-                    <h3>Build Your List</h3>
-                    <p>Save wines you want to try. Never forget a recommendation again.</p>
+                <div class="feature-card">
+                    <div class="feature-icon">🔖</div>
+                    <h3>Save Wines</h3>
+                    <p>Build your wishlist of wines to try. Never forget a recommendation again.</p>
                 </div>
                 
-                <div class="feature">
-                    <div class="feature-icon">💬</div>
-                    <h3>Join the Conversation</h3>
-                    <p>Ask questions, share tips, and connect with a community that gets it.</p>
+                <div class="feature-card">
+                    <div class="feature-icon">🧬</div>
+                    <h3>Discover Your Wine DNA</h3>
+                    <p>Take the taste quiz to understand your palate and get personalized insights.</p>
                 </div>
                 
-                <div class="feature">
-                    <div class="feature-icon">✈️</div>
-                    <h3>Travel Together</h3>
-                    <p>Coming soon: Curated wine trips with fellow Vintura members to the world's best regions.</p>
+                <div class="feature-card">
+                    <div class="feature-icon">📖</div>
+                    <h3>Wine Learning</h3>
+                    <p>Interactive lessons to build your wine knowledge at your own pace.</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Founding Member Section -->
-    <section class="founding">
-        <div class="founding-container">
-            <span class="founding-badge">🍷 Limited Offer</span>
-            <h2>Become a Founding Member</h2>
-            <p>Get exclusive early access and help shape the future of Vintura.</p>
+    <!-- Premium Features Section -->
+    <section class="premium-features">
+        <div class="premium-container">
+            <div class="section-header">
+                <span class="premium-badge">✨ Premium</span>
+                <h2>Unlock the Full Experience</h2>
+                <p>Go deeper with AI-powered tools designed for wine lovers.</p>
+            </div>
             
-            <div class="founding-card">
-                <div class="price">$19 <span>/ year</span></div>
-                <p class="price-note">Lock in this price forever. Regular price will be $49/year.</p>
-                
-                <div class="benefits">
-                    <div class="benefit">
-                        <div class="benefit-check">✓</div>
-                        <p><strong>Early Access</strong> – Be among the first to use Vintura</p>
-                    </div>
-                    <div class="benefit">
-                        <div class="benefit-check">✓</div>
-                        <p><strong>Founding Member Badge</strong> – Exclusive profile badge forever</p>
-                    </div>
-                    <div class="benefit">
-                        <div class="benefit-check">✓</div>
-                        <p><strong>Shape the Product</strong> – Direct input on features we build</p>
-                    </div>
-                    <div class="benefit">
-                        <div class="benefit-check">✓</div>
-                        <p><strong>Trip Discounts</strong> – 15% off all future Vintura wine trips</p>
-                    </div>
-                    <div class="benefit">
-                        <div class="benefit-check">✓</div>
-                        <p><strong>Founding Members Community</strong> – Exclusive group access</p>
+            <div class="premium-grid">
+                <div class="premium-card">
+                    <div class="premium-card-icon">💬</div>
+                    <div class="premium-card-content">
+                        <h3>Unlimited Vina Access</h3>
+                        <p>Ask Vina anything, anytime. Get unlimited personalized recommendations, food pairings, and wine education.</p>
                     </div>
                 </div>
                 
-                <a href="#founding-signup" class="btn btn-founding">Become a Founding Member</a>
-                <p class="founding-limit">Only 100 spots available</p>
+                <div class="premium-card">
+                    <div class="premium-card-icon">🍽️</div>
+                    <div class="premium-card-content">
+                        <h3>AI Food Pairing</h3>
+                        <p>Enter any dish and get expert wine pairing suggestions tailored to your taste preferences.</p>
+                    </div>
+                </div>
+                
+                <div class="premium-card">
+                    <div class="premium-card-icon">📝</div>
+                    <div class="premium-card-content">
+                        <h3>Tasting Notes Journal</h3>
+                        <p>Record detailed tasting notes with guided prompts. Build your personal wine diary.</p>
+                    </div>
+                </div>
+                
+                <div class="premium-card">
+                    <div class="premium-card-icon">🍷</div>
+                    <div class="premium-card-content">
+                        <h3>Cellar Tracker</h3>
+                        <p>Manage your wine collection. Track bottles, drinking windows, and total value.</p>
+                    </div>
+                </div>
             </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="pricing-container">
+            <div class="section-header">
+                <h2>Simple, Honest Pricing</h2>
+                <p>Start free, upgrade when you're ready.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="price">$0</div>
+                    <p class="price-note">Free forever</p>
+                    
+                    <ul class="pricing-features">
+                        <li>Share wine moments</li>
+                        <li>Scan wine labels</li>
+                        <li>Save wines to your list</li>
+                        <li>Follow other wine lovers</li>
+                        <li>Basic Wine DNA profile</li>
+                        <li>3 Vina questions per month</li>
+                        <li class="disabled">Unlimited Vina access</li>
+                        <li class="disabled">Food pairing tool</li>
+                        <li class="disabled">Tasting notes journal</li>
+                        <li class="disabled">Cellar tracker</li>
+                    </ul>
+                    
+                    <button class="btn btn-pricing btn-outline" id="btn-free">Join Free</button>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3>Premium</h3>
+                    <div class="price">$49 <span>/ year</span></div>
+                    <p class="price-note">Less than $1/week</p>
+                    
+                    <ul class="pricing-features">
+                        <li>Everything in Free</li>
+                        <li>Unlimited Vina access</li>
+                        <li>AI food pairing tool</li>
+                        <li>Tasting notes journal</li>
+                        <li>Cellar tracker</li>
+                        <li>Enhanced Wine DNA insights</li>
+                        <li>Personalized recommendations</li>
+                        <li>Priority support</li>
+                        <li>15% off wine trips</li>
+                        <li>Early access to new features</li>
+                    </ul>
+                    
+                    <button class="btn btn-pricing btn-filled" id="btn-premium">Start Premium</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Founding Member Banner -->
+    <section class="founding-banner">
+        <div class="founding-banner-content">
+            <h2>🍷 Founding Member Special</h2>
+            <p>Join as a Founding Member and lock in <span class="highlight">$19/year forever</span> — that's 60% off the regular price. Plus get an exclusive badge and direct input on features we build.</p>
+            <a href="#" class="btn btn-primary" id="btn-founding">Become a Founding Member — $19/year</a>
+            <p class="founding-note">Only 100 spots available</p>
         </div>
     </section>
     
     <!-- Trip Interest Section -->
     <section class="trips">
         <div class="trips-container">
-            <h2>Wine Trips Are Coming</h2>
-            <p class="trips-subtitle">Travel with fellow wine lovers to the world's best regions. Let us know where you want to go.</p>
+            <div class="section-header">
+                <h2>Wine Trips Are Coming</h2>
+                <p>Travel with fellow wine lovers to the world's best regions.</p>
+            </div>
             
             <div class="trip-cards">
                 <div class="trip-card">
@@ -673,7 +1055,7 @@
         
         <div class="footer-links">
             <a href="privacy.html">Privacy Policy</a>
-            <a href="mailto:hello@vintura.com">Contact</a>
+            <a href="mailto:hello@vintura.wine">Contact</a>
         </div>
         
         <div class="footer-social">
@@ -684,34 +1066,24 @@
     </footer>
     
     <script>
-        // Waitlist Form Submission - Connected to Formspree
-        document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+        // Free tier button - scroll to waitlist or show form
+        document.getElementById('btn-free').addEventListener('click', function() {
+            // For now, show an alert. In production, this would link to app store or signup
+            alert('Vintura is launching soon! Join the waitlist to be notified when the app is available.');
+        });
+        
+        // Premium button
+        document.getElementById('btn-premium').addEventListener('click', function() {
+            // Redirect to Stripe checkout for regular premium
+            // For now, show the founding member offer
+            alert('Premium is $49/year, but you can get Founding Member pricing at just $19/year! Click "Become a Founding Member" below.');
+            document.querySelector('.founding-banner').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // Founding Member Button - Connected to Stripe
+        document.getElementById('btn-founding').addEventListener('click', function(e) {
             e.preventDefault();
-            
-            const email = this.querySelector('input[type="email"]').value;
-            const form = this;
-            
-            // Send to Formspree
-            fetch('https://formspree.io/f/mbddgebj', {
-                method: 'POST',
-                body: JSON.stringify({ email: email }),
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Hide form, show success
-                    form.style.display = 'none';
-                    document.getElementById('success-message').style.display = 'block';
-                } else {
-                    alert('Something went wrong. Please try again.');
-                }
-            })
-            .catch(error => {
-                alert('Something went wrong. Please try again.');
-            });
+            window.location.href = 'https://buy.stripe.com/cNi3cv4Gm34P7tGg8L7kc00';
         });
         
         // Trip Interest Buttons - Connected to Formspree
@@ -734,7 +1106,7 @@
                 })
                 .then(response => {
                     // Change button to show interest recorded
-                    button.textContent = 'Added to List!';
+                    button.textContent = '✓ Added to List';
                     button.style.backgroundColor = '#722F37';
                     button.style.color = 'white';
                     button.style.borderColor = '#722F37';
@@ -743,10 +1115,15 @@
             });
         });
         
-        // Founding Member Button - Connected to Stripe
-        document.querySelector('.btn-founding').addEventListener('click', function(e) {
-            e.preventDefault();
-            window.location.href = 'https://buy.stripe.com/cNi3cv4Gm34P7tGg8L7kc00';
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
         });
     </script>
 </body>

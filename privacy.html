@@ -4,236 +4,223 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Vintura</title>
+    <meta name="description" content="Vintura Privacy Policy - How we collect, use, and protect your personal information.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --cream:#F0EBE3;--wine:#722F37;--wine-dark:#5A252C;
+            --gold:#C9A962;--gold-light:#D4B978;--charcoal:#2C2C2C;--warm-gray:#6B6560;
+            --white:#FFF;
+            --font-display:'Playfair Display',Georgia,serif;
+            --font-body:'Source Sans Pro',-apple-system,sans-serif;
         }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #1A1A1A;
-            background-color: #FAFAFA;
-        }
-        header {
-            background-color: #722F37;
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        header h1 {
-            font-size: 28px;
-            margin-bottom: 8px;
-        }
-        header p {
-            opacity: 0.9;
-            font-size: 14px;
-        }
-        main {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            background-color: white;
-        }
-        h2 {
-            color: #722F37;
-            font-size: 22px;
-            margin-top: 40px;
-            margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #F0F0F0;
-        }
-        h3 {
-            font-size: 18px;
-            margin-top: 24px;
-            margin-bottom: 12px;
-        }
-        p {
-            margin-bottom: 16px;
-            color: #333;
-        }
-        ul {
-            margin-bottom: 16px;
-            padding-left: 24px;
-        }
-        li {
-            margin-bottom: 8px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #E5E5E5;
-        }
-        th {
-            background-color: #722F37;
-            color: white;
-        }
-        tr:nth-child(even) {
-            background-color: #FAFAFA;
-        }
-        .highlight {
-            background-color: #FFF8E7;
-            border-left: 4px solid #C9A962;
-            padding: 16px;
-            margin: 20px 0;
-        }
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: #999;
-            font-size: 14px;
-        }
-        a {
-            color: #722F37;
+        body{font-family:var(--font-body);line-height:1.7;color:var(--charcoal);background:var(--cream)}
+
+        header{background:var(--wine);color:var(--white);padding:60px 20px 50px;text-align:center}
+        header h1{font-family:var(--font-display);font-size:36px;font-weight:500;margin-bottom:8px}
+        header p{font-size:15px;color:var(--gold)}
+        header a{color:var(--gold);text-decoration:none;font-weight:600}
+        header a:hover{text-decoration:underline}
+
+        main{max-width:780px;margin:0 auto;padding:48px 24px 64px;background:var(--white);border-radius:0 0 16px 16px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
+        h2{font-family:var(--font-display);font-size:22px;font-weight:500;color:var(--wine);margin-top:40px;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #f0ebe3}
+        h3{font-size:16px;font-weight:700;color:var(--charcoal);margin-top:24px;margin-bottom:8px}
+        p{font-size:15px;color:#444;margin-bottom:14px}
+        ul,ol{margin:10px 0 16px 24px;font-size:15px;color:#444}
+        li{margin-bottom:6px}
+        strong{color:var(--charcoal)}
+        a{color:var(--wine)}
+
+        .intro{font-size:16px;color:var(--warm-gray);line-height:1.8;margin-bottom:24px;padding:20px;background:#faf8f5;border-radius:10px;border-left:4px solid var(--gold)}
+
+        table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}
+        th{background:var(--wine);color:var(--white);padding:12px 16px;text-align:left;font-weight:600}
+        td{padding:10px 16px;border-bottom:1px solid #f0ebe3}
+        tr:nth-child(even){background:#faf8f5}
+
+        footer{text-align:center;padding:40px 20px;font-size:13px;color:var(--warm-gray)}
+        footer a{color:var(--wine);text-decoration:none;margin:0 10px}
+        footer a:hover{text-decoration:underline}
+
+        @media(max-width:600px){
+            header{padding:40px 16px 36px}
+            header h1{font-size:28px}
+            main{padding:32px 16px 48px}
+            h2{font-size:20px}
+            table{font-size:13px}
+            th,td{padding:8px 10px}
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Vintura Privacy Policy</h1>
-        <p>Last Updated: January 2026</p>
-    </header>
-    
-    <main>
-        <h2>Introduction</h2>
-        <p>Welcome to Vintura ("we," "our," or "us"). We respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application ("App").</p>
-        <p>Please read this Privacy Policy carefully. By using Vintura, you agree to the collection and use of information in accordance with this policy.</p>
 
-        <h2>Information We Collect</h2>
-        
-        <h3>Information You Provide to Us</h3>
-        <p><strong>Account Information</strong></p>
-        <ul>
-            <li>Name</li>
-            <li>Email address</li>
-            <li>Profile photo (optional)</li>
-            <li>Bio/description (optional)</li>
-        </ul>
-        
-        <p><strong>User Content</strong></p>
-        <ul>
-            <li>Photos you upload</li>
-            <li>Wine reviews and tasting notes</li>
-            <li>Comments on other users' posts</li>
-            <li>Wines you save to your "Want to Try" list</li>
-        </ul>
-        
-        <p><strong>Taste Preferences</strong></p>
-        <ul>
-            <li>Wine preferences from onboarding quiz</li>
-            <li>Wines you like, save, or interact with</li>
-        </ul>
+<header>
+    <h1>Privacy Policy</h1>
+    <p>Last updated: January 2026</p>
+    <p style="margin-top:8px"><a href="index.html">&larr; Back to Vintura</a></p>
+</header>
 
-        <h3>Information Collected Automatically</h3>
-        <p><strong>Device Information</strong></p>
-        <ul>
-            <li>Device type and model</li>
-            <li>Operating system version</li>
-            <li>Unique device identifiers</li>
-        </ul>
-        
-        <p><strong>Usage Information</strong></p>
-        <ul>
-            <li>Features you use</li>
-            <li>Actions you take within the App</li>
-            <li>Time spent on the App</li>
-            <li>Crash logs and performance data</li>
-        </ul>
-        
-        <p><strong>Camera and Photos</strong></p>
-        <ul>
-            <li>When you use our wine label scanner, we access your camera</li>
-            <li>We only access photos you explicitly choose to upload</li>
-            <li>We do not access your photo library without your permission</li>
-        </ul>
+<main>
 
-        <h2>How We Use Your Information</h2>
-        <p>We use the information we collect to:</p>
-        <ul>
-            <li>Create and manage your account</li>
-            <li>Provide and improve our services</li>
-            <li>Show you personalized wine recommendations</li>
-            <li>Display your posts to other users</li>
-            <li>Enable social features (following, liking, commenting)</li>
-            <li>Send you notifications about activity on your account</li>
-            <li>Respond to your questions and support requests</li>
-            <li>Analyze usage patterns to improve the App</li>
-            <li>Detect and prevent fraud or abuse</li>
-        </ul>
+    <div class="intro">
+        Welcome to Vintura ("we," "our," or "us"). We respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application ("App"). By using Vintura, you agree to the data handling practices described in this policy.
+    </div>
 
-        <h2>How We Share Your Information</h2>
-        
-        <h3>Public Information</h3>
-        <p>The following information is visible to other Vintura users:</p>
-        <ul>
-            <li>Your profile name and photo</li>
-            <li>Your bio</li>
-            <li>Your posts (photos, wine reviews, comments)</li>
-            <li>Users you follow and followers</li>
-            <li>Wines on your "Want to Try" list (if set to public)</li>
-        </ul>
+    <h2>1. Information We Collect</h2>
 
-        <h3>Service Providers</h3>
-        <p>We may share your information with third-party service providers who help us operate the App, including cloud hosting providers, analytics services, and customer support tools. These providers are contractually obligated to protect your information.</p>
+    <h3>1.1 Information You Provide to Us</h3>
+    <p><strong>Account Information:</strong></p>
+    <ul>
+        <li>Name</li>
+        <li>Email address</li>
+        <li>Profile photo (optional)</li>
+        <li>Bio/description (optional)</li>
+    </ul>
 
-        <h3>Legal Requirements</h3>
-        <p>We may disclose your information if required by law, such as in response to a court order or subpoena, to comply with legal obligations, or to protect our rights or the safety of users.</p>
+    <p><strong>User Content:</strong></p>
+    <ul>
+        <li>Photos uploaded</li>
+        <li>Wine reviews and tasting notes</li>
+        <li>Comments on other users' posts</li>
+        <li>Wines saved to "Want to Try" list</li>
+    </ul>
 
-        <h2>Data Retention</h2>
-        <p>We retain your personal information for as long as your account is active or as needed to provide you services. You can delete your account at any time, and we will delete your personal data within 30 days, except where we are required to retain it for legal purposes.</p>
+    <p><strong>Taste Preferences:</strong></p>
+    <ul>
+        <li>Wine preferences from onboarding quiz</li>
+        <li>Wines liked, saved, or interacted with</li>
+    </ul>
 
-        <h2>Your Rights and Choices</h2>
-        
-        <h3>Access and Update</h3>
-        <p>You can access and update your account information at any time through the App's settings.</p>
-        
-        <h3>Delete Your Account</h3>
-        <p>You can request deletion of your account by contacting us at <a href="mailto:hello@vintura.com">hello@vintura.com</a>. We will delete your data within 30 days.</p>
-        
-        <h3>Opt-Out of Notifications</h3>
-        <p>You can opt out of push notifications through your device settings or the App's notification settings.</p>
-        
-        <h3>Data Portability</h3>
-        <p>You can request a copy of your data by contacting us at <a href="mailto:hello@vintura.com">hello@vintura.com</a>.</p>
+    <h3>1.2 Information Collected Automatically</h3>
+    <p><strong>Device Information:</strong></p>
+    <ul>
+        <li>Device type and model</li>
+        <li>Operating system version</li>
+        <li>Unique device identifiers</li>
+    </ul>
 
-        <h2>Data Security</h2>
-        <p>We implement appropriate technical and organizational measures to protect your personal information, including encryption of data in transit (HTTPS/TLS), secure cloud infrastructure, and access controls and authentication.</p>
-        <p>However, no method of transmission over the Internet is 100% secure. We cannot guarantee absolute security.</p>
+    <p><strong>Usage Information:</strong></p>
+    <ul>
+        <li>Features used and actions within the App</li>
+        <li>Time spent on the App</li>
+        <li>Crash logs and performance data</li>
+    </ul>
 
-        <h2>Children's Privacy</h2>
-        <p>Vintura is not intended for users under 17 years of age due to alcohol-related content. We do not knowingly collect personal information from children under 17. If we learn that we have collected information from a child under 17, we will delete that information promptly.</p>
+    <p><strong>Camera and Photos:</strong></p>
+    <ul>
+        <li>Wine label scanner accesses camera</li>
+        <li>Photos accessed only when explicitly chosen for upload</li>
+        <li>Photo library access requires your permission</li>
+    </ul>
 
-        <h2>International Data Transfers</h2>
-        <p>Your information may be transferred to and processed in countries other than your country of residence. These countries may have different data protection laws. By using Vintura, you consent to the transfer of your information to these countries.</p>
+    <h2>2. How We Use Your Information</h2>
+    <p>We use the information we collect to:</p>
+    <ul>
+        <li>Create and manage your account</li>
+        <li>Provide and improve our services</li>
+        <li>Deliver personalized wine recommendations</li>
+        <li>Display your posts to other users</li>
+        <li>Enable social features (following, liking, commenting)</li>
+        <li>Send notifications about account activity</li>
+        <li>Respond to your questions and support requests</li>
+        <li>Analyze usage patterns to improve the App</li>
+        <li>Detect and prevent fraud and abuse</li>
+    </ul>
 
-        <h2>Changes to This Privacy Policy</h2>
-        <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy in the App, updating the "Last Updated" date, and sending you a notification for significant changes.</p>
+    <h2>3. How We Share Your Information</h2>
 
-        <h2>California Privacy Rights (CCPA)</h2>
-        <p>If you are a California resident, you have additional rights including the right to know what personal information we collect, right to delete your personal information, right to opt-out of the sale of personal information (we do not sell your data), and right to non-discrimination for exercising your rights.</p>
+    <h3>3.1 Public Information</h3>
+    <p>The following information is visible to other Vintura users:</p>
+    <ul>
+        <li>Profile name and photo</li>
+        <li>Bio</li>
+        <li>Posts (photos, reviews, comments)</li>
+        <li>Following/follower lists</li>
+        <li>"Want to Try" list (if set to public)</li>
+    </ul>
 
-        <h2>European Privacy Rights (GDPR)</h2>
-        <p>If you are in the European Economic Area (EEA), you have additional rights including the right to access, rectification, erasure, restrict processing, data portability, object to processing, and withdraw consent.</p>
+    <h3>3.2 Service Providers</h3>
+    <p>We may share your information with third-party service providers who assist us with cloud hosting, analytics, payment processing, and customer support. These providers are contractually obligated to protect your data and only use it for the purposes we specify.</p>
 
-        <h2>Contact Us</h2>
-        <p>If you have any questions about this Privacy Policy, please contact us:</p>
-        <div class="highlight">
-            <p><strong>Email:</strong> <a href="mailto:hello@vintura.com">hello@vintura.com</a></p>
-        </div>
+    <h3>3.3 Legal Requirements</h3>
+    <p>We may disclose your information if required by law, such as in response to a court order or subpoena, to comply with legal obligations, or to protect our rights or the safety of our users.</p>
 
-        <h2>Summary</h2>
-        <table>
+    <h2>4. Data Retention</h2>
+    <p>We retain your personal information for as long as your account is active or as needed to provide you services. You may delete your account at any time; your data will be removed within 30 days of deletion, except where we are required by law to retain certain information.</p>
+
+    <h2>5. Your Rights and Choices</h2>
+
+    <h3>5.1 Access and Update</h3>
+    <p>You can access and update your account information at any time through the App settings.</p>
+
+    <h3>5.2 Delete Your Account</h3>
+    <p>You may request deletion of your account by contacting us at <a href="mailto:hello@vintura.wine">hello@vintura.wine</a>. Your data will be removed within 30 days.</p>
+
+    <h3>5.3 Opt-Out of Notifications</h3>
+    <p>You can disable notifications through your device settings or within the App's notification preferences.</p>
+
+    <h3>5.4 Data Portability</h3>
+    <p>You may request a copy of your data by contacting us at <a href="mailto:hello@vintura.wine">hello@vintura.wine</a>.</p>
+
+    <h2>6. Data Security</h2>
+    <p>We implement appropriate technical and organizational measures to protect your personal information, including:</p>
+    <ul>
+        <li>Encryption of data in transit (HTTPS/TLS)</li>
+        <li>Secure cloud infrastructure</li>
+        <li>Access controls and authentication</li>
+    </ul>
+    <p>No method of transmission over the Internet is 100% secure. While we strive to use commercially acceptable means to protect your personal information, we cannot guarantee its absolute security.</p>
+
+    <h2>7. Children's Privacy</h2>
+    <p>Vintura is not intended for users under the age of <strong>17</strong> due to alcohol-related content. We do not knowingly collect personal information from children under 17. If we discover that a minor has provided us with personal information, we will delete it promptly.</p>
+
+    <h2>8. International Data Transfers</h2>
+    <p>Your information may be transferred to and processed in countries other than your own, which may have different data protection laws. By using Vintura, you consent to such transfers.</p>
+
+    <h2>9. Changes to This Privacy Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Changes will be posted within the App with an updated "Last Updated" date. We will notify you of significant changes through in-app notifications or email.</p>
+
+    <h2>10. California Privacy Rights (CCPA)</h2>
+    <p>If you are a California resident, you have the right to:</p>
+    <ul>
+        <li>Know what personal information we collect about you</li>
+        <li>Request deletion of your personal information</li>
+        <li>Opt-out of the sale of your personal information (we do not sell your data)</li>
+        <li>Receive equal service and pricing regardless of exercising your privacy rights</li>
+    </ul>
+
+    <h2>11. European Privacy Rights (GDPR)</h2>
+    <p>If you are a resident of the European Economic Area (EEA), you have the following rights under the General Data Protection Regulation:</p>
+    <ul>
+        <li><strong>Access</strong> — the right to request a copy of your personal data</li>
+        <li><strong>Rectification</strong> — the right to correct inaccurate or incomplete data</li>
+        <li><strong>Erasure</strong> — the right to request deletion of your personal data</li>
+        <li><strong>Restrict processing</strong> — the right to limit how we use your data</li>
+        <li><strong>Data portability</strong> — the right to receive your data in a portable format</li>
+        <li><strong>Object</strong> — the right to object to processing of your personal data</li>
+        <li><strong>Withdraw consent</strong> — the right to withdraw consent at any time</li>
+    </ul>
+
+    <h2>12. Contact Us</h2>
+    <p>If you have any questions about this Privacy Policy or your personal data, please contact us:</p>
+    <ul>
+        <li><strong>Email:</strong> <a href="mailto:hello@vintura.wine">hello@vintura.wine</a></li>
+        <li><strong>Website:</strong> <a href="https://vintura.wine">vintura.wine</a></li>
+    </ul>
+
+    <h2>Data Collection Summary</h2>
+    <table>
+        <thead>
             <tr>
                 <th>What We Collect</th>
                 <th>Why</th>
                 <th>Shared Publicly?</th>
             </tr>
+        </thead>
+        <tbody>
             <tr>
                 <td>Name, email</td>
                 <td>Account creation</td>
@@ -245,7 +232,7 @@
                 <td>Yes</td>
             </tr>
             <tr>
-                <td>Posts & photos</td>
+                <td>Posts &amp; photos</td>
                 <td>Core app feature</td>
                 <td>Yes</td>
             </tr>
@@ -264,12 +251,19 @@
                 <td>Analytics</td>
                 <td>No</td>
             </tr>
-        </table>
-    </main>
-    
-    <footer>
-        <p>© 2026 Vintura. All rights reserved.</p>
-        <p>Wine moments, shared.</p>
-    </footer>
+        </tbody>
+    </table>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 Vintura. All rights reserved. Wine moments, shared.</p>
+    <p style="margin-top:8px">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="index.html">Home</a>
+    </p>
+</footer>
+
 </body>
 </html>
